@@ -10,23 +10,23 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{asset('front-end/img/favicon.png')}}" rel="icon">
-  <link href="{{asset('front-end/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <link href="{{asset('customer-template/img/favicon.png')}}" rel="icon">
+  <link href="{{asset('customer-template/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="{{asset('front-end/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
-  <link href="{{asset('front-end/vendor/aos/aos.css')}}" rel="stylesheet">
-  <link href="{{asset('front-end/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{asset('front-end/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-  <link href="{{asset('front-end/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{asset('front-end/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
-  <link href="{{asset('front-end/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+  <link href="{{asset('customer-template/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+  <link href="{{asset('customer-template/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link href="{{asset('customer-template/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{asset('customer-template/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{asset('customer-template/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{asset('customer-template/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+  <link href="{{asset('customer-template/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{{asset('front-end/css/style.css')}}" rel="stylesheet">
+  <link href="{{asset('customer-template/css/style.css')}}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Restaurantly - v3.8.0
@@ -62,7 +62,7 @@
 
       <h1 class="logo me-auto me-lg-0"><a href="index.html">Restaurantly</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="{{asset('front-end/img/logo.png')}}" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="{{asset('customer-template/img/logo.png')}}" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
@@ -129,7 +129,7 @@
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
             <div class="about-img">
-              <img src="{{asset('front-end/img/about.jpg')}}" alt="">
+              <img src="{{asset('customer-template/img/about.jpg')}}" alt="">
             </div>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
@@ -217,7 +217,7 @@
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="{{asset('front-end/img/menu/lobster-bisque.jpg')}}" class="menu-img" alt="">
+            <img src="{{asset('customer-template/img/menu/lobster-bisque.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Lobster Bisque</a><span>$5.95</span>
             </div>
@@ -227,7 +227,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="{{asset('front-end/img/menu/bread-barrel.jpg')}}" class="menu-img" alt="">
+            <img src="{{asset('customer-template/img/menu/bread-barrel.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Bread Barrel</a><span>$6.95</span>
             </div>
@@ -237,7 +237,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="{{asset('front-end/img/menu/cake.jpg')}}" class="menu-img" alt="">
+            <img src="{{asset('customer-template/img/menu/cake.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Crab Cake</a><span>$7.95</span>
             </div>
@@ -247,7 +247,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-salads">
-            <img src="{{asset('front-end/img/menu/caesar.jpg')}}" class="menu-img" alt="">
+            <img src="{{asset('customer-template/img/menu/caesar.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Caesar Selections</a><span>$8.95</span>
             </div>
@@ -257,7 +257,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="{{asset('front-end/img/menu/tuscan-grilled.jpg')}}" class="menu-img" alt="">
+            <img src="{{asset('customer-template/img/menu/tuscan-grilled.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Tuscan Grilled</a><span>$9.95</span>
             </div>
@@ -267,7 +267,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="{{asset('front-end/img/menu/mozzarella.jpg')}}" class="menu-img" alt="">
+            <img src="{{asset('customer-template/img/menu/mozzarella.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Mozzarella Stick</a><span>$4.95</span>
             </div>
@@ -277,7 +277,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-salads">
-            <img src="{{asset('front-end/img/menu/greek-salad.jpg')}}" class="menu-img" alt="">
+            <img src="{{asset('customer-template/img/menu/greek-salad.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Greek Salad</a><span>$9.95</span>
             </div>
@@ -287,7 +287,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-salads">
-            <img src="{{asset('front-end/img/menu/spinach-salad.jpg')}}" class="menu-img" alt="">
+            <img src="{{asset('customer-template/img/menu/spinach-salad.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Spinach Salad</a><span>$9.95</span>
             </div>
@@ -297,7 +297,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="{{asset('front-end/img/menu/lobster-roll.jpg')}}" class="menu-img" alt="">
+            <img src="{{asset('customer-template/img/menu/lobster-roll.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Lobster Roll</a><span>$12.95</span>
             </div>
@@ -350,7 +350,7 @@
                     <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{{asset('front-end/img/specials-1.png')}}" alt="" class="img-fluid">
+                    <img src="{{asset('customer-template/img/specials-1.png')}}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -362,7 +362,7 @@
                     <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{{asset('front-end/img/specials-2.png')}}" alt="" class="img-fluid">
+                    <img src="{{asset('customer-template/img/specials-2.png')}}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -374,7 +374,7 @@
                     <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{{asset('front-end/img/specials-3.png')}}" alt="" class="img-fluid">
+                    <img src="{{asset('customer-template/img/specials-3.png')}}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -386,7 +386,7 @@
                     <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{{asset('front-end/img/specials-4.png')}}" alt="" class="img-fluid">
+                    <img src="{{asset('customer-template/img/specials-4.png')}}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -398,7 +398,7 @@
                     <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{{asset('front-end/img/specials-5.png')}}" alt="" class="img-fluid">
+                    <img src="{{asset('customer-template/img/specials-5.png')}}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -424,7 +424,7 @@
             <div class="swiper-slide">
               <div class="row event-item">
                 <div class="col-lg-6">
-                  <img src="{{asset('front-end/img/event-birthday.jpg')}}" class="img-fluid" alt="">
+                  <img src="{{asset('customer-template/img/event-birthday.jpg')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
                   <h3>Birthday Parties</h3>
@@ -451,7 +451,7 @@
             <div class="swiper-slide">
               <div class="row event-item">
                 <div class="col-lg-6">
-                  <img src="{{asset('front-end/img/event-private.jpg')}}" class="img-fluid" alt="">
+                  <img src="{{asset('customer-template/img/event-private.jpg')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
                   <h3>Private Parties</h3>
@@ -478,7 +478,7 @@
             <div class="swiper-slide">
               <div class="row event-item">
                 <div class="col-lg-6">
-                  <img src="{{asset('front-end/img/event-custom.jpg')}}" class="img-fluid" alt="">
+                  <img src="{{asset('customer-template/img/event-custom.jpg')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
                   <h3>Custom Parties</h3>
@@ -579,7 +579,7 @@
                   Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="{{asset('front-end/img/testimonials/testimonials-1.jpg')}}" class="testimonial-img" alt="">
+                <img src="{{asset('customer-template/img/testimonials/testimonials-1.jpg')}}" class="testimonial-img" alt="">
                 <h3>Saul Goodman</h3>
                 <h4>Ceo &amp; Founder</h4>
               </div>
@@ -592,7 +592,7 @@
                   Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="{{asset('front-end/img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
+                <img src="{{asset('customer-template/img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
                 <h3>Sara Wilsson</h3>
                 <h4>Designer</h4>
               </div>
@@ -605,7 +605,7 @@
                   Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="{{asset('front-end/img/testimonials/testimonials-3.jpg')}}" class="testimonial-img" alt="">
+                <img src="{{asset('customer-template/img/testimonials/testimonials-3.jpg')}}" class="testimonial-img" alt="">
                 <h3>Jena Karlis</h3>
                 <h4>Store Owner</h4>
               </div>
@@ -618,7 +618,7 @@
                   Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="{{asset('front-end/img/testimonials/testimonials-4.jpg')}}" class="testimonial-img" alt="">
+                <img src="{{asset('customer-template/img/testimonials/testimonials-4.jpg')}}" class="testimonial-img" alt="">
                 <h3>Matt Brandon</h3>
                 <h4>Freelancer</h4>
               </div>
@@ -631,7 +631,7 @@
                   Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="{{asset('front-end/img/testimonials/testimonials-5.jpg')}}" class="testimonial-img" alt="">
+                <img src="{{asset('customer-template/img/testimonials/testimonials-5.jpg')}}" class="testimonial-img" alt="">
                 <h3>John Larson</h3>
                 <h4>Entrepreneur</h4>
               </div>
@@ -660,64 +660,64 @@
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="{{asset('front-end/img/gallery/gallery-1.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="{{asset('front-end/img/gallery/gallery-1.jpg')}}" alt="" class="img-fluid">
+              <a href="{{asset('customer-template/img/gallery/gallery-1.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{{asset('customer-template/img/gallery/gallery-1.jpg')}}" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="{{asset('front-end/img/gallery/gallery-2.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="{{asset('front-end/img/gallery/gallery-2.jpg')}}" alt="" class="img-fluid">
+              <a href="{{asset('customer-template/img/gallery/gallery-2.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{{asset('customer-template/img/gallery/gallery-2.jpg')}}" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="{{asset('front-end/img/gallery/gallery-3.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="{{asset('front-end/img/gallery/gallery-3.jpg')}}" alt="" class="img-fluid">
+              <a href="{{asset('customer-template/img/gallery/gallery-3.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{{asset('customer-template/img/gallery/gallery-3.jpg')}}" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="{{asset('front-end/img/gallery/gallery-4.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="{{asset('front-end/img/gallery/gallery-4.jpg')}}" alt="" class="img-fluid">
+              <a href="{{asset('customer-template/img/gallery/gallery-4.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{{asset('customer-template/img/gallery/gallery-4.jpg')}}" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="{{asset('front-end/img/gallery/gallery-5.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="{{asset('front-end/img/gallery/gallery-5.jpg')}}" alt="" class="img-fluid">
+              <a href="{{asset('customer-template/img/gallery/gallery-5.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{{asset('customer-template/img/gallery/gallery-5.jpg')}}" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="{{asset('front-end/img/gallery/gallery-6.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="{{asset('front-end/img/gallery/gallery-6.jpg')}}" alt="" class="img-fluid">
+              <a href="{{asset('customer-template/img/gallery/gallery-6.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{{asset('customer-template/img/gallery/gallery-6.jpg')}}" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="{{asset('front-end/img/gallery/gallery-7.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="{{asset('front-end/img/gallery/gallery-7.jpg')}}" alt="" class="img-fluid">
+              <a href="{{asset('customer-template/img/gallery/gallery-7.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{{asset('customer-template/img/gallery/gallery-7.jpg')}}" alt="" class="img-fluid">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="{{asset('front-end/img/gallery/gallery-8.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="{{asset('front-end/img/gallery/gallery-8.jpg')}}" alt="" class="img-fluid">
+              <a href="{{asset('customer-template/img/gallery/gallery-8.jpg')}}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{{asset('customer-template/img/gallery/gallery-8.jpg')}}" alt="" class="img-fluid">
               </a>
             </div>
           </div>
@@ -740,7 +740,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="100">
-              <img src="{{asset('front-end/img/chefs/chefs-1.jpg')}}" class="img-fluid" alt="">
+              <img src="{{asset('customer-template/img/chefs/chefs-1.jpg')}}" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Walter White</h4>
@@ -758,7 +758,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="200">
-              <img src="{{asset('front-end/img/chefs/chefs-2.jpg')}}" class="img-fluid" alt="">
+              <img src="{{asset('customer-template/img/chefs/chefs-2.jpg')}}" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Sarah Jhonson</h4>
@@ -776,7 +776,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="300">
-              <img src="{{asset('front-end/img/chefs/chefs-3.jpg')}}" class="img-fluid" alt="">
+              <img src="{{asset('customer-template/img/chefs/chefs-3.jpg')}}" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>William Anderson</h4>
@@ -960,15 +960,14 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="{{asset('front-end/vendor/aos/aos.js')}}"></script>
-  <script src="{{asset('front-end/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('front-end/vendor/glightbox/js/glightbox.min.js')}}"></script>
-  <script src="{{asset('front-end/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-  <script src="{{asset('front-end/vendor/swiper/swiper-bundle.min.js')}}"></script>
-  <script src="{{asset('back-end/php-email-form/validate.js')}}"></script>
+  <script src="{{asset('customer-template/vendor/aos/aos.js')}}"></script>
+  <script src="{{asset('customer-template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('customer-template/vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{asset('customer-template/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{asset('customer-template/vendor/swiper/swiper-bundle.min.js')}}"></script>
 
   <!-- Template Main JS File -->
-  <script src="{{asset('front-end/js/main.js')}}"></script>
+  <script src="{{asset('customer-template/js/main.js')}}"></script>
 
 </body>
 

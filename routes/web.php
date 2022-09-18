@@ -1,4 +1,7 @@
 <?php
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\LoginController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Guest routes
+Route::get('/customer',[GuestController::class,'index']);
 
-Route::get('/user', function (){
-    return view('customer-home');
-});
+// Staff routes
+
+Route::get('/login',[LoginController::class,'showLogin']);
