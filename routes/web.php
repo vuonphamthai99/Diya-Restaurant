@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\GuestController;
-use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\MyLoginController;
+use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +24,11 @@ Route::get('/customer',[GuestController::class,'index']);
 
 // Staff routes
 
-Route::get('/login',[LoginController::class,'showLogin']);
+Route::get('/login',[MyLoginController::class,'showLogin'])->name('showLogin');
+Route::post('/authLogin', [MyLoginController::class,'authCheck'])->name('authLogin');
+Route::get('/Dashboard',[MyLoginController::class,'showDashboard'])->name('showDashboard');
+Route::get('/logout',[MyLoginController::class,'logout'])->name('logout');
+
+Route::group(['prefix'=>'user'],function(){
+    Route::get('/user-list',[UserController::class,'showListUser'])->name('showListUser');
+});
