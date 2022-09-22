@@ -48,7 +48,11 @@
                     </div>
                   </td>
                   <td> $ 77.99 </td>
-                  <td> May 15, 2015 </td>
+                  <td>
+                    {{-- <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm btn-icon">
+                        <i class="mdi mdi-home-outline"></i>
+                      </button> --}}
+                </td>
                 </tr>
 
               </tbody>

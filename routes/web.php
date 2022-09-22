@@ -2,7 +2,7 @@
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MyLoginController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Middleware\IsLoggedIn;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +29,6 @@ Route::post('/authLogin', [MyLoginController::class,'authCheck'])->name('authLog
 Route::get('/Dashboard',[MyLoginController::class,'showDashboard'])->name('showDashboard');
 Route::get('/logout',[MyLoginController::class,'logout'])->name('logout');
 
-Route::group(['prefix'=>'user'],function(){
+Route::group(['prefix'=>'user','middleware'=>['isLoggedIn']],function(){
     Route::get('/user-list',[UserController::class,'showListUser'])->name('showListUser');
 });
