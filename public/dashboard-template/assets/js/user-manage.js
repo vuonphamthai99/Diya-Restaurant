@@ -1,7 +1,7 @@
 $(document).ready(function(){
     // Tìm thông tin trong bảng
     $("#searchUserInput").on("keyup", function() {
-        SearchTable('searchUserInput','UserListTable');
+        SearchByInputTable('searchUserInput','UserListTable');
     });
     // Hiện modal thêm user
     $("#addNewUser").click(function(){
@@ -10,7 +10,10 @@ $(document).ready(function(){
     // Lọc theo vai trò người dùng
     $("a.dropdown-item").click(function(){
         var selected = $(this).text();
-        console.log(selected);
+        if (selected == 'Tất cả'){
+            selected = '';
+        }
+        SearchByString(selected,'UserListTable');
     });
   });
 

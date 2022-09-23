@@ -19,6 +19,7 @@
                     <div class="btn-group">
                     <button id="sortUserByRole" class="btn dropdown-toggle   me-3 btn-block btn-lg btn-gradient-primary " data-bs-toggle="dropdown"> Vai trò </button>
                     <div class="dropdown-menu">
+                        <a class="dropdown-item">Tất cả</a>
                         <a class="dropdown-item">Admin</a>
                         <a class="dropdown-item">Quản lý</a>
                         <a class="dropdown-item">Thu ngân</a>
