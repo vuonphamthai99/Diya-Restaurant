@@ -15,7 +15,16 @@
           <div class="card-body">
             <div class="row mb-3">
                 <div class="col-lg-6">
-                    <button class="btn btn-block btn-lg btn-gradient-primary ">+ Thêm người dùng</button>
+                    <button id="addNewUser" class="btn  me-3 btn-block btn-lg btn-gradient-primary ">+ Thêm người dùng</button>
+                    <div class="btn-group">
+                    <button id="sortUserByRole" class="btn dropdown-toggle   me-3 btn-block btn-lg btn-gradient-primary " data-bs-toggle="dropdown"> Vai trò </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item">Admin</a>
+                        <a class="dropdown-item">Quản lý</a>
+                        <a class="dropdown-item">Thu ngân</a>
+                        <a class="dropdown-item">Bồi bàn</a>
+                      </div>
+                </div>
                 </div>
             <div class="col-lg-6 ">
                 <div class="input-group">
@@ -29,9 +38,9 @@
             <table  class="table table-striped">
               <thead>
                 <tr>
-                  <th> User </th>
-                  <th> First name </th>
-                  <th> Progress </th>
+                  <th> Ảnh đại diện </th>
+                  <th> Họ Tên </th>
+                  <th> Chức vụ </th>
                   <th> Amount </th>
                   <th> Deadline </th>
                 </tr>

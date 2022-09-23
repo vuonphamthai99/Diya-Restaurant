@@ -31,4 +31,6 @@ Route::get('/logout',[MyLoginController::class,'logout'])->name('logout');
 
 Route::group(['prefix'=>'user','middleware'=>['isLoggedIn']],function(){
     Route::get('/user-list',[UserController::class,'showListUser'])->name('showListUser');
+    Route::post('/addNewUser', [UserController::class,'addNewUser'])->name('addNewUser');
+    Route::get('/showListUserRole',[UserController::class,'showListUserRole'])->name('showListUserRole');
 });
