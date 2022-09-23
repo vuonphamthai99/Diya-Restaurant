@@ -53,6 +53,7 @@
     <script src="{{asset('dashboard-template/assets/js/dashboard.js')}}"></script>
     <script src="{{asset('dashboard-template/assets/js/todolist.js')}}"></script>
     <script src="{{asset('dashboard-template/assets/js/functions-library.js')}}"></script>
+    <script src="{{asset('dashboard-template/assets/js/main.js')}}"></script>
 
     @yield('page-js')
     <!-- End custom js for this page -->
