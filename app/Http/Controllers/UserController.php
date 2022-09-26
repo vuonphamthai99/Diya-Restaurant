@@ -46,6 +46,12 @@ class UserController extends Controller
         return view('staff.user-manage.user-role-list',compact('user_role_list'));
     }
 
+    public function actionHandler($id,$action){
+        if($action == 'reset-pwd'){
+        }
+        else{
 
+        }
+    }
 
 }

@@ -8,8 +8,8 @@
             <form class="forms-sample" method="POST" action="{{route('addNewUser')}}">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn close-modal btn-outline-secondary btn-rounded btn-icon">
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm người dùng</h5>
+                    <button type="button" class="btn close-modal btn-outline-primary btn-rounded btn-icon">
                         <i class="mdi mdi-close"></i>
                       </button>
                 </div>
@@ -59,13 +59,40 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn close-modal btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn close-modal btn-danger" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<!-- Modal Confirm action on User-->
+
+<div class="modal fade" id="confirmActionOnUser" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Xác nhận</h5>
+          <button type="button" class="btn close-modal btn-outline-primary btn-rounded btn-icon">
+            <i class="mdi mdi-close"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+                <div class="card-body">
+
+          <h4 class="card-description" id="ConfirmActionMsg"></h5>
+        </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="close-modal btn btn-danger" data-dismiss="modal">Hủy</button>
+          <button type="button" id="actionConfirmed" class="btn btn-primary">Đồng ý</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

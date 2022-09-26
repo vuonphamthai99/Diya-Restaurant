@@ -17,7 +17,18 @@ $(document).ready(function(){
         SearchByString(findSelected,'UserListTable');
         $('#sortUserByRole').html(selected);
     });
+
+
   });
+    // Thao tác trên người dùng
+  $('.act-user-btn').click(function(){
+    var iduser = $(this).parent().attr('id-user');
+    var action = $(this).attr('id');
+    ManageUsers(action,iduser);
+    iduser = ""
+    action = ""
+})
+
 
 
 

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->timestamps();
             $table->string('id_user_add');
+            $table->int('lock_status')->default(0);
         });
     }
 

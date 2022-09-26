@@ -19,12 +19,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'id',
-        'user_role_id',
+        'id_user_role',
         'phone',
         'email',
         'name',
         'password',
-        'id_user_add'
+        'id_user_add',
+        'lock_status'
     ];
 
     /**
@@ -45,4 +46,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function hasRole(){
+        return $this->hasOne(User_role::class,'id','id_user_role');
+    }
+
+    public function hasCreator(){
+        return $this->hasOne(User::class,'id','id_user_add');
+    }
 }

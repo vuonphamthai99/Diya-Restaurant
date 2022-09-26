@@ -64,19 +64,26 @@
                   </td>
                   <td> {{$user->name}} </td>
                   <td>
-                    {{$user->user_role_id}}
+                    {{$user->hasRole->user_role}}
                   </td>
                   <td> {{$user->created_at->format('d/m/Y')}} </td>
-                  <td> {{$user->id_user_add}} </td>
-                  <td>
-                    <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm btn-icon">
-                        <i class="mdi mdi-home-outline"></i>
+                  <td> {{$user->hasCreator ? $user->hasCreator->name : ''}} </td>
+                  <td class="action user-manage" id-user="{{$user->id}}">
+                      <button type="button" title="Reset mật khẩu" id="reset-pwd"   data-toggle="tooltip" data-placement="top" class="btn act-user-btn tooltip-r btn-gradient-primary btn-rounded  btn-icon">
+                      <i class="mdi mdi-file-restore"></i>
+                    </button>
+                    @if ($user->lock_status == 0)
+                    <button type="button" title="Khóa người dùng" id="lock-user"  data-toggle="tooltip" data-placement="top" class="btn act-user-btn tooltip-r btn-gradient-warning btn-rounded btn-icon">
+                        <i class="mdi mdi-lock"></i>
                       </button>
-                    <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm btn-icon">
-                        <i class="mdi mdi-home-outline"></i>
+                      @else
+                      <button type="button" title="Mở khóa người dùng" id="unlock-user"  data-toggle="tooltip" data-placement="top" class="btn act-user-btn tooltip-r btn-gradient-success btn-rounded btn-icon">
+                        <i class="mdi mdi-lock-open"></i>
                       </button>
-                    <button type="button" class="btn btn-gradient-primary btn-rounded btn-sm btn-icon">
-                        <i class="mdi mdi-home-outline"></i>
+                    @endif
+
+                      <button type="button" title="Xóa người dùng" id="delete-user"  data-toggle="tooltip" data-placement="top" class="btn act-user-btn tooltip-r btn-gradient-danger btn-rounded btn-icon">
+                        <i class="mdi mdi-trash-can"></i>
                       </button>
                 </td>
                 </tr>

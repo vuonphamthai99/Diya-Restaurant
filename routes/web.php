@@ -33,4 +33,5 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn']],function(){
     Route::get('/user-list',[UserController::class,'showListUser'])->name('showListUser');
     Route::post('/addNewUser', [UserController::class,'addNewUser'])->name('addNewUser');
     Route::get('/showListUserRole',[UserController::class,'showListUserRole'])->name('showListUserRole');
+    Route::get('/actionOnUser/{id}/{action}', [UserController::class,'actionHandler'])->name('actionOnUser');
 });

@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="{{asset('dashboard-template/assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('dashboard-template/assets/images/favicon.ico')}}" />
+    <style>
+        td.action button{
+            margin-right: 0.5rem;
+        }
+    </style>
   </head>
   <body>
 
