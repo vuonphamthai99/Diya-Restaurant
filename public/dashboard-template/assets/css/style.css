@@ -11053,6 +11053,22 @@ input:focus {
   /* IE9 Compat Modes */
   src: url("../fonts/Ubuntu/Ubuntu-Bold.woff2") format("woff2"), url("../fonts/Ubuntu/Ubuntu-Bold.woff") format("woff"), url("../fonts/Ubuntu/Ubuntu-Bold.ttf") format("truetype"); }
 
+  @font-face {
+    font-family: 'roboto-light';
+    src: url('../fonts/Roboto/Roboto-Light.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-regular';
+    src: url('../fonts/Roboto/Roboto-Regular.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-medium';
+    src: url('../fonts/Roboto/Roboto-Medium.ttf');
+  }
+  @font-face {
+    font-family: 'roboto-bold';
+    src: url('../fonts/Roboto/Roboto-Bold.ttf');
+  }
 .text-twitter {
   color: #2caae1; }
 
@@ -11116,7 +11132,7 @@ input:focus {
 /* Typography */
 body {
   font-size: 1rem;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "roboto-regular", sans-serif;
   font-weight: initial;
   line-height: normal;
   -webkit-font-smoothing: antialiased; }
@@ -11128,7 +11144,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "ubuntu-medium", sans-serif; }
+  font-family: "roboto-medium", sans-serif; }
 
 p {
   font-size: 0.875rem; }
@@ -11275,7 +11291,7 @@ pre {
 code {
   padding: 5px;
   color: #fe7c96;
-  font-family: "ubuntu-light", sans-serif;
+  font-family: "roboto-light", sans-serif;
   font-size: 0.875rem;
   border-radius: 4px; }
 
@@ -11312,7 +11328,7 @@ code {
   -webkit-transition: all 0.25s ease;
   -ms-transition: all 0.25s ease;
   font-size: calc(0.875rem - 0.05rem);
-  font-family: "ubuntu-regular", sans-serif; }
+  font-family: "roboto-regular", sans-serif; }
   .footer a {
     color: #1bcfb4;
     font-size: inherit; }
@@ -11411,13 +11427,13 @@ code {
   flex-grow: 1; }
 
 .font-weight-light {
-  font-family: "ubuntu-light", sans-serif; }
+  font-family: "roboto-light", sans-serif; }
 
 .font-weight-bold {
-  font-family: "ubuntu-bold", sans-serif; }
+  font-family: "roboto-bold", sans-serif; }
 
 .font-weight-normal {
-  font-family: "ubuntu-regular", sans-serif; }
+  font-family: "roboto-regular", sans-serif; }
 
 .image-grouped {
   display: -webkit-box;
@@ -11879,7 +11895,7 @@ code {
   font-weight: initial;
   line-height: 1;
   padding: .375rem .5625rem;
-  font-family: "ubuntu-medium", sans-serif; }
+  font-family: "roboto-medium", sans-serif; }
   .badge.badge-pill {
     border-radius: 10rem; }
 
@@ -12016,7 +12032,7 @@ code {
 .btn {
   font-size: 0.875rem;
   line-height: 1;
-  font-family: "ubuntu-bold", sans-serif;
+  font-family: "roboto-bold", sans-serif;
   /* Buttons with only icons */
   /* Buttons with icon and text */ }
   .btn i {
@@ -12942,16 +12958,16 @@ code {
     color: #343a40;
     margin-bottom: 0.75rem;
     text-transform: capitalize;
-    font-family: "ubuntu-medium", sans-serif;
+    font-family: "roboto-medium", sans-serif;
     font-size: 1.125rem; }
   .card .card-subtitle {
-    font-family: "ubuntu-regular", sans-serif;
+    font-family: "roboto-regular", sans-serif;
     margin-top: 0.625rem;
     margin-bottom: 0.625rem; }
   .card .card-description {
     color: #76838f;
     margin-bottom: 1.5rem;
-    font-family: "ubuntu-regular", sans-serif; }
+    font-family: "roboto-regular", sans-serif; }
   .card.card-outline-success {
     border: 1px solid theme-color("success"); }
   .card.card-outline-primary {
@@ -13295,7 +13311,7 @@ code {
 
 .form-control {
   border: 1px solid #ebedf2;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "roboto-regular", sans-serif;
   font-size: 0.8125rem; }
   .form-control:focus {
     background-color: #ffffff;
@@ -13372,7 +13388,7 @@ select.form-control {
     -ms-flex-align: center;
     align-items: center;
     padding: 15px 15px;
-    font-family: "ubuntu-regular", sans-serif;
+    font-family: "roboto-regular", sans-serif;
     font-size: 0.875rem; }
     .icons-list > div i {
       display: inline-block;
@@ -13610,7 +13626,7 @@ dl {
   .table thead th {
     border-top: 0;
     border-bottom-width: 1px;
-    font-family: "ubuntu-medium", sans-serif;
+    font-family: "roboto-medium", sans-serif;
     font-weight: initial; }
     .table thead th i {
       margin-left: 0.325rem; }
@@ -13725,7 +13741,7 @@ dl {
 
 /* Navbar */
 .navbar {
-  font-family: "ubuntu-light", sans-serif;
+  font-family: "roboto-light", sans-serif;
   background: #fff;
   transition: background 0.25s ease;
   -webkit-transition: background 0.25s ease;
@@ -13807,19 +13823,19 @@ dl {
       .navbar .navbar-menu-wrapper .search-field .input-group input:-ms-input-placeholder {
         font-size: 0.875rem;
         color: #9c9fa6;
-        font-family: "ubuntu-light", sans-serif; }
+        font-family: "roboto-light", sans-serif; }
       .navbar .navbar-menu-wrapper .search-field .input-group input:-moz-placeholder {
         font-size: 0.875rem;
         color: #9c9fa6;
-        font-family: "ubuntu-light", sans-serif; }
+        font-family: "roboto-light", sans-serif; }
       .navbar .navbar-menu-wrapper .search-field .input-group input::-moz-placeholder {
         font-size: 0.875rem;
         color: #9c9fa6;
-        font-family: "ubuntu-light", sans-serif; }
+        font-family: "roboto-light", sans-serif; }
       .navbar .navbar-menu-wrapper .search-field .input-group input::-webkit-input-placeholder {
         font-size: 0.875rem;
         color: #9c9fa6;
-        font-family: "ubuntu-light", sans-serif; }
+        font-family: "roboto-light", sans-serif; }
     .navbar .navbar-menu-wrapper .search-field .input-group i {
       font-size: 17px;
       margin-right: 0;
@@ -14108,7 +14124,7 @@ dl {
 .sidebar {
   min-height: calc(100vh - 70px);
   background: #ffffff;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "roboto-regular", sans-serif;
   padding: 0;
   width: 260px;
   z-index: 11;
@@ -14192,7 +14208,7 @@ dl {
         background: #ffffff; }
         .sidebar .nav .nav-item.active > .nav-link .menu-title {
           color: #b66dff;
-          font-family: "ubuntu-medium", sans-serif; }
+          font-family: "roboto-medium", sans-serif; }
         .sidebar .nav .nav-item.active > .nav-link i {
           color: #b66dff; }
       .sidebar .nav .nav-item:hover {

@@ -27,6 +27,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="exampleFormControlSelect1" class="col-sm-3 col-form-label">Vai trò</label>
+                                <div class="col-sm-9 ">
+                                    <select style="" name="user_role_id" class="form-control form-control-lg" aria-placeholder="Chọn vai trò" id="exampleFormControlSelect1">
+                                        <option value="0" disabled selected>Chọn vai trò</option>
+                                        <option value="1">Quản lý</option>
+                                        <option value="2">Thu ngân</option>
+                                        <option value="3">Bồi bàn</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
                                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                                 <div class="col-sm-9">
                                     <input type="email" name="email" class="form-control" id="email"
