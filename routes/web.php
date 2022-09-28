@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/',[MyLoginController::class,'showLogin']);
+
 // Guest routes
 Route::get('/customer',[GuestController::class,'index']);
 
@@ -34,4 +36,5 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn']],function(){
     Route::post('/addNewUser', [UserController::class,'addNewUser'])->name('addNewUser');
     Route::get('/showListUserRole',[UserController::class,'showListUserRole'])->name('showListUserRole');
     Route::get('/actionOnUser/{id}/{action}', [UserController::class,'actionHandler'])->name('actionOnUser');
+    Route::get('/userProfile',[UserController::class,'showUserProfile'])->name('showUserProfile');
 });

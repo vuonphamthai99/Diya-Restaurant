@@ -13,15 +13,7 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            @if(Session::has('success'))
-            <blockquote class="blockquote blockquote-success text-success">
-                <p>{{Session::get('success')}}</p>
-              </blockquote>
-              @elseif(Session::has('fail'))
-              <blockquote class="blockquote blockquote-danger text-danger">
-                <p>{{Session::get('fail')}}</p>
-              </blockquote>
-              @endif
+
             <div class="row mb-3">
                 <div class="col-lg-6">
                     <button id="addNewUser" class="btn  me-3 btn-block btn-lg btn-gradient-primary ">+ Thêm người dùng</button>
@@ -51,6 +43,8 @@
                   <th> Ảnh đại diện </th>
                   <th> Họ Tên </th>
                   <th> Chức vụ </th>
+                  <th> SDT </th>
+                  <th> Email </th>
                   <th> Ngày tham gia </th>
                   <th> Người thêm </th>
                   <th> Thao tác </th>
@@ -66,6 +60,8 @@
                   <td>
                     {{$user->hasRole->user_role}}
                   </td>
+                  <td>{{$user->phone}}</td>
+                  <td>{{$user->email}}</td>
                   <td> {{$user->created_at->format('d/m/Y')}} </td>
                   <td> {{$user->hasCreator ? $user->hasCreator->name : ''}} </td>
                   <td class="action user-manage" id-user="{{$user->id}}">
@@ -99,4 +95,67 @@
 
 @section('page-js')
 <script src="{{asset('dashboard-template/assets/js/user-manage.js')}}"></script>
+@if(Session::has('success'))
+<script>
+    $.toast({
+    text: "Thêm người dùng thành công!", // Text that is to be shown in the toast
+    heading: 'Thành công', // Optional heading to be shown on the toast
+    icon: 'success', // Type of toast icon
+    showHideTransition: 'slide', // fade, slide or plain
+    allowToastClose: true, // Boolean value true or false
+    hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+    stack: 3, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+    position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+    textAlign: 'left',  // Text alignment i.e. left, right or center
+    loader: true,  // Whether to show loader or not. True by default
+    loaderBg: '#9EC600',  // Background color of the toast loader
+
+});
+</script>
+  @elseif(Session::has('fail'))
+  <script>
+    $.toast({
+    text: "Thêm người dùng không thành công!", // Text that is to be shown in the toast
+    heading: 'Lỗi!', // Optional heading to be shown on the toast
+    icon: 'error', // Type of toast icon
+    showHideTransition: 'slide', // fade, slide or plain
+    allowToastClose: true, // Boolean value true or false
+    hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+    stack: 3, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+    position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+    textAlign: 'left',  // Text alignment i.e. left, right or center
+    loader: true,  // Whether to show loader or not. True by default
+    loaderBg: '#9EC600',  // Background color of the toast loader
+
+});
+  </script>
+  @elseif(Session::has('update-success'))
+  <script>
+    $.toast({
+    text: "Cập người dùng thành công!", // Text that is to be shown in the toast
+    heading: 'Thành công', // Optional heading to be shown on the toast
+    icon: 'success', // Type of toast icon
+    showHideTransition: 'slide', // fade, slide or plain
+    allowToastClose: true, // Boolean value true or false
+    hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+    stack: 3, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+    position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+    textAlign: 'left',  // Text alignment i.e. left, right or center
+    loader: true,  // Whether to show loader or not. True by default
+    loaderBg: '#9EC600',  // Background color of the toast loader
+
+});
+  </script>
+
+  @endif
+
 @stop

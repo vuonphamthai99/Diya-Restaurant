@@ -19,18 +19,18 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('showDashboard')}}">
           <span class="menu-title">Trang chủ</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-bs-toggle="collapse" href="#user-manage-collapse" aria-expanded="false" aria-controls="user-manage-collapse">
           <span class="menu-title">Quản lý người dùng</span>
           <i class="menu-arrow"></i>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
-        <div class="collapse" id="ui-basic">
+        <div class="collapse" id="user-manage-collapse">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{route('showListUser')}}">Danh sách người dùng</a></li>
             {{-- <li class="nav-item"> <a class="nav-link" href="{{route('showListUserRole')}}">Nhóm người dùng</a></li> --}}
@@ -38,14 +38,14 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+        <a class="nav-link" data-bs-toggle="collapse" href="#user-profile-collapse" aria-expanded="false" aria-controls="user-profile-collapse">
           <span class="menu-title">Quản lý tài khoản</span>
           <i class="menu-arrow"></i>
           <i class="mdi mdi-account-settings menu-icon"></i>
         </a>
-        <div class="collapse" id="general-pages">
+        <div class="collapse" id="user-profile-collapse">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Thông tin cá nhân </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('showUserProfile')}}"> Thông tin cá nhân </a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Thay đổi mật khẩu </a></li>
           </ul>
         </div>

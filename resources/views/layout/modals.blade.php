@@ -29,7 +29,7 @@
                             <div class="form-group row">
                                 <label for="exampleFormControlSelect1" class="col-sm-3 col-form-label">Vai trò</label>
                                 <div class="col-sm-9 ">
-                                    <select style="" name="user_role_id" class="form-control form-control-lg" aria-placeholder="Chọn vai trò" id="exampleFormControlSelect1">
+                                    <select style="" name="id_user_role" class="form-control form-control-lg" aria-placeholder="Chọn vai trò" id="exampleFormControlSelect1">
                                         <option value="0" disabled selected>Chọn vai trò</option>
                                         <option value="1">Quản lý</option>
                                         <option value="2">Thu ngân</option>

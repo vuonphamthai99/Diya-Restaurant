@@ -31,7 +31,7 @@ class UserController extends Controller
         'email' => $request['email'],
         'phone' => $request['phone'],
         'password' => Hash::make('User@123'),
-        'user_role_id' => $request['user_role_id'],
+        'id_user_role' => $request['id_user_role'],
         'id_user_add' => Session::get('loginID'),
     ])){
         return redirect()->back()->with('success','Thêm người dùng thành công');
@@ -48,10 +48,26 @@ class UserController extends Controller
 
     public function actionHandler($id,$action){
         if($action == 'reset-pwd'){
-        }
-        else{
+            User::find($id)->update(['password'=> Hash::make('User@123')]);
 
+            return User::all();
+        }
+        else if($action == 'lock-user'){
+            User::find($id)->update(['lock_status'=> 1]);
+            return User::all();
+        }
+        else if($action == 'unlock-user'){
+            User::find($id)->update(['lock_status'=> 0]);
+            return User::all();
+        }
+        else if($action == 'delete-user'){
+            User::find($id)->delete();
+            return User::all();
         }
     }
+    public function showUserProfile(){
+        $user = User::find(Session::get('loginID'));
+        return view('staff.user-profile',compact('user'));
 
+    }
 }

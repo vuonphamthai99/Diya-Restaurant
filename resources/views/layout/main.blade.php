@@ -8,6 +8,7 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('dashboard-template/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('dashboard-template/assets/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{asset('dashboard-template/assets/css/jquery.toast.min.css')}}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('dashboard-template/assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('dashboard-template/assets/images/favicon.ico')}}" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
         td.action button{
             margin-right: 0.5rem;
@@ -55,6 +57,7 @@
     <script src="{{asset('dashboard-template/assets/js/misc.js')}}"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
+    <script src="{{asset('dashboard-template/assets/js/jquery.toast.min.js')}}"></script>
     <script src="{{asset('dashboard-template/assets/js/dashboard.js')}}"></script>
     <script src="{{asset('dashboard-template/assets/js/todolist.js')}}"></script>
     <script src="{{asset('dashboard-template/assets/js/functions-library.js')}}"></script>
