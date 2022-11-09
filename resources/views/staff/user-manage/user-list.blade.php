@@ -14,34 +14,14 @@
             <div class="card">
                 <div class="card-body">
 
-                    <div class="row mb-3">
+                    <div class="row mb-4">
                         <div class="col-lg-6">
-                            <button id="addNewUser" class="btn  me-3 btn-block btn-lg btn-gradient-primary ">+ Thêm người
-                                dùng</button>
-                            <div class="btn-group">
-                                <button id="sortUserByRole"
-                                    class="btn dropdown-toggle   me-3 btn-block btn-lg btn-gradient-primary "
-                                    data-bs-toggle="dropdown"> Vai trò </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item">Tất cả</a>
-                                    {{-- <a class="dropdown-item">Admin</a> --}}
-                                    <a class="dropdown-item">Quản lý</a>
-                                    <a class="dropdown-item">Thu ngân</a>
-                                    <a class="dropdown-item">Bồi bàn</a>
-                                </div>
-                            </div>
+                            <a href="{{ route('showAddUser') }}"><button
+                                    class="btn   btn-block btn-lg btn-gradient-primary ">+ Thêm người
+                                    dùng</button></a>
                         </div>
-                        <div class="col-lg-6 ">
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="searchUserInput" placeholder="Nhập gì đó..."
-                                    aria-label="Nhập gì đó..." aria-describedby="basic-addon2">
-                                <button class="btn btn-sm btn-gradient-primary" type="button"> Tìm Kiếm </button>
-                            </div>
-
-                        </div>
-
                     </div>
-                    <table class="table table-striped">
+                    <table class="table table-hover table-responsive table-striped">
                         <thead>
                             <tr>
                                 <th> Ảnh đại diện </th>
@@ -70,34 +50,44 @@
                                     <td> {{ $user->created_at->format('d/m/Y') }} </td>
                                     <td> {{ $user->hasCreator ? $user->hasCreator->name : '' }} </td>
                                     <td class="action user-manage" id-user="{{ $user->id }}">
-                                        <button type="button" title="Reset mật khẩu" id="reset-pwd" data-toggle="tooltip"
-                                            data-placement="top"
-                                            class="btn act-user-btn tooltip-r btn-gradient-primary btn-rounded  btn-icon">
-                                            <i class="mdi mdi-file-restore"></i>
-                                        </button>
-                                        @if ($user->lock_status == 0)
-                                            <button type="button" title="Khóa người dùng" id="lock-user"
-                                                data-toggle="tooltip" data-placement="top"
-                                                class="btn act-user-btn tooltip-r btn-gradient-warning btn-rounded btn-icon">
-                                                <i class="mdi mdi-lock"></i>
-                                            </button>
+                                        <a href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'reset-pwd']) }}"><button
+                                                type="button" title="Reset mật khẩu" id="reset-pwd"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                class="btn btn-outline-primary btn-rounded  btn-icon">
+                                                <i class="mdi mdi-file-restore"></i>
+                                            </button></a>
+                                        @if ($user->status == 0)
+                                            <a
+                                                href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'lock-user']) }}"><button
+                                                    type="button" title="Khóa người dùng" data-toggle="tooltip"
+                                                    data-placement="top"
+                                                    class="btn  btn-outline-success btn-rounded btn-icon">
+                                                    <i class="mdi mdi-lock-open"></i>
+                                                </button>
+                                            </a>
                                         @else
-                                            <button type="button" title="Mở khóa người dùng" id="unlock-user"
-                                                data-toggle="tooltip" data-placement="top"
-                                                class="btn act-user-btn tooltip-r btn-gradient-success btn-rounded btn-icon">
-                                                <i class="mdi mdi-lock-open"></i>
-                                            </button>
+                                            <a
+                                                href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'unlock-user']) }}">
+                                                <button type="button" title="Mở khóa người dùng" id="unlock-user"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    class="btn  btn-outline-danger btn-rounded btn-icon">
+                                                    <i class="mdi mdi-lock"></i>
+                                                </button>
+                                            </a>
                                         @endif
-
-                                        <button type="button" title="Xóa người dùng" id="delete-user" data-toggle="tooltip"
-                                            data-placement="top"
-                                            class="btn act-user-btn tooltip-r btn-gradient-danger btn-rounded btn-icon">
-                                            <i class="mdi mdi-trash-can"></i>
-                                        </button>
+                                        <a
+                                            href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'delete-user']) }}">
+                                            <button type="button" title="Xóa người dùng" id="delete-user"
+                                                data-toggle="tooltip" data-placement="top"
+                                                class="btn btn-outline-danger btn-rounded btn-icon">
+                                                <i class="mdi mdi-trash-can"></i>
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -108,66 +98,6 @@
 
 @section('page-js')
     <script src="{{ asset('dashboard-template/assets/js/user-manage.js') }}"></script>
-    @if (Session::has('success'))
-        <script>
-            $.toast({
-                text: "Thêm người dùng thành công!", // Text that is to be shown in the toast
-                heading: 'Thành công', // Optional heading to be shown on the toast
-                icon: 'success', // Type of toast icon
-                showHideTransition: 'slide', // fade, slide or plain
-                allowToastClose: true, // Boolean value true or false
-                hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
-                stack: 3, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
-                position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
 
-
-
-                textAlign: 'left', // Text alignment i.e. left, right or center
-                loader: true, // Whether to show loader or not. True by default
-                loaderBg: '#9EC600', // Background color of the toast loader
-
-            });
-        </script>
-    @elseif(Session::has('fail'))
-        <script>
-            $.toast({
-                text: "Thêm người dùng không thành công!", // Text that is to be shown in the toast
-                heading: 'Lỗi!', // Optional heading to be shown on the toast
-                icon: 'error', // Type of toast icon
-                showHideTransition: 'slide', // fade, slide or plain
-                allowToastClose: true, // Boolean value true or false
-                hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
-                stack: 3, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
-                position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
-
-
-
-                textAlign: 'left', // Text alignment i.e. left, right or center
-                loader: true, // Whether to show loader or not. True by default
-                loaderBg: '#9EC600', // Background color of the toast loader
-
-            });
-        </script>
-    @elseif(Session::has('update-success'))
-        <script>
-            $.toast({
-                text: "Cập người dùng thành công!", // Text that is to be shown in the toast
-                heading: 'Thành công', // Optional heading to be shown on the toast
-                icon: 'success', // Type of toast icon
-                showHideTransition: 'slide', // fade, slide or plain
-                allowToastClose: true, // Boolean value true or false
-                hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
-                stack: 3, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
-                position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
-
-
-
-                textAlign: 'left', // Text alignment i.e. left, right or center
-                loader: true, // Whether to show loader or not. True by default
-                loaderBg: '#9EC600', // Background color of the toast loader
-
-            });
-        </script>
-    @endif
 
 @stop

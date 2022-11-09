@@ -25,7 +25,8 @@ class User extends Authenticatable
         'name',
         'password',
         'id_user_add',
-        'lock_status'
+        'avatar',
+        'status'
     ];
 
     /**
@@ -53,5 +54,8 @@ class User extends Authenticatable
 
     public function hasCreator(){
         return $this->hasOne(User::class,'id','id_user_add');
+    }
+    public function hasAvatar(){
+        return $this->hasOne(Image::class,'id','avatar');
     }
 }

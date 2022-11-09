@@ -24,8 +24,6 @@ class MyLoginController extends Controller
         else return view('login');
     }
     public function authCheck(Request $request){
-
-
         $request->validate([
             'phone'=>'required|numeric|min:10',
             'password'=>'required|min:7'
@@ -41,14 +39,13 @@ class MyLoginController extends Controller
         if($user){
             if(Hash::check($request->password,$user->password)){
                 $request->session()->put('loginID',$user->id);
+                $request->session()->put('UserName',$user->name);
+                $request->session()->put('UserRole',$user->hasRole->user_role);
                 return redirect()->route('showDashboard');
             }else{
 
                 return back()->with('fail','Mật khẩu không đúng! Hãy thử lại');
             }
-            // if($user->deleted == 1){
-            //     return back()->with('locked','Tài khoản của bạn đã bị khóa, hãy liên hệ quản trị hệ thống');
-            // }
         }
 
         else{
@@ -59,7 +56,7 @@ class MyLoginController extends Controller
     public function logout(){
         if(Session::has('loginID')){
             Session::pull('loginID');
-            return redirect('login');
+            return redirect()->route('showLogin');
         }
     }
 }
