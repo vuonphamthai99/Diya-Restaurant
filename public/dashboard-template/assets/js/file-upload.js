@@ -7,6 +7,8 @@
     });
     $('.file-upload-default').on('change', function() {
       $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+      $('#preview').attr('src',window.URL.createObjectURL(this.files[0]))
+
     });
   });
 })(jQuery);

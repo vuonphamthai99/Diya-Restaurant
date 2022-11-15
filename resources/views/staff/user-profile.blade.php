@@ -62,7 +62,7 @@
                         <div class="input-group col-xs-12">
                         <input type="file" accept="image/*" name="img" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info @error('avatar') is-invalid @enderror" disabled placeholder="Upload Image">
+                          <input type="text" class="form-control file-upload-info @error('img') is-invalid @enderror" disabled placeholder="Upload Image">
                           <span class="input-group-append">
                             <button class="file-upload-browse btn btn-gradient-primary" type="button">Chọn</button>
                           </span>

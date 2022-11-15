@@ -33,7 +33,7 @@
         </a>
         <div class="collapse" id="order-manage-collapse">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="">Danh sách người dùng</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('showOrderPage')}}">Chọn bàn Order</a></li>
           </ul>
         </div>
       </li>
@@ -72,7 +72,7 @@
         </a>
         <div class="collapse" id="table-manage-collapse">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="">Danh sách người dùng</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('showListTable')}}">Danh sách bàn</a></li>
           </ul>
         </div>
       </li>
@@ -85,7 +85,7 @@
         </a>
         <div class="collapse" id="menu-manage-collapse">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('showListMenu')}}">Danh sách món ăn</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{route('showListMenu')}}">Danh sách món ăn</a></li>
           </ul>
         </div>
       </li>

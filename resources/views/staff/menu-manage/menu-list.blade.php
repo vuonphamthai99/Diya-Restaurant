@@ -15,7 +15,7 @@
           <div class="card-body">
             <div class="row mb-4">
                 <div class="col-lg-6">
-                    <a href=""><button
+                    <a href="{{route('showDetailMenu')}}"><button
                             class="btn   btn-block btn-lg btn-gradient-primary ">+ Thêm loại món</button></a>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     </td>
                     <td>
                         <a
-                            href="">
+                            href="{{route('showEditMenu',['idMenu'  => $menu->id])}}">
                             <button type="button" title="Chỉnh sửa"
                                 data-toggle="tooltip" data-placement="top"
                                 class="btn btn-outline-danger btn-rounded btn-icon">

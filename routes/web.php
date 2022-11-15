@@ -2,6 +2,8 @@
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MyLoginController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsLoggedIn;
 use Illuminate\Support\Facades\Route;
@@ -50,10 +52,26 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn']],function(){
         Route::get('/showListType',[MenuController::class,'showListType'])->name('showListType');
         Route::get('/showDetailMenuType',[MenuController::class,'showDetailMenuType'])->name('showDetailMenuType');
         Route::get('/showEditMenuType/{idType}',[MenuController::class,'showEditMenuType'])->name('showEditMenuType');
+        Route::post('/storeType',[TypeController::class,'storeType'])->name('storeType');
+        Route::get('/showListMenu',[MenuController::class,'showListMenu'])->name('showListMenu');
+        Route::get('/showDetailMenu',[MenuController::class,'showDetailMenu'])->name('showDetailMenu');
+        Route::get('/showEditMenu/{idMenu}',[MenuController::class,'showEditMenu'])->name('showEditMenu');
+        Route::post('/storeMenu',[MenuController::class,'storeMenu'])->name('storeMenu');
+    });
 
-        Route::get('showListMenu',[MenuController::class,'showListMenu'])->name('showListMenu');
+    // Quản lý bàn
+    Route::group(['prefix'=> 'table-manage'],function(){
+        Route::get('showListTable',[TableController::class,'showListTable'])->name('showListTable');
+        Route::get('showDetailTable',[TableController::class,'showDetailTable'])->name('showDetailTable');
+        Route::get('showEditTable/{idTable}',[TableController::class,'showEditTable'])->name('showEditTable');
+        Route::post('/storeTable',[TableController::class,'storeTable'])->name('storeTable');
+    });
 
-        Route::post('/storeType',[MenuController::class,'storeType'])->name('storeType');
+    //Quản lý order
+    Route::group(['prefix'=> 'order-manage'],function(){
+        Route::get('showOrderPage',[OrderController::class,'showOrderPage'])->name('showOrderPage');
+        Route::post('fetchData',[OrderController::class,'fetchData']);
+        Route::post('addOrder',[OrderController::class,'addOrder']);
     });
 
 
