@@ -1,6 +1,5 @@
 @php
-                    $user =  App\Models\User::find(session()->get('loginID'));
-
+                    $user =  Session::get('user');
 @endphp
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
@@ -13,7 +12,7 @@
           </div>
           <div class="nav-profile-text d-flex flex-column">
             <span class="font-weight-bold mb-2">{{$user->name}}</span>
-            <span class="text-secondary text-small">Project Manager</span>
+            <span class="text-secondary text-small">{{$user->hasRole->user_role}}</span>
           </div>
           <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
         </a>
@@ -34,6 +33,7 @@
         <div class="collapse" id="order-manage-collapse">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{route('showOrderPage')}}">Chọn bàn Order</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('showOrderHistory')}}">Lịch sử Order</a></li>
           </ul>
         </div>
       </li>
@@ -46,7 +46,7 @@
         </a>
         <div class="collapse" id="reservation-manage-collapse">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="">Danh sách người dùng</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('showReservationList')}}">Danh sách yêu cầu đặt bàn</a></li>
           </ul>
         </div>
       </li>

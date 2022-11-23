@@ -38,7 +38,9 @@ class MyLoginController extends Controller
 
         if($user){
             if(Hash::check($request->password,$user->password)){
+                $request->session()->put('user',$user);
                 $request->session()->put('loginID',$user->id);
+                $request->session()->put('role',$user->id_user_role);
                 $request->session()->put('UserName',$user->name);
                 $request->session()->put('UserRole',$user->hasRole->user_role);
                 return redirect()->route('showDashboard');

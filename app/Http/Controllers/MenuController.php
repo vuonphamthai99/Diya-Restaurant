@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
-use App\Models\Menu;
+use App\Models\MenuItem;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -56,7 +56,7 @@ class MenuController extends Controller
 
     // Xem danh sách các món
     public function showListMenu(){
-        $all_menu = Menu::all();
+        $all_menu = MenuItem::all();
         return view('staff.menu-manage.menu-list',compact('all_menu'));
     }
     //Xem form thêm loại món
@@ -66,23 +66,22 @@ class MenuController extends Controller
     }
     //Sửa món
     public function showEditMenu($idMenu){
-        $menu = Menu::find($idMenu);
+        $menu = MenuItem::find($idMenu);
         $types = Type::all();
         return view('staff.menu-manage.detail-menu',compact('menu','types'));
     }
     public function storeMenu(Request $request){
         if($request->idMenu){
             $request->validate([
-                'name' => 'unique:menu,name,'.$request->idMenu,
-                'price' => 'required',
+                'name' => 'unique:MenuItem,name,'.$request->idMenu,
+                'price' => 'required|numeric',
                 'type' => 'required',
-                'ingredients' => 'required',
             ],[
                 'name.unique' =>  'Món ăn đã được tạo',
                 'name.required' =>  'Tên cho món ăn không được để trống',
                 'price.required' => 'Giá cho món ăn không được để trống',
+                'price.numeric' => 'Giá cho món ăn phải là số',
                 'type.required' =>  'Chưa chọn danh mục',
-                'ingredients.required' => 'Mô tả thành phần không được để trống',
             ]);
             if($request->img != null){
                 $file = $request->file('img') ;
@@ -91,13 +90,13 @@ class MenuController extends Controller
                 $file->move($destinationPath,$fileName);
                 $filePath = asset('images/menu/'.$fileName);
                 $idImg = Image::create(['name' => $filePath])->id;
-                Menu::where('id',$request->idMenu)->update([
+                MenuItem::where('id',$request->idMenu)->update([
                     'image_id' => $idImg,
 
                 ]);
 
             }
-            Menu::where('id',$request->idMenu)->update([
+            MenuItem::where('id',$request->idMenu)->update([
                 'name' => $request->name,
                 'price' => $request->price,
                 'type_id' => $request->type,
@@ -109,16 +108,15 @@ class MenuController extends Controller
         }
         $validate = $request->validate([
             'name' => 'unique:types|required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'type' => 'required',
-            'ingredients' => 'required',
             'img' => 'required',
         ],[
             'name.unique' =>  'Món ăn đã được tạo',
             'name.required' =>  'Tên cho món ăn không được để trống',
+            'price.numeric' => 'Giá cho món ăn phải là số',
             'price.required' => 'Giá cho món ăn không được để trống',
             'type.required' =>  'Chưa chọn danh mục',
-            'ingredients.required' => 'Mô tả thành phần không được để trống',
             'img.required' => 'Hình ảnh món ăn không được để trống'
         ]);
 
@@ -130,7 +128,7 @@ class MenuController extends Controller
             $filePath = asset('images/menu/'.$fileName);
             $idImg = Image::create(['name' => $filePath])->id;
         }
-        Menu::create([
+        MenuItem::create([
                 'name' => $request->name,
                 'price' => $request->price,
                 'type_id' => $request->type,

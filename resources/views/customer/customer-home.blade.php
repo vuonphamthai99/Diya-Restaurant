@@ -12,11 +12,28 @@
   <!-- Favicons -->
   <link href="{{asset('customer-template/img/favicon.png')}}" rel="icon">
   <link href="{{asset('customer-template/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
-
+<style>
+    .without_ampm::-webkit-datetime-edit-ampm-field {
+   display: none;
+ }
+ input[type=time]::-webkit-clear-button {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   -o-appearance: none;
+   -ms-appearance:none;
+   appearance: none;
+   margin: -10px;
+ }
+</style>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
   <link href="{{asset('customer-template/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
   <link href="{{asset('customer-template/vendor/aos/aos.css')}}" rel="stylesheet">
   <link href="{{asset('customer-template/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -24,6 +41,7 @@
   <link href="{{asset('customer-template/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
   <link href="{{asset('customer-template/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
   <link href="{{asset('customer-template/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
   <!-- Template Main CSS File -->
   <link href="{{asset('customer-template/css/style.css')}}" rel="stylesheet">
@@ -207,25 +225,32 @@
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="menu-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-starters">Starters</li>
-              <li data-filter=".filter-salads">Salads</li>
-              <li data-filter=".filter-specialty">Specialty</li>
+              @foreach ($types as $t )
+              <li data-filter=".filter-{{$t->id}}">{{$t->name}}</li>
+              @endforeach
+              {{-- <li data-filter=".filter-salads">Salads</li>
+              <li data-filter=".filter-specialty">Specialty</li> --}}
             </ul>
           </div>
         </div>
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+            @foreach ($types as $t)
+                @foreach ($t->hasMenus as $m )
+                <div class="col-lg-6 menu-item filter-{{$m->hasType->id}}">
+                    <img src="{{$m->hasImage->name}}"  class="menu-img" alt="">
+                    <div class="menu-content">
+                    <a href="#">{{$m->name}}</a><span>{{$m->price}} VND</span>
+                    </div>
+                    <div class="menu-ingredients">
+                    {{$m->ingredients}}
+                    </div>
+                </div>
+                @endforeach
+            @endforeach
 
-          <div class="col-lg-6 menu-item filter-starters">
-            <img src="{{asset('customer-template/img/menu/lobster-bisque.jpg')}}" class="menu-img" alt="">
-            <div class="menu-content">
-              <a href="#">Lobster Bisque</a><span>$5.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
 
+{{--
           <div class="col-lg-6 menu-item filter-specialty">
             <img src="{{asset('customer-template/img/menu/bread-barrel.jpg')}}" class="menu-img" alt="">
             <div class="menu-content">
@@ -304,7 +329,7 @@
             <div class="menu-ingredients">
               Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
             </div>
-          </div>
+          </div> --}}
 
         </div>
 
@@ -518,7 +543,8 @@
           <p>Book a Table</p>
         </div>
 
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+        <form action="{{route('bookTable')}}" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+            @csrf
           <div class="row">
             <div class="col-lg-4 col-md-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -533,11 +559,11 @@
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input type="text" autocomplete="off"  name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input type="text" class="form-control without_ampm" name="time" min="09:00" max="22:00" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
@@ -960,14 +986,44 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{{asset('customer-template/vendor/aos/aos.js')}}"></script>
   <script src="{{asset('customer-template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('customer-template/vendor/glightbox/js/glightbox.min.js')}}"></script>
   <script src="{{asset('customer-template/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
   <script src="{{asset('customer-template/vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 
   <!-- Template Main JS File -->
   <script src="{{asset('customer-template/js/main.js')}}"></script>
+  <script src="{{asset('customer-template/js/custom.js')}}"></script>
+  @if (Session::has('success'))
+  <Script>
+$.toast({
+    text: "{{Session::get('success')}}", // Text that is to be shown in the toast
+    heading: 'Note', // Optional heading to be shown on the toast
+    icon: 'success', // Type of toast icon
+    showHideTransition: 'fade', // fade, slide or plain
+    allowToastClose: true, // Boolean value true or false
+    hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+    stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+    position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+    textAlign: 'left',  // Text alignment i.e. left, right or center
+    loader: true,  // Whether to show loader or not. True by default
+    loaderBg: '#9EC600',  // Background color of the toast loader
+    beforeShow: function () {}, // will be triggered before the toast is shown
+    afterShown: function () {}, // will be triggered after the toat has been shown
+    beforeHide: function () {}, // will be triggered before the toast gets hidden
+    afterHidden: function () {}  // will be triggered after the toast has been hidden
+});
+  </Script>
+  @endif
 
 </body>
 

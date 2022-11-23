@@ -21,7 +21,7 @@
                     <input type="hidden" name="idMenu" value="{{$menu->id}}">
                     @endif
                   <div class="form-group row">
-                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Tên loại</label>
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Tên món</label>
                     <div class="col-sm-9">
                       <input type="text" name="name" required class="form-control @error('name') is-invalid @enderror"
                        id="exampleInputUsername2" value="@if(isset($menu)) {{$menu->name}} @else {{old('name')}} @endif" placeholder="Nhập tên loại..">
@@ -35,7 +35,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-gradient-primary text-white">VND</span>
                           </div>
-                      <input type="text" name="price" required class="price form-control @error('price') is-invalid @enderror"
+                      <input type="text" name="price" required class=" form-control @error('price') is-invalid @enderror"
                        id="exampleInputUsername2" value="@if(isset($menu)) {{$menu->price}} @else {{old('price')}} @endif" placeholder="Nhập tên loại..">
                     </div>
 
@@ -85,7 +85,7 @@
                     <div class="col-sm-4">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="status" id="membershipRadios1" value="0"
+                          <input type="radio" class="form-check-input" name="status" id="membershipRadios1" value="0" checked
                           @if(isset($menu) && $menu->status == 0) checked @endif> Hiện <i class="input-helper"></i></label>
                       </div>
                     </div>
@@ -93,7 +93,7 @@
                       <div class="form-check">
                         <label class="form-check-label">
                           <input type="radio" class="form-check-input" name="status" id="membershipRadios2" value="1"
-                          @if(isset($menu) && $menu->status == 1) checked @endif> Khóa <i class="input-helper"></i></label>
+                          @if(isset($menu) && $menu->status == 1)  @endif> Khóa <i class="input-helper"></i></label>
                       </div>
                     </div>
                   </div>

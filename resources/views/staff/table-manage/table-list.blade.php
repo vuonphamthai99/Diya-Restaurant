@@ -91,7 +91,7 @@
                         {{$table->capacity}}
                     </td>
                     <td >
-                        {{$table->hasStatus->name}}
+                        {{MyCheckStatus($table->status)}}
                     </td>
                     <td>
                         <a

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Menu extends Model
+class MenuItem extends Model
 {
     use HasFactory;
-    protected $table = 'menu';
+    protected $table = 'menu_items';
     protected $primaryKey = 'id';
     public $timestamps = false;
     public $fillable = [
@@ -20,9 +20,7 @@ class Menu extends Model
         'ingredients',
         'status'
     ];
-    public function hasStatus(){
-        return $this->hasOne(Status::class,'id','status');
-    }
+    
     public function hasImage(){
         return $this->hasOne(Image::class,'id','image_id');
     }

@@ -16,9 +16,7 @@ class Table extends Model
         'capacity',
         'status'
     ];
-    public function hasStatus(){
-        return $this->hasOne(Status::class,'id','status');
-    }
+
     public function hasOrder(){
         return $this->hasOne(Order::class,'table_id','id');
     }

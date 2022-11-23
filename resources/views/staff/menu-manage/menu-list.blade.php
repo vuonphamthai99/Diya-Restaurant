@@ -16,7 +16,7 @@
             <div class="row mb-4">
                 <div class="col-lg-6">
                     <a href="{{route('showDetailMenu')}}"><button
-                            class="btn   btn-block btn-lg btn-gradient-primary ">+ Thêm loại món</button></a>
+                            class="btn   btn-block btn-lg btn-gradient-primary ">+ Thêm món</button></a>
                 </div>
             </div>
             <table class="table table-hover table-striped">
@@ -24,6 +24,7 @@
                 <tr>
                   <th> ID </th>
                   <th> Tên món ăn </th>
+                  <th> Giá </th>
                   <th> Danh mục </th>
                   <th> Trạng thái </th>
                   <th> Thao tác </th>
@@ -40,11 +41,14 @@
                     <td>
                         {{$menu->name}}
                     </td>
+                    <td>
+                        {{$menu->price}}
+                    </td>
                     <td >
                         {{$menu->hasType->name}}
                     </td>
                     <td >
-                        {{$menu->hasStatus->name}}
+                        {{$menu->status}}
                     </td>
                     <td>
                         <a

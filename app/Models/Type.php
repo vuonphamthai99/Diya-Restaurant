@@ -15,5 +15,8 @@ class Type extends Model
         'name',
         'description',
     ];
+    public function hasMenus(){
+        return $this->hasMany(MenuItem::class,'type_id','id');
+    }
 
 }

@@ -68,7 +68,7 @@ $(document).ready(function () {
                         $(api.column(colIdx).header()).index()
                     );
                     var title = $(cell).text();
-                    $(cell).html(`<input type="text" style="width: 100% !important;" class="form-control" placeholder="${title}" aria-label="${title}" aria-describedby="basic-addon2">`);
+                    $(cell).html(`<input type="text" style="width: 100% !important;" class="form-control" placeholder="${$.trim(title)}" aria-label="${$.trim(title)}" aria-describedby="basic-addon2">`);
 
                     // On every keypress in this input
                     $(
@@ -118,21 +118,165 @@ $(document).ready(function () {
     // Order functions
     var idTable
     var Status
+    var total = 0;
     $('.my-table').on('click', function () {
+        $('#table-view-order').DataTable().rows().remove().draw();
         idTable = $(this).attr('idTable');
         Status = $(this).attr('Status');
-        $('#OrderModal').modal('toggle')
+        if(Status == 1){
+            $.toast({
+                text: "Bàn đã bị khóa!", // Text that is to be shown in the toast
+                heading: 'Lỗi!', // Optional heading to be shown on the toast
+                icon: 'error', // Type of toast icon
+                showHideTransition: 'fade', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+                textAlign: 'left',  // Text alignment i.e. left, right or center
+                loader: true,  // Whether to show loader or not. True by default
+                loaderBg: '#9EC600',  // Background color of the toast loader
+            });
+        }
+        // $('#OrderModal').modal('toggle')
+        if(Status == 2){
+            $.ajax({
+                url: "getOrderDetails",
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': csrf
+                },
+                data: {
+                    'idTable': idTable
+                },
+                success:function(data){
+                    $.each(data, function(i,val){
+                        total +=  (val.menuPrice)*val.no_of_serving
+                        let dt = new Date();
+                                    let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+                                    let html = `<tr>
+                                    <td>${val.menuName}</td>
+                                    <td>${val.no_of_serving}</td>
+                                    <td>${val.menuPrice}</td>
+                                    <td>${time}</td>
+                                </tr>`
+                                // $('#table-view-order').append(html)
+                                $('#table-view-order').DataTable().row.add($(html).get(0)).draw()
+                                    // $('#table-view-order tbody').append(html)
+                    })
+                    $('#total-money').text(formatCurrency(total.toString()))
+                },
+                error:function(e){
+                    console.log('ajax fails')
+                }
+            })
+        }
+
+
     })
+
+
+    $('#order-btn').on('click', function () {
+        if (!idTable){
+            $.toast({
+                text: "Chọn bàn để thao tác!", // Text that is to be shown in the toast
+                heading: 'Lỗi!', // Optional heading to be shown on the toast
+                icon: 'error', // Type of toast icon
+                showHideTransition: 'fade', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+                textAlign: 'left',  // Text alignment i.e. left, right or center
+                loader: true,  // Whether to show loader or not. True by default
+                loaderBg: '#9EC600',  // Background color of the toast loader
+            });
+            return false
+
+        }
+        $('#OrderModal').modal('toggle')
+    });
+
+    $('#checkout-btn').click(function(){
+        if(!idTable){
+            $.toast({
+                text: "Chọn bàn để thao tác!", // Text that is to be shown in the toast
+                heading: 'Lỗi!', // Optional heading to be shown on the toast
+                icon: 'error', // Type of toast icon
+                showHideTransition: 'fade', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+                textAlign: 'left',  // Text alignment i.e. left, right or center
+                loader: true,  // Whether to show loader or not. True by default
+                loaderBg: '#9EC600',  // Background color of the toast loader
+            });
+            return false
+        }
+        if(Status != 2){
+            $.toast({
+                text: "Bàn chưa gọi món!", // Text that is to be shown in the toast
+                heading: 'Lỗi!', // Optional heading to be shown on the toast
+                icon: 'error', // Type of toast icon
+                showHideTransition: 'fade', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+                textAlign: 'left',  // Text alignment i.e. left, right or center
+                loader: true,  // Whether to show loader or not. True by default
+                loaderBg: '#9EC600',  // Background color of the toast loader
+            });
+            return false
+        }
+        $.ajax({
+            url: "checkout",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': csrf
+            },
+            data: {
+                'idTable': idTable
+            },
+            success: function(){
+                $('.my-table[idtable="'+idTable+'"]').attr('status',0)
+                $('.my-table[idtable="'+idTable+'"]').removeClass('btn-warning')
+                $('#table-view-order').DataTable().rows().remove().draw();
+
+                toastSuccess('Thanh toán thành công')
+            },
+            error: function(){
+                toastError('Hệ thống bị lỗi, thử lại sau!')
+            }
+        })
+    })
+
+
+
+
+
 
     $('#OrderModal').on('hidden.bs.modal', function (e) {
         resetOrder()
-
     })
     $('#selectTypeMenu').on('change', function (e) {
 
         let idType = $(this).val()
         $.ajax({
-            url: "fetchData",
+            url: "fetchMenuData",
             type: "POST",
             headers: {
                 'X-CSRF-TOKEN': csrf
@@ -170,9 +314,29 @@ $(document).ready(function () {
                                 },
                                 data: {
                                     'idMenu': idMenu,
-                                    'quant': quant
+                                    'idTable' : idTable,
+                                    'quant': quant,
+                                    'Status' : Status
                                 },
                                 success: function (data){
+                                    total +=  (data.price)*quant
+                                    $('.my-table[idtable="'+idTable+'"]').attr('status',2)
+                                    $('.my-table[idtable="'+idTable+'"]').addClass('btn-warning')
+                                    let dt = new Date();
+                                    let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+                                    let html = `<tr>
+                                    <td>${data.name}</td>
+                                    <td>${quant}</td>
+                                    <td>${data.price}</td>
+                                    <td>${time}</td>
+                                </tr>`
+                                    // $('#table-view-order tbody').append(html)
+                                $('#table-view-order').DataTable().row.add($(html).get(0)).draw()
+                                $('#total-money').text(formatCurrency(total.toString()))
+
+                                    resetOrder()
+                                    $('#OrderModal').modal('toggle')
+                                    toastSuccess('Thêm thành công')
 
                                 }
                             })
@@ -221,10 +385,55 @@ $(document).ready(function () {
             textAlign: 'left',  // Text alignment i.e. left, right or center
             loader: true,  // Whether to show loader or not. True by default
             loaderBg: '#9EC600',  // Background color of the toast loader
-            beforeShow: function () { }, // will be triggered before the toast is shown
-            afterShown: function () { }, // will be triggered after the toat has been shown
-            beforeHide: function () { }, // will be triggered before the toast gets hidden
-            afterHidden: function () { }  // will be triggered after the toast has been hidden
+        });
+    }
+    //------------------------------------------------------------------------------------------------------------------------
+
+    // Chi tiết Order
+    $('#order-details-btn').click(function(){
+        $('#OrderDetailsModal').modal('toggle')
+
+    })
+    //------------------------------------------------------------------------------------------------------------------------
+
+    function getPrice(str){
+        return parseInt(str.replace(/[^0-9.]/g, ""))
+    }
+
+    function toastError(message){
+        $.toast({
+            text: message, // Text that is to be shown in the toast
+            heading: 'Lỗi!', // Optional heading to be shown on the toast
+            icon: 'error', // Type of toast icon
+            showHideTransition: 'fade', // fade, slide or plain
+            allowToastClose: true, // Boolean value true or false
+            hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+            textAlign: 'left',  // Text alignment i.e. left, right or center
+            loader: true,  // Whether to show loader or not. True by default
+            loaderBg: '#9EC600',  // Background color of the toast loader
+        });
+    }
+    function toastSuccess(message){
+        $.toast({
+            text: message, // Text that is to be shown in the toast
+            heading: 'Thành công!', // Optional heading to be shown on the toast
+            icon: 'success', // Type of toast icon
+            showHideTransition: 'fade', // fade, slide or plain
+            allowToastClose: true, // Boolean value true or false
+            hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+            position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+
+
+
+            textAlign: 'left',  // Text alignment i.e. left, right or center
+            loader: true,  // Whether to show loader or not. True by default
+            loaderBg: '#9EC600',  // Background color of the toast loader
         });
     }
 

@@ -10,6 +10,7 @@ class Order extends Model
     use HasFactory;
     protected $primaryKey = 'id';
     public $timestamps = false;
+    protected $dates = ['order_date','finish_date'];
     public $fillable = [
         'id',
         'customer_id',
@@ -21,6 +22,9 @@ class Order extends Model
         'processed_by'
     ];
     public function hasDetail(){
-        return $this->hasOne(OrderDetail::class,'order_id','id');
+        return $this->hasMany(OrderDetail::class,'order_id','id');
+    }
+    public function hasProcessor(){
+        return $this->hasOne(User::class,'id','processed_by');
     }
 }

@@ -3,6 +3,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MyLoginController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsLoggedIn;
@@ -28,7 +29,7 @@ Route::post('/authLogin', [MyLoginController::class,'authCheck'])->name('authLog
 
 // Guest routes
 Route::get('/customer',[GuestController::class,'index']);
-
+Route::post('/bookTable',[GuestController::class,'bookTable'])->name('bookTable');
 // Staff routes
 
 
@@ -47,12 +48,12 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn']],function(){
     Route::post('/editUserProfile',[UserController::class,'editUserProfile'])->name('editUserProfile');
     Route::post('/storeChangePassword',[UserController::class,'storeChangePassword'])->name('storeChangePassword');
 
-    // Quản lý menu
+    // Quản lý Menu
     Route::group(['prefix' => 'menu-manage'],function(){
         Route::get('/showListType',[MenuController::class,'showListType'])->name('showListType');
         Route::get('/showDetailMenuType',[MenuController::class,'showDetailMenuType'])->name('showDetailMenuType');
         Route::get('/showEditMenuType/{idType}',[MenuController::class,'showEditMenuType'])->name('showEditMenuType');
-        Route::post('/storeType',[TypeController::class,'storeType'])->name('storeType');
+        Route::post('/storeType',[MenuController::class,'storeType'])->name('storeType');
         Route::get('/showListMenu',[MenuController::class,'showListMenu'])->name('showListMenu');
         Route::get('/showDetailMenu',[MenuController::class,'showDetailMenu'])->name('showDetailMenu');
         Route::get('/showEditMenu/{idMenu}',[MenuController::class,'showEditMenu'])->name('showEditMenu');
@@ -70,8 +71,19 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn']],function(){
     //Quản lý order
     Route::group(['prefix'=> 'order-manage'],function(){
         Route::get('showOrderPage',[OrderController::class,'showOrderPage'])->name('showOrderPage');
-        Route::post('fetchData',[OrderController::class,'fetchData']);
+        Route::post('fetchMenuData',[OrderController::class,'fetchMenuData']);
         Route::post('addOrder',[OrderController::class,'addOrder']);
+        Route::post('getOrderDetails',[OrderController::class,'getOrderDetailsByTable']);
+        Route::post('checkout',[OrderController::class,'checkout']);
+
+
+        Route::get('showOrderHistory',[OrderController::class,'showOrderHistory'])->name('showOrderHistory');
+        Route::post('getOrderDetailsById',[OrderController::class,'getOrderDetails']);
+    });
+
+    //Đặt bàn
+    Route::group(['prefix' => 'reservation-manage'],function(){
+        Route::get('showReservationList',[ReservationController::class,'showReservationList'])->name('showReservationList');
     });
 
 

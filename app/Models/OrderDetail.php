@@ -15,8 +15,9 @@ class OrderDetail extends Model
         'order_id',
         'menu_id',
         'no_of_serving',
+        'order_time'
     ];
     public function ofMenu(){
-        return $this->hasOne(Menu::class,'id','menu_id');
+        return $this->hasOne(MenuItem::class,'id','menu_id');
     }
 }
