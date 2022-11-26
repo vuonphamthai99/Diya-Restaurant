@@ -38,7 +38,7 @@
                             @foreach ($user_list as $user)
                                 <tr>
                                     <td class="py-1">
-                                        <img src="{{ asset('dashboard-template/assets/images/faces-clipart/pic-1.png') }}"
+                                        <img src="{{ $user->hasAvatar->name}}"
                                             alt="image" />
                                     </td>
                                     <td> {{ $user->name }} </td>

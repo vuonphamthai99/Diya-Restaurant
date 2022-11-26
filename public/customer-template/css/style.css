@@ -89,35 +89,99 @@ h6 {
   position: fixed;
   visibility: hidden;
   opacity: 0;
-  right: 15px;
-  bottom: 15px;
+  right: 23px;
+  bottom: 125px;
   z-index: 996;
   width: 44px;
   height: 44px;
   border-radius: 50px;
   transition: all 0.4s;
   border: 2px solid #cda45e;
+  background: #cda45e;
+
 }
 
 .back-to-top i {
-  font-size: 28px;
-  color: #cda45e;
+  font-size: 24px;
+  color: white;
   line-height: 0;
 }
 
 .back-to-top:hover {
   background: #cda45e;
-  color: #1a1814;
+  color: white;
 }
 
 .back-to-top:hover i {
-  color: #444444;
+  color: white;
 }
 
 .back-to-top.active {
   visibility: visible;
   opacity: 1;
 }
+
+/*--------------------------------------------------------------
+# Cart button
+--------------------------------------------------------------*/
+.show-cart {
+    position: fixed;
+    visibility: visible;
+    opacity: 1;
+    right: 23px;
+    bottom: 70px;
+    z-index: 996;
+    width: 44px;
+    height: 44px;
+    border-radius: 50px;
+    transition: all 0.4s;
+    border: 2px solid #cda45e;
+    background: #cda45e;
+
+  }
+
+  .show-cart i {
+    font-size: 24px;
+    color: white;
+    line-height: 0;
+  }
+
+  .show-cart:hover {
+    background: #cda45e;
+    color: white;
+  }
+
+  .show-cart:hover i {
+    color: white;
+  }
+
+  /* .show-cart.active {
+    visibility: visible;
+    opacity: 1;
+  } */
+
+/*--------------------------------------------------------------
+# Cart item quantity
+--------------------------------------------------------------*/
+.cart-item-quantity {
+    position: fixed;
+    visibility: visible;
+    opacity: 1;
+    right: 46px;
+    bottom: 95px;
+    z-index: 997;
+    width: 22px;
+    height: 22px;
+    border-radius: 50px;
+    transition: all 0.4s;
+    background-color: red;
+    border: 2px solid red;
+  }
+  .show-cart p {
+    color: #cda45e;
+    font-size: 11px !important;
+    line-height: 0;
+  }
 
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
@@ -1769,3 +1833,5 @@ section {
   font-size: 13px;
   color: #fff;
 }
+
+

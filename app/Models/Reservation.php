@@ -16,10 +16,8 @@ class Reservation extends Model
         'created_at',
         'reservation_time',
         'reservation_hour',
-        'no_of_people',
-        'customer_name',
-        'customer_phone',
-        'customer_email',
+        'people',
+        'customer_id',
         'message',
         'status',
     ];

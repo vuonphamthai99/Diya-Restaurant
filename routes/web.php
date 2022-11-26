@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MyLoginController;
@@ -27,14 +29,12 @@ Route::get('/',[MyLoginController::class,'showLogin']);
 Route::get('/login',[MyLoginController::class,'showLogin'])->name('showLogin');
 Route::post('/authLogin', [MyLoginController::class,'authCheck'])->name('authLogin');
 
-// Guest routes
-Route::get('/customer',[GuestController::class,'index']);
-Route::post('/bookTable',[GuestController::class,'bookTable'])->name('bookTable');
+
 // Staff routes
 
 
 
-Route::group(['prefix'=>'user','middleware'=>['isLoggedIn']],function(){
+Route::group(['prefix'=>'user','middleware'=>['isLoggedIn','isBackendUser','checkLocked']],function(){
     Route::get('/Dashboard',[MyLoginController::class,'showDashboard'])->name('showDashboard');
     Route::get('/logout',[MyLoginController::class,'logout'])->name('logout');
     Route::get('/user-list',[UserController::class,'showListUser'])->name('showListUser');
@@ -86,6 +86,24 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn']],function(){
         Route::get('showReservationList',[ReservationController::class,'showReservationList'])->name('showReservationList');
     });
 
-
-
 });
+
+Route::group(['prefix' => 'guest-page','middleware' =>['isGuest','checkLockedGuest']],function(){
+    Route::post('register-guest',[GuestController::class,'registerGuest'])->name('registerGuest');
+    Route::get('logout-guest',[GuestController::class,'logoutGuest'])->name('logoutGuest');
+    Route::post('login-guest',[GuestController::class,'loginGuest'])->name('loginGuest');
+    Route::get('main-page',[GuestController::class,'index'])->name('guest-page');
+    Route::post('/bookTable',[GuestController::class,'bookTable'])->name('bookTable');
+
+
+
+    Route::get('guestCheckout',[OrderController::class,'guestCheckout'])->name('guestCheckout');
+    Route::get('address',[AddressController::class,'showAddress'])->name('showAddress');
+    Route::post('fetchCartData',[OrderController::class,'fetchCartData']);
+    Route::post('storeCartData',[OrderController::class,'storeCartData']);
+
+    Route::post('storeAddress',[AddressController::class,'storeAddress'])->name('storeAddress');
+});
+
+
+

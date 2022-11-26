@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\MenuItem;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -102,4 +103,32 @@ class OrderController extends Controller
         }
         return view('staff.order-manage.order-history',compact('orders'));
     }
+
+
+
+
+    // Guest Order Management
+    public function storeCartData(Request $request){
+        if(!Session::has('loginID')){
+            abort(404);
+        }
+        Session::put('cartItems', $request->cartItem);
+        return ;
+    }
+
+    public function fetchCartData(Request $request){
+        // if(!Session::has('loginID')){
+        //     abort(404);
+        // }
+        if (Session::has('cartItems')){
+            return Session::get('cartItems');
+        }
+        return ;
+    }
+    public function guestCheckout(){
+        $addresses = Address::all();
+
+        return view('customer.checkout',compact('addresses'));
+    }
+
 }
