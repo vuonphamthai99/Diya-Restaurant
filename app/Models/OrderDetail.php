@@ -14,7 +14,7 @@ class OrderDetail extends Model
         'id',
         'order_id',
         'menu_id',
-        'no_of_serving',
+        'quantity',
         'order_time'
     ];
     public function ofMenu(){

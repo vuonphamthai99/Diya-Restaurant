@@ -22,70 +22,21 @@
             <table class="table table-hover table-striped">
               <thead>
                 <tr>
-                  <th> ID </th>
                   <th> Số bàn </th>
-                  <th> Khu </th>
                   <th> Số ghế </th>
                   <th> Trạng thái </th>
                   <th> Thao tác </th>
                 </tr>
               </thead>
               <tbody>
-                @php
-                    $tb_no = (object) [
-                        'A_no' => 0,
-                        'B_no' => 0,
-                        'C_no' => 0,
-                        'D_no' => 0,
-                        'E_no' => 0,
-                    ];
-                @endphp
                 @foreach ($tables as  $table)
 
 
 
                 <tr>
-                    <td >
-                        {{$table->id}}
-                    </td>
-                    <td>
-                        @switch($table->section)
-                            @case('A')
-                                @php
-                                    $tb_no->A_no ++;
-                                @endphp
-                                    {{$tb_no->A_no}}
-                                @break
-                                @case('B')
-                                @php
-                                    $tb_no->B_no ++;
-                                @endphp
-                                    {{$tb_no->A_no}}
-                                @break
-                                @case('C')
-                                @php
-                                    $tb_no->C_no ++;
-                                @endphp
-                                    {{$tb_no->A_no}}
-                                @break
-                                @case('D')
-                                @php
-                                    $tb_no->D_no ++;
-                                @endphp
-                                    {{$tb_no->A_no}}
-                                @break
-                                @case('E')
-                                @php
-                                    $tb_no->E_no ++;
-                                @endphp
-                                    {{$tb_no->A_no}}
-                                @break
-                            @default
 
-                        @endswitch
-                    </td>
-                    <td >
-                        {{$table->section}}
+                    <td>
+                        {{$table->code}}
                     </td>
                     <td >
                         {{$table->capacity}}

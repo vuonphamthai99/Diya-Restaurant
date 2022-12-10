@@ -12,7 +12,7 @@ class Table extends Model
     public $timestamps = false;
     public $fillable = [
         'id',
-        'section',
+        'code',
         'capacity',
         'status'
     ];

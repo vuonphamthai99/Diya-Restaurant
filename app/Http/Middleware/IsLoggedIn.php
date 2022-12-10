@@ -17,7 +17,8 @@ class IsLoggedIn
     public function handle(Request $request, Closure $next)
     {
         if(!Session()->has('loginID')){
-            return redirect('login')->with('fail','Vui lòng đăng nhập lại!');
+            redirect('login')->with('fail','Vui lòng đăng nhập lại!');
+            return $next($request);
         }
         return $next($request);
     }

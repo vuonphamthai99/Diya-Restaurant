@@ -43,8 +43,16 @@
                             href="{{route('showEditMenuType',['idType' => $type->id])}}">
                             <button type="button" title="Chỉnh sửa"
                                 data-toggle="tooltip" data-placement="top"
-                                class="btn btn-outline-danger btn-rounded btn-icon">
+                                class="btn btn-outline-success btn-rounded btn-icon">
                                 <i class="mdi mdi-eye"></i>
+                            </button>
+                        </a>
+                        <a
+                            href="">
+                            <button type="button" title="Xóa loại món" id="delete-user"
+                                data-toggle="tooltip" data-placement="top"
+                                class="btn btn-outline-danger btn-rounded btn-icon">
+                                <i class="mdi mdi-trash-can"></i>
                             </button>
                         </a>
                     </td>

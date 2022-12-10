@@ -5,10 +5,12 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MyLoginController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsLoggedIn;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,10 +33,11 @@ Route::post('/authLogin', [MyLoginController::class,'authCheck'])->name('authLog
 
 
 // Staff routes
-
+Route::get('test/{idOrder}',[OrderController::class,'printOrder']);
 
 
 Route::group(['prefix'=>'user','middleware'=>['isLoggedIn','isBackendUser','checkLocked']],function(){
+
     Route::get('/Dashboard',[MyLoginController::class,'showDashboard'])->name('showDashboard');
     Route::get('/logout',[MyLoginController::class,'logout'])->name('logout');
     Route::get('/user-list',[UserController::class,'showListUser'])->name('showListUser');
@@ -78,7 +81,11 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn','isBackendUser','chec
 
 
         Route::get('showOrderHistory',[OrderController::class,'showOrderHistory'])->name('showOrderHistory');
-        Route::post('getOrderDetailsById',[OrderController::class,'getOrderDetails']);
+        Route::get('getOrderDetailsById/{idOrder}',[OrderController::class,'getOrderDetailsById'])->name('getOrderDetailsById');
+        // online
+        Route::get('showOrderOnlineList',[OrderController::class,'showOrderOnlineList'])->name('showOrderOnlineList');
+
+
     });
 
     //Đặt bàn
@@ -91,18 +98,20 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn','isBackendUser','chec
 Route::group(['prefix' => 'guest-page','middleware' =>['isGuest','checkLockedGuest']],function(){
     Route::post('register-guest',[GuestController::class,'registerGuest'])->name('registerGuest');
     Route::get('logout-guest',[GuestController::class,'logoutGuest'])->name('logoutGuest');
-    Route::post('login-guest',[GuestController::class,'loginGuest'])->name('loginGuest');
     Route::get('main-page',[GuestController::class,'index'])->name('guest-page');
+    Route::post('login-guest',[GuestController::class,'loginGuest'])->name('loginGuest');
     Route::post('/bookTable',[GuestController::class,'bookTable'])->name('bookTable');
-
-
-
-    Route::get('guestCheckout',[OrderController::class,'guestCheckout'])->name('guestCheckout');
-    Route::get('address',[AddressController::class,'showAddress'])->name('showAddress');
+    Route::get('guestCheckout',[OrderController::class,'guestCheckout'])->name('guestCheckout')->middleware('isGuestLoggedIn');
+    Route::get('address',[AddressController::class,'showAddress'])->name('showAddress')->middleware('isGuestLoggedIn');
     Route::post('fetchCartData',[OrderController::class,'fetchCartData']);
     Route::post('storeCartData',[OrderController::class,'storeCartData']);
-
     Route::post('storeAddress',[AddressController::class,'storeAddress'])->name('storeAddress');
+    Route::post('GuestCheckoutPayment',[OrderController::class,'GuestCheckoutPayment'])->name('GuestCheckoutPayment');
+    Route::get('paypalPayment',[PaymentController::class,'PayPalPayment'])->name('paypalPayment');
+    Route::get('success',[PaymentController::class, 'success'])->name('success');
+    Route::get('error',[PaymentController::class, 'error'])->name('error');
+    Route::get('order-list',[OrderController::class,'showOrderList'])->name('showOrderList');
+    Route::get('orderDetails/{idOrder}',[OrderController::class,'showOrderDetails'])->name('showOrderDetails');
 });
 
 

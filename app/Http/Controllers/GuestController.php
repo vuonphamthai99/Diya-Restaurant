@@ -63,7 +63,7 @@ class GuestController extends Controller
         'email' => $request->email,
         'phone' => $request->phone,
         'password' => $request->password,
-        'id_user_role' => 5,
+        'id_user_role' => 4,
     ])){
         return redirect()->route('guest-page')->with([
             'success'=>'Đăng ký thành công! Vui lòng đăng nhập lại',

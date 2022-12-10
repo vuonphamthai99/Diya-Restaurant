@@ -33,7 +33,6 @@
                                 <option selected value="" disabled>Chọn món</option>
                               </select>
                               <img id="previewOrder" class="border border-secondary mt-3" alt="your image" src="@if(isset($menu)) {{$menu->hasImage->name}}@else{{asset('dashboard-template/assets/images/blank.jpg')}} @endif" width="100" height="100" />
-
                         </div>
 
                       </div>
@@ -48,7 +47,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button"  class="btn btn-secondary" data-dismiss="modal">Đóng</button>
           <button type="button" id="confirmOrder" class="btn btn-primary">Xác nhận</button>
         </div>
       </div>
@@ -79,7 +78,7 @@
               </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
           <button type="button" class="btn btn-primary">Xác nhận</button>
         </div>
       </div>

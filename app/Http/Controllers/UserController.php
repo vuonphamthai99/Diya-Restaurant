@@ -42,7 +42,6 @@ class UserController extends Controller
         'phone' => $request->phone,
         'password' => Hash::make('User@123'),
         'id_user_role' => $request->id_user_role,
-        'id_user_add' => Session::get('loginID'),
     ])){
         return redirect()->route('showListUser')->with('success','Thêm người dùng thành công');
     }
@@ -116,7 +115,7 @@ class UserController extends Controller
             $fileName = $file->hashName() ;
             $destinationPath = public_path().'/images/avatars';
             $file->move($destinationPath,$fileName);
-            $filePath = asset('images/avatars/'.$fileName);
+            $filePath = $fileName;
             $idAvatar = Image::create(['name' => $filePath])->id;
 
         }

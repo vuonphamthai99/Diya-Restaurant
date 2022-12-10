@@ -1,11 +1,11 @@
 @extends('layout.main')
 @section('content')
 <div class="page-header">
-    <h3 class="page-title"> Quản lý loại món </h3>
+    <h3 class="page-title"> Quản lý món ăn </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Quản lý loại món</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Danh sách loại món</li>
+        <li class="breadcrumb-item"><a href="#">Quản lý món ăn</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Danh sách món ăn</li>
       </ol>
     </nav>
   </div>
@@ -42,21 +42,29 @@
                         {{$menu->name}}
                     </td>
                     <td>
-                        {{$menu->price}}
+                        {{format_vnd($menu->price)}}
                     </td>
                     <td >
                         {{$menu->hasType->name}}
                     </td>
                     <td >
-                        {{$menu->status}}
+                        {{CheckStockStatus($menu->status)}}
                     </td>
                     <td>
                         <a
                             href="{{route('showEditMenu',['idMenu'  => $menu->id])}}">
                             <button type="button" title="Chỉnh sửa"
                                 data-toggle="tooltip" data-placement="top"
-                                class="btn btn-outline-danger btn-rounded btn-icon">
+                                class="btn btn-outline-success btn-rounded btn-icon">
                                 <i class="mdi mdi-eye"></i>
+                            </button>
+                        </a>
+                        <a
+                            href="">
+                            <button type="button" title="Xóa món" id="delete-user"
+                                data-toggle="tooltip" data-placement="top"
+                                class="btn btn-outline-danger btn-rounded btn-icon">
+                                <i class="mdi mdi-trash-can"></i>
                             </button>
                         </a>
                     </td>

@@ -5,7 +5,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Quản lý loại món</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Thêm loại món</li>
+            <li class="breadcrumb-item active" aria-current="page">Thêm - cập nhật loại món</li>
         </ol>
     </nav>
 </div>
@@ -13,7 +13,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Thêm loại món</h4>
+                <h4 class="card-title">Thêm - cập nhật loại món</h4>
                 <p class="card-description"> Nhập thông tin loại món </p>
                 <form action="{{route('storeType')}}" method="POST" class="forms-sample">
                     @csrf
@@ -35,7 +35,7 @@
                   <div class="form-group row">
                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Mô tả</label>
                     <div class="col-sm-9">
-                      <textarea  name="description"  class="form-control  @error('description') is-invalid @enderror " rows="4" id="exampleInputEmail2" placeholder="Nhập mô tả..">
+                      <textarea  name="description" required  class="form-control  @error('description') is-invalid @enderror " rows="4" id="exampleInputEmail2" placeholder="Nhập mô tả..">
                         @if(isset($type)) {{$type->description}} @else {{old('description')}} @endif
                     </textarea>
                         @error('description')

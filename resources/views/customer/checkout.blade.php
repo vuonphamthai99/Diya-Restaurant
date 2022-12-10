@@ -50,14 +50,15 @@
                 </div>
                 <div class="d-flex mt-3 mb-3 justify-content-end">
                     <div class="card" style="width: 18rem;">
+                        <form action="{{route('GuestCheckoutPayment')}}" method="POST">
+                            @csrf
                         <div class="card-body">
                             <h5 class="card-title">Thanh toán</h5>
-
 
                             <div class="form-group ">
                                 <label for="exampleFormControlSelect1">Chọn địa chỉ</label>
                                 <select class="page-input" id="address-select" name="address" id="exampleFormControlSelect1">
-                                    <option selected disabled value="">-- Chọn địa chỉ --</option>
+                                    <option selected disabled>-- Chọn địa chỉ --</option>
                                     @foreach ($addresses as $ad )
                                     @if ($ad->user_id == Session::get('loginID'))
                                     <option feeShip="{{$ad->feeShip}}" value="{{$ad->id}}" data-toggle="tooltip" data-placement="top" title="{{$ad->address}}"> {{ \Illuminate\Support\Str::limit($ad->address, $limit = 30, $end = '...') }} </option>
@@ -68,8 +69,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Phương thức thanh toán</label>
-                                <select class="page-input" id="exampleFormControlSelect1">
-                                    <option>-- Chọn phương thức thanh toán --</option>
+                                <select class="page-input" name="paymentMethod" id="exampleFormControlSelect1">
+                                    <option selected disabled>-- Chọn phương thức thanh toán --</option>
 
                                     <option value="1">Thanh toán khi nhận hàng</option>
                                     <option value="2">Thanh toán bằng paypal</option>
@@ -82,11 +83,14 @@
                             <h5 class=" cart-total mb-3">Thành tiền: 0000 VND</h5>
                             <h5 class=" feeShip-text mb-3">Phí ship: 0000 VND</h5>
                             <div class=" d-flex justify-content-center">
-                                <a href="#" onmouseover="this.style.background='#cda45e'" onmouseout="this.style.background='#0c0b09';"
-                                 style="{background: #0c0b09}" class="book-a-table-btn">Xác nhận</a>
+
+                                <button type="submit" onmouseover="this.style.background='#cda45e'" onmouseout="this.style.background='#0c0b09';"
+                                 style="background: #0c0b09" class="book-a-table-btn"> Xác nhận </button>
 
                             </div>
                           </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -99,7 +103,8 @@
         $('#address-select').on('change', function() {
             let option = $(this).find('option:selected');
             let feeShip = option.attr('feeShip');
-            alert(feeShip)
+            $('.feeShip-text').html('Phí ship:  '+feeShip+' VND')
+
         });
     </script>
 @endsection

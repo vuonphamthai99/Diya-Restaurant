@@ -6,8 +6,8 @@
       <li class="nav-item nav-profile">
         <a href="#" class="nav-link">
           <div class="nav-profile-image">
-            <img src="{{$user->hasAvatar->name}}" alt="profile">
-            <span class="login-status online"></span>
+            <img src="{{asset('images/avatars')}}/{{$user->hasAvatar->name}}" alt="profile">
+            <span class="login-status busy"></span>
             <!--change to offline or busy as needed-->
           </div>
           <div class="nav-profile-text d-flex flex-column">
@@ -23,6 +23,9 @@
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
+      {{-- phân quyền --}}
+      {{-- @if ( $user->id_user_role == 3) --}}
+
       {{-- Quản lý order khách hàng --}}
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#order-manage-collapse" aria-expanded="false" aria-controls="order-manage-collapse">
@@ -37,6 +40,7 @@
           </ul>
         </div>
       </li>
+
       {{-- Quản lý đặt bàn --}}
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#reservation-manage-collapse" aria-expanded="false" aria-controls="reservation-manage-collapse">
@@ -50,6 +54,7 @@
           </ul>
         </div>
       </li>
+
     {{-- Quản lý đơn đặt online --}}
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#online-order-manage-collapse" aria-expanded="false" aria-controls="online-order-manage-collapse">
@@ -59,10 +64,14 @@
         </a>
         <div class="collapse" id="online-order-manage-collapse">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="">Danh sách người dùng</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('showOrderOnlineList')}}">Danh sách đơn đặt online</a></li>
           </ul>
         </div>
       </li>
+      {{-- @endif --}}
+      {{-- phân quyền --}}
+      {{-- @if ($user->id_user_role == 2 || $user->id_user_role == 1) --}}
+
       {{-- Quản lý số bàn --}}
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#table-manage-collapse" aria-expanded="false" aria-controls="table-manage-collapse">
@@ -76,6 +85,7 @@
           </ul>
         </div>
       </li>
+
       {{-- Quản lý menu --}}
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#menu-manage-collapse" aria-expanded="false" aria-controls="menu-manage-collapse">
@@ -89,6 +99,7 @@
           </ul>
         </div>
       </li>
+
       {{-- Quản lý loại món --}}
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#menu-type-manage-collapse" aria-expanded="false" aria-controls="menu-type-manage-collapse">
@@ -102,6 +113,9 @@
           </ul>
         </div>
       </li>
+      {{-- @endif --}}
+      {{-- phân quyền --}}
+      {{-- @if($user->id_user_role == 1 ) --}}
       {{-- Quản lý người dùng --}}
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#user-manage-collapse" aria-expanded="false" aria-controls="user-manage-collapse">
@@ -115,6 +129,7 @@
           </ul>
         </div>
       </li>
+      {{-- @endif --}}
       {{-- Quản lý tài khoản --}}
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#user-profile-collapse" aria-expanded="false" aria-controls="user-profile-collapse">

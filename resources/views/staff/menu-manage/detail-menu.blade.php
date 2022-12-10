@@ -1,11 +1,11 @@
 @extends('layout.main')
 @section('content')
 <div class="page-header">
-    <h3 class="page-title"> Quản lý loại món </h3>
+    <h3 class="page-title"> Quản lý món ăn </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Quản lý loại món</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Danh sách loại món</li>
+        <li class="breadcrumb-item"><a href="#">Quản lý món ăn</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Thêm - Cập nhật món ăn</li>
       </ol>
     </nav>
   </div>
@@ -13,7 +13,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Thêm món</h4>
+                <h4 class="card-title">Thêm - Cập nhật món ăn</h4>
                 <p class="card-description"> Nhập thông tin món ăn </p>
                 <form action="{{route('storeMenu')}}" method="POST" enctype="multipart/form-data" class="forms-sample">
                     @csrf
@@ -62,7 +62,7 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Avatar</label>
+                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Hình ảnh</label>
                     <div class="col-sm-9">
                         <div class="input-group col-xs-12">
                         <input type="file" accept="image/*" name="img" class="file-upload-default">
@@ -73,7 +73,7 @@
                           </span>
                         </div>
 
-                    <img id="preview" class="border border-secondary mt-3" alt="your image" src="@if(isset($menu)) {{$menu->hasImage->name}}@else{{asset('dashboard-template/assets/images/blank.jpg')}} @endif" width="100" height="100" />
+                    <img id="preview" class="border border-secondary mt-3" alt="your image" src="@if(isset($menu)){{asset('images/menu')}}/{{$menu->hasImage->name}}@else{{asset('dashboard-template/assets/images/blank.jpg')}} @endif" width="100" height="100" />
 
                     </div>
 

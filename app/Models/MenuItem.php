@@ -20,7 +20,7 @@ class MenuItem extends Model
         'ingredients',
         'status'
     ];
-    
+
     public function hasImage(){
         return $this->hasOne(Image::class,'id','image_id');
     }

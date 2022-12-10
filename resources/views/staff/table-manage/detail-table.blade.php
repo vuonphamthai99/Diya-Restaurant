@@ -19,25 +19,34 @@
                     @csrf
                     @if(isset($table))
                     <input type="hidden" name="idTable" value="{{$table->id}}">
-                    @endif
                     <div class="form-group row">
+                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Số bàn</label>
+                        <div class="col-sm-9">
+
+                            <input type="text" readonly name="" required   value="{{$table->code}}"
+                          class="form-control  @error('capacity') is-invalid @enderror "  id="exampleInputEmail2" >
+
+                        </div>
+                      </div>
+                    @endif
+
+                    <div class="form-group @isset($table) d-none @endisset  row">
                         <label for="selectsection" class="col-sm-3 col-form-label">Khu</label>
                         <div class="col-sm-9">
                             <select name="section"
-                             @isset($table) readonly @endisset
+                             @isset($table) disabled @endisset
                               required class="form-control form-control-lg my-select  @error('section') is-invalid @enderror"
 
                             id="selectsection">
                             <option value="" selected disabled>Chọn khu..</option>
-                            <option @if(isset($table) && $table->section == 'A') selected @endif>A</option>
-                            <option @if(isset($table) && $table->section == 'B') selected @endif>B</option>
-                            <option @if(isset($table) && $table->section == 'C') selected @endif>C</option>
-                            <option @if(isset($table) && $table->section == 'D') selected @endif>D</option>
-                            <option @if(isset($table) && $table->section == 'E') selected @endif>E</option>
+                            <option  selected >A</option>
+                            <option >B</option>
+                            <option >C</option>
                             </select>
 
                         </div>
                       </div>
+
                       <div class="form-group row">
                         <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Sức chứa</label>
                         <div class="col-sm-9">

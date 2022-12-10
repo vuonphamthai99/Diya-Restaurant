@@ -36,9 +36,11 @@
                         </thead>
                         <tbody id="UserListTable">
                             @foreach ($user_list as $user)
+                            @if ($user->id != Session::get('loginID'))
+
                                 <tr>
                                     <td class="py-1">
-                                        <img src="{{ $user->hasAvatar->name}}"
+                                        <img src="{{asset('images/avatars')}}/{{$user->hasAvatar->name}}"
                                             alt="image" />
                                     </td>
                                     <td> {{ $user->name }} </td>
@@ -85,6 +87,8 @@
                                         </a>
                                     </td>
                                 </tr>
+                            @endif
+
                             @endforeach
                         </tbody>
 

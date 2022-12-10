@@ -110,8 +110,8 @@
     <div class="container d-flex justify-content-center justify-content-md-between">
 
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-phone d-flex align-items-center"><span>+1 5589 55488 55</span></i>
-        <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mon-Sat: 11AM - 23PM</span></i>
+        <i class="bi bi-phone d-flex align-items-center"><span>+84 369 006 523</span></i>
+        <i class="bi bi-clock d-flex align-items-center ms-4"><span>Mở cửa: 8AM - 21PM</span></i>
       </div>
 
       {{-- <div class="languages d-none d-md-flex align-items-center">
@@ -134,13 +134,13 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto active" href="{{route('guest-page')}}">Trang chủ</a></li>
-          <li><a class="nav-link scrollto" href="#about">Thông tin</a></li>
-          <li><a class="nav-link scrollto" href="#menu">Thực đơn</a></li>
+          <li><a class="nav-link scrollto" href="{{route('guest-page')}}/#about">Thông tin</a></li>
+          <li><a class="nav-link scrollto" href="{{route('guest-page')}}/#menu">Thực đơn</a></li>
           {{-- <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
           <li><a class="nav-link scrollto" href="#events">Events</a></li>
           <li><a class="nav-link scrollto" href="#chefs">Chefs</a></li> --}}
-          <li><a class="nav-link scrollto" href="#gallery">Thư viện ảnh</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Liên hệ</a></li>
+          <li><a class="nav-link scrollto" href="{{route('guest-page')}}/#gallery">Thư viện ảnh</a></li>
+          <li><a class="nav-link scrollto" href="{{route('guest-page')}}/#contact">Liên hệ</a></li>
           @if (Session::has('loginID'))
           <li class="dropdown"><a href="#"><span>Tùy chọn</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -149,22 +149,25 @@
                   <li><a href="#">Thay đổi thông tin cá nhân</a></li>
                   <li><a href="#">Thay đổi mật khẩu</a></li>
                   <li><a href="{{route('showAddress')}}">Danh sách địa chỉ</a></li>
+                  <li><a href="{{route('logoutGuest')}}">Đăng xuất</a></li>
                 </ul>
               </li>
-              <li><a href="#">Đơn đặt món</a></li>
+              <li><a href="{{route('showOrderList')}}">Đơn đặt món</a></li>
               <li><a href="#">Yêu cầu đặt bàn</a></li>
             </ul>
           </li>
+          @else
+          <li><a class="nav-link scrollto" href="{{route('guest-page')}}/#forms">Đăng nhập</a></li>
           @endif
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Đặt Bàn</a>
-      <a href="#menu" class="book-a-table-btn scrollto d-none d-lg-flex">Đặt Món</a>
+      <a href="{{route('guest-page')}}#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Đặt Bàn</a>
+      <a href="{{route('guest-page')}}#menu" class="book-a-table-btn scrollto d-none d-lg-flex">Đặt Món</a>
       @if(Session::has('loginID'))
       <a href="{{route('logoutGuest')}}" class="book-a-table-btn scrollto d-none d-lg-flex"> Đăng xuất </a>
       @else
-      <a href="#forms"  class="book-a-table-btn scrollto  d-none d-lg-flex ">Đăng nhập/Đăng ký</a>
+      <a href="{{route('guest-page')}}#forms"  class="book-a-table-btn scrollto  d-none d-lg-flex ">Đăng ký</a>
         @endif
     </div>
   </header><!-- End Header -->
@@ -178,14 +181,14 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <div class="footer-info">
-              <h3>Restaurantly</h3>
+              <h3>Diya Restaurant</h3>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+                178 Tầm Vu, Hưng lợi <br>
+                Ninh Kiều, Cần Thơ<br><br>
+                <strong>Phone:</strong> +84 369 006 523<br>
+                <strong>Email:</strong> phamb1805905@student.ctu.edu.vn<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -197,36 +200,20 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+          <div class="col-lg-4 col-md-6 footer-links">
+            <h4>Đường dẫn nhanh</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('guest-page')}}">Trang chủ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{route('guest-page')}}/#contact">Liên hệ</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
 
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
 
-          </div>
+
 
         </div>
       </div>
@@ -273,7 +260,6 @@
   <script src="{{asset('customer-template/vendor/swiper/swiper-bundle.min.js')}}"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-//   <script defer src='https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&key=AIzaSyAXBzYeMoJ5WXaY63xqBI0DOtXGTgGgWzk'></script>
   <script src="{{asset('customer-template/vendor/aos/aos.js')}}"></script>
 
 

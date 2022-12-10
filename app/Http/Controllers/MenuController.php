@@ -27,9 +27,10 @@ class MenuController extends Controller
     public function storeType(Request $request){
         if($request->idType){
             $request->validate([
-                'name' => 'unique:types,name,'.$request->idType,
+                'name' => 'required|unique:types,name,'.$request->idType,
             ],[
                 'name.unique' =>  'Loại món đã được tạo',
+                'name.required' =>  'Loại món không được để trống',
             ]);
             Type::where('id',$request->idType)->update([
                 'name' => $request->name,
@@ -39,9 +40,11 @@ class MenuController extends Controller
 
         }
         $request->validate([
-            'name' => 'unique:types',
+            'name' => 'unique:types||required',
+
         ],[
             'name.unique' =>  'Loại món đã được tạo',
+            'name.required' =>  'Loại món không được để trống',
         ]);
 
         Type::create([
@@ -73,7 +76,7 @@ class MenuController extends Controller
     public function storeMenu(Request $request){
         if($request->idMenu){
             $request->validate([
-                'name' => 'unique:MenuItem,name,'.$request->idMenu,
+                'name' => 'unique:Menu_Items,name,'.$request->idMenu,
                 'price' => 'required|numeric',
                 'type' => 'required',
             ],[
@@ -88,7 +91,7 @@ class MenuController extends Controller
                 $fileName = $file->hashName() ;
                 $destinationPath = public_path().'/images/menu';
                 $file->move($destinationPath,$fileName);
-                $filePath = asset('images/menu/'.$fileName);
+                $filePath = $fileName;
                 $idImg = Image::create(['name' => $filePath])->id;
                 MenuItem::where('id',$request->idMenu)->update([
                     'image_id' => $idImg,
@@ -103,7 +106,7 @@ class MenuController extends Controller
                 'ingredients'=> $request->ingredients,
                 'status' => $request->status
             ]);
-        return redirect()->route('showListMenu')->with('success','Sửa loại món ăn thành công!');
+        return redirect()->route('showListMenu')->with('success','Sửa món ăn thành công!');
 
         }
         $validate = $request->validate([
@@ -125,7 +128,7 @@ class MenuController extends Controller
             $fileName = $file->hashName() ;
             $destinationPath = public_path().'/images/menu';
             $file->move($destinationPath,$fileName);
-            $filePath = asset('images/menu/'.$fileName);
+            $filePath =$fileName;
             $idImg = Image::create(['name' => $filePath])->id;
         }
         MenuItem::create([

@@ -11,11 +11,13 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderController extends Controller
 {
     public function showOrderPage(){
         $tables = Table::all();
+        // dd($tables);
         $orders = Order::all();
         $types = Type::all();
         return view('staff.order-manage.order-page',compact('tables', 'orders','types'));
@@ -29,6 +31,7 @@ class OrderController extends Controller
     }
 
     public function addOrder(Request $request){
+
         $menu = MenuItem::find($request->idMenu);
         if($request->Status == 0 || $request->Status == 3){
             Table::where('id',$request->idTable)
@@ -45,20 +48,30 @@ class OrderController extends Controller
             OrderDetail::create([
                 'order_id' => $order_id->id,
                 'menu_id' => $request->idMenu,
-                'no_of_serving' => $request->quant,
-                'order_time' => now()
+                'quantity' => $request->quant,
             ]);
             return $menu;
         };
-        $order_id = Order::where([
+        $order = Order::where([
             ['table_id','=',$request->idTable],
             ['status', '=' , 0]
         ])->first();
+        foreach($order->hasDetail as $dt){
+
+            if($request->idMenu == $dt->menu_id){
+
+                $dt->update([
+                    'quantity' =>$dt->quantity +$request->quant,
+                ]);
+                 return $menu;
+
+            }
+
+        }
         OrderDetail::create([
-            'order_id' => $order_id->id,
+            'order_id' => $order->id,
             'menu_id' => $request->idMenu,
-            'no_of_serving' => $request->quant,
-            'order_time' => now()
+            'quantity' => $request->quant,
 
         ]);
         return $menu;
@@ -76,7 +89,6 @@ class OrderController extends Controller
         }
         return $Details;
     }
-
     public function checkout(Request $request){
         Table::where('id','=',$request->idTable)
         ->update([
@@ -85,16 +97,17 @@ class OrderController extends Controller
         $Order = Order::where([
             ['table_id','=',$request->idTable],
             ['status', '=' , 0]
-        ])->update([
+        ])->first();
+        $Order->update([
             'status' => 1,
             'finish_date' => now()
         ]);
-
+        $this->printOrder($Order->id);
     }
 
 
     public function showOrderHistory(){
-        $orders = Order::where('status','=',1)->get();
+        $orders = Order::where('status','=',1)->where('type_order','=','Tại chỗ')->get();
 
         foreach($orders as $od){
             foreach($od->hasDetail as $dt){
@@ -104,16 +117,30 @@ class OrderController extends Controller
         return view('staff.order-manage.order-history',compact('orders'));
     }
 
-
-
+    public function getOrderDetailsById($idOrder){
+        $order = Order::find($idOrder);
+        return view('staff.order-manage.order-details',compact('order'));
+    }
+    //----------------------------------------------------------------
+    public function showOrderOnlineList(){
+        $orders = Order::where('type_order', 'Online')->get();
+        foreach($orders as $od){
+            foreach($od->hasDetail as $dt){
+                $od->total += $dt->ofMenu->price;
+            }
+        }
+        return view('staff.order-manage.online-order-manage',compact('orders'));
+    }
 
     // Guest Order Management
     public function storeCartData(Request $request){
         if(!Session::has('loginID')){
             abort(404);
         }
-        Session::put('cartItems', $request->cartItem);
-        return ;
+        // $cartItems =$request->cartItem;
+            // dd($request);
+         Session::put('cartItems', $request->cartItem);
+        // return $cartItems;
     }
 
     public function fetchCartData(Request $request){
@@ -131,4 +158,57 @@ class OrderController extends Controller
         return view('customer.checkout',compact('addresses'));
     }
 
+    public function GuestCheckoutPayment(Request $request){
+        // dd($request);
+        if(!Session::has('cartItems')){
+            return redirect()->route('guest-page')->with('error','Vui lòng chọn món ăn!');
+        }
+
+        $request->validate([
+            'address' => 'required',
+            'paymentMethod' => 'required',
+        ],[
+            'address.required' => 'Vui lòng chọn địa chỉ hoặc thêm địa chỉ mới!',
+            'paymentMethod.required' => 'Vui lòng chọn phương thức thanh toán!'
+        ]);
+        if($request->paymentMethod == 1){
+            $order = Order::create([
+                'customer_id' => Session::get('loginID'),
+                'order_date' => now(),
+                'type_order' => 'Online',
+                'table_id' => null,
+                'address_id' => $request->address,
+                'status' => '0',
+
+            ]);
+            foreach(Session::get('cartItems') as $c){
+                OrderDetail::create([
+                    'order_id' => $order->id,
+                    'menu_id' => $c['id'],
+                    'quantity' => $c['quant'],
+                ]);
+            }
+            Session::forget('cartItems');
+            return redirect()->route('guest-page')->with('success', 'Đã đặt hàng, theo dõi đơn ở đơn hàng đã đặt.');
+        }
+        Session::put('idAddress',$request->address);
+        return redirect()->route('paypalPayment');
+    }
+
+
+    public function showOrderList(){
+        $orders = Order::all();
+        return view('customer.order-list',compact('orders'));
+    }
+
+    public function showOrderDetails($idOrder){
+        $order = Order::find($idOrder);
+        return view('customer.order-details',compact('order'));
+    }
+
+    public function printOrder($idOrder){
+        $Order = Order::find($idOrder);
+        $pdf = Pdf::loadView('bill-template.bill',array('Order' =>$Order));
+        return $pdf->download('bill_of_'.$Order->id.'.pdf');
+    }
 }

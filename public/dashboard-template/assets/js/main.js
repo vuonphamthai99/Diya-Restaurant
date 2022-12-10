@@ -1,4 +1,5 @@
-const defaultImage = 'http://127.0.0.1:8000/dashboard-template/assets/images/blank.jpg'
+const defaultImage = 'http://localhost/dashboard-template/assets/images/blank.jpg'
+const defaultLink = 'http://localhost/images/menu/'
 var csrf = $('meta[name="csrf-field"').attr('content')
 $('input.price').on('input', function (e) {
     $(this).val(formatCurrency(this.value.replace(/[,VNĐ]/g, '')));
@@ -116,13 +117,38 @@ $(document).ready(function () {
 
 
     // Order functions
-    var idTable
+    var idTable = 0;
     var Status
     var total = 0;
+    var Table_picked
+    var idMenu = 0;
+    $('#confirmOrder').click(notEnoughData)
+
     $('.my-table').on('click', function () {
+        $('#order-btn').removeClass('btn-gradient-secondary').addClass('btn-gradient-primary')
+        $('#checkout-btn').removeClass('btn-gradient-secondary').addClass('btn-gradient-primary')
         $('#table-view-order').DataTable().rows().remove().draw();
+        $('#total-money').html('0,000VNĐ')
+
+        if($(this).attr('idTable') == idTable){
+            $('#order-btn').addClass('btn-gradient-secondary').removeClass('btn-gradient-primary')
+            $('#checkout-btn').addClass('btn-gradient-secondary').removeClass('btn-gradient-primary')
+            $(this).attr('style','')
+            $('#table-picked').html('Chọn bàn để xem')
+            $('#total-money').html('0,000VNĐ')
+            resetOrder();
+            idTable = 0;
+            Status = 0;
+            return false;
+        }
+
+        Table_picked = $(this).attr('tablecode');
         idTable = $(this).attr('idTable');
         Status = $(this).attr('Status');
+        $('#table-picked').html('Các món của bàn '+ Table_picked)
+
+        $(this).css('background','linear-gradient(89deg, #5e7188, #3e4b5b)');
+        $('.my-table').not(this).attr('style','')
         if(Status == 1){
             $.toast({
                 text: "Bàn đã bị khóa!", // Text that is to be shown in the toast
@@ -140,39 +166,12 @@ $(document).ready(function () {
                 loader: true,  // Whether to show loader or not. True by default
                 loaderBg: '#9EC600',  // Background color of the toast loader
             });
+            $(this).removeClass('btn-secondary');
+
+            return false;
         }
-        // $('#OrderModal').modal('toggle')
         if(Status == 2){
-            $.ajax({
-                url: "getOrderDetails",
-                type: "POST",
-                headers: {
-                    'X-CSRF-TOKEN': csrf
-                },
-                data: {
-                    'idTable': idTable
-                },
-                success:function(data){
-                    $.each(data, function(i,val){
-                        total +=  (val.menuPrice)*val.no_of_serving
-                        let dt = new Date();
-                                    let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-                                    let html = `<tr>
-                                    <td>${val.menuName}</td>
-                                    <td>${val.no_of_serving}</td>
-                                    <td>${val.menuPrice}</td>
-                                    <td>${time}</td>
-                                </tr>`
-                                // $('#table-view-order').append(html)
-                                $('#table-view-order').DataTable().row.add($(html).get(0)).draw()
-                                    // $('#table-view-order tbody').append(html)
-                    })
-                    $('#total-money').text(formatCurrency(total.toString()))
-                },
-                error:function(e){
-                    console.log('ajax fails')
-                }
-            })
+        getOrderDetails(idTable)
         }
 
 
@@ -253,9 +252,14 @@ $(document).ready(function () {
             },
             success: function(){
                 $('.my-table[idtable="'+idTable+'"]').attr('status',0)
-                $('.my-table[idtable="'+idTable+'"]').removeClass('btn-warning')
+                $('.my-table[idtable="'+idTable+'"]').attr('style','')
+                $('.my-table[idtable="'+idTable+'"]').removeClass('btn-warning').addClass('btn-primary')
+                $('.my-table[idtable="'+idTable+'"] p').html('Trống')
+                $('#total-money').html('0,000VNĐ')
+                Status = 0;
+                idTable = 0;
                 $('#table-view-order').DataTable().rows().remove().draw();
-
+                resetOrder();
                 toastSuccess('Thanh toán thành công')
             },
             error: function(){
@@ -273,6 +277,10 @@ $(document).ready(function () {
         resetOrder()
     })
     $('#selectTypeMenu').on('change', function (e) {
+        $('#selectOrder')[0].selectize.clearOptions();
+        $('#selectOrder')[0].selectize.clear();
+
+        // $("#optionNetFlow")[0].selectize.clear();
 
         let idType = $(this).val()
         $.ajax({
@@ -285,6 +293,7 @@ $(document).ready(function () {
                 'idType': idType
             },
             success: function (data) {
+
                 $.each(data, function (i, val) {
                     let $select = $('#selectOrder').selectize();
                     let selectize = $select[0].selectize;
@@ -292,10 +301,11 @@ $(document).ready(function () {
                     selectize.refreshOptions();
                 });
                 $('#selectOrder').on('change', function () {
-                    let idMenu = $(this).val();
+                    idMenu = $(this).val();
+
                     $.each(data, function (i, val) {
                         if (val.id == idMenu) {
-                            $('#previewOrder').attr('src', val.img)
+                            $('#previewOrder').attr('src',defaultLink + val.img)
                             return false
                         }
                     })
@@ -306,6 +316,10 @@ $(document).ready(function () {
                         }
                         $('#confirmOrder').off('click').on('click', function(e) {
                             e.preventDefault();
+                            if(idMenu == 0){
+                              notEnoughData()
+
+                            }
                             $.ajax({
                                 url: "addOrder",
                                 type: "POST",
@@ -319,27 +333,20 @@ $(document).ready(function () {
                                     'Status' : Status
                                 },
                                 success: function (data){
-                                    total +=  (data.price)*quant
-                                    $('.my-table[idtable="'+idTable+'"]').attr('status',2)
-                                    $('.my-table[idtable="'+idTable+'"]').addClass('btn-warning')
-                                    let dt = new Date();
-                                    let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-                                    let html = `<tr>
-                                    <td>${data.name}</td>
-                                    <td>${quant}</td>
-                                    <td>${data.price}</td>
-                                    <td>${time}</td>
-                                </tr>`
-                                    // $('#table-view-order tbody').append(html)
-                                $('#table-view-order').DataTable().row.add($(html).get(0)).draw()
-                                $('#total-money').text(formatCurrency(total.toString()))
 
+                                    $('.my-table[idtable="'+idTable+'"]').attr('status',2)
+                                    Status = 2;
+                                    $('.my-table[idtable="'+idTable+'"]').addClass('btn-warning').removeClass('btn-primary')
+                                    $('.my-table[idtable="'+idTable+'"] p').html('Có khách')
+
+                                    getOrderDetails(idTable)
                                     resetOrder()
                                     $('#OrderModal').modal('toggle')
                                     toastSuccess('Thêm thành công')
 
                                 }
                             })
+                            idMenu = 0;
 
                         })
                     });
@@ -355,19 +362,16 @@ $(document).ready(function () {
     });
 
     function resetOrder(){
-        let $select = $('#selectOrder').selectize();
-        let selectize = $select[0].selectize;
-        selectize.clear()
-
-         $select = $('#selectTypeMenu').selectize();
-         selectize = $select[0].selectize;
-        selectize.clear()
+        $('#selectOrder')[0].selectize.clearOptions();
+        $('#selectTypeMenu')[0].selectize.clear();
         $('#previewOrder').attr('src', defaultImage)
         $('#orderQuant').val('')
-        $('#confirmOrder').click(notEnoughData)
+        // $('#total-money').html('0,000VNĐ')
+
+
+        total = 0;
     }
 
-    $('#confirmOrder').click(notEnoughData)
 
     function notEnoughData  () {
         $.toast({
@@ -390,10 +394,10 @@ $(document).ready(function () {
     //------------------------------------------------------------------------------------------------------------------------
 
     // Chi tiết Order
-    $('#order-details-btn').click(function(){
-        $('#OrderDetailsModal').modal('toggle')
+    // $('#order-details-btn').click(function(){
+    //     $('#OrderDetailsModal').modal('toggle')
+    // })
 
-    })
     //------------------------------------------------------------------------------------------------------------------------
 
     function getPrice(str){
@@ -435,6 +439,38 @@ $(document).ready(function () {
             loader: true,  // Whether to show loader or not. True by default
             loaderBg: '#9EC600',  // Background color of the toast loader
         });
+    }
+    function getOrderDetails(idTable){
+        $.ajax({
+            url: "getOrderDetails",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': csrf
+            },
+            data: {
+                'idTable': idTable
+            },
+            success:function(data){
+                console.log(data)
+                $('#table-view-order').DataTable().rows().remove().draw();
+                $.each(data, function(i,val){
+                    total +=  (val.menuPrice)*val.quantity
+                                let html = `<tr>
+                                <td>${val.menuName}</td>
+                                <td > ${val.quantity}</td>
+                                <td>${ formatCurrency(val.menuPrice.toString())}</td>
+                                <td><button type="button" idDetail="${val.id}" class="delete-detail btn btn-fw btn-danger">Xóa món</button></td>
+                            </tr>`
+                            // $('#table-view-order').append(html)
+                            $('#table-view-order').DataTable().row.add($(html).get(0)).draw()
+                                // $('#table-view-order tbody').append(html)
+                })
+                $('#total-money').text(formatCurrency(total.toString()))
+            },
+            error:function(e){
+                console.log('ajax fails')
+            }
+        })
     }
 
 });

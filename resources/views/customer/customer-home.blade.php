@@ -5,12 +5,12 @@
         <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
             <div class="row">
                 <div class="col-lg-8">
-                    <h1>Welcome to <span>Diya Restaurant</span></h1>
-                    <h2>Delivering great food for more than 18 years!</h2>
+                    <h1>Chào mừng đến với <span>Diya Restaurant</span></h1>
+                    <h2>Mang đến những món ăn và không gian tuyệt vời!</h2>
 
                     <div class="btns">
-                        <a href="#menu" class="btn-menu animated fadeInUp scrollto">Our Menu</a>
-                        <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Book a Table</a>
+                        <a href="#menu" class="btn-menu animated fadeInUp scrollto">Xem menu</a>
+                        <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Đặt bàn</a>
                     </div>
                 </div>
                 <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in"
@@ -35,27 +35,20 @@
                         </div>
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                        <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                        <h3>Diya Restaurant xin trân trọng cảm ơn Quý khách đã tin tưởng sử dụng dịch vụ sản phẩm của chúng tôi.</h3>
                         <p class="fst-italic">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore
-                            magna aliqua.
+                            Chúng tôi đã nhận được rất nhiều lượng ghé thăm thưởng thức các món ăn và không gian quán trong quảng thời gian đầu hoạt động.
                         </p>
                         <ul>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            <li><i class="bi bi-check-circle"></i> Chúng tôi luôn hướng đến tiêu chuẩn phục vụ chuyên nghiệp, sản phẩm chất lượng và cung cấp
+                                trải nghiệm tốt nhất đến khách hàng.
                             </li>
-                            <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate
-                                velit.</li>
-                            <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu
-                                fugiat nulla pariatur.</li>
+                            <li><i class="bi bi-check-circle"></i> Với đội ngũ nhà bếp lành nghề, chúng tôi luôn mang đến những món ăn đảm bảo mà mọi thực khách hài lòng.</li>
+
                         </ul>
                         <p>
-                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                            in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum
+                            Tuy nhiên do còn non trẻ trong khâu hoạt động phục vụ. Diya restaurant xin gửi lời xin lỗi trân thành tới Quý khách
+                            và cảm ơn quý khách đã dành thời gian quý báo để đóng góp ý kiến.
                         </p>
                     </div>
                 </div>
@@ -68,8 +61,8 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>Why Us</h2>
-                    <p>Why Choose Our Restaurant</p>
+                    <h2>Tại sao chọn chúng tôi</h2>
+                    <p>Những lý do nên chọn Diya Restaurant</p>
                 </div>
 
                 <div class="row">
@@ -77,8 +70,8 @@
                     <div class="col-lg-4">
                         <div class="box" data-aos="zoom-in" data-aos-delay="100">
                             <span>01</span>
-                            <h4>Lorem Ipsum</h4>
-                            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat
+                            <h4>Không Gian</h4>
+                            <p>Giới một không gian mới lạ và sang trọng và những khoảng lặng đủ để bạn chìm đắm
                             </p>
                         </div>
                     </div>
@@ -86,17 +79,16 @@
                     <div class="col-lg-4 mt-4 mt-lg-0">
                         <div class="box" data-aos="zoom-in" data-aos-delay="200">
                             <span>02</span>
-                            <h4>Repellat Nihil</h4>
-                            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire
-                                leno para dest</p>
+                            <h4>Chuyên Nghiệp</h4>
+                            <p>Đội ngũ phục vụ được rèn luyện với tác phong nghiêm túc giúp bạn có trải nghiệm tốt nhất </p>
                         </div>
                     </div>
 
                     <div class="col-lg-4 mt-4 mt-lg-0">
                         <div class="box" data-aos="zoom-in" data-aos-delay="300">
                             <span>03</span>
-                            <h4> Ad ad velit qui</h4>
-                            <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis
+                            <h4> Món Ăn</h4>
+                            <p>Các món ăn được chuẩn bị kĩ càng bởi các đầu bếp lành nghề đảm bảo thỏa mãn mọi khẩu vị
                             </p>
                         </div>
                     </div>
@@ -118,7 +110,7 @@
                 <div class="row" data-aos="fade-up" data-aos-delay="100">
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="menu-flters">
-                            <li data-filter="*" class="filter-active">All</li>
+                            <li data-filter="*" class="filter-active">Tất cả</li>
                             @foreach ($types as $t)
                                 @if (!$t->hasMenuItems->isEmpty())
                                 <li data-filter=".filter-{{ $t->id }}">{{ $t->name }}</li>
@@ -170,8 +162,8 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>Reservation</h2>
-                    <p>Book a Table</p>
+                    <h2>Đặt Chỗ</h2>
+                    <p>Đặt Bàn</p>
                 </div>
 
                 <form action="{{ route('bookTable') }}" method="post" role="form" class="php-email-form"
@@ -181,7 +173,7 @@
 
                         <div class="col-lg-4 col-md-6 form-group mt-3">
                             <input type="text" autocomplete="off" name="date" class="form-control" id="date"
-                                placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                                placeholder="Ngày" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                             <div class="validate"></div>
                         </div>
                         <div class="col-lg-4 col-md-6 form-group mt-3">
@@ -192,12 +184,12 @@
                         </div>
                         <div class="col-lg-4 col-md-6 form-group mt-3">
                             <input type="number" class="form-control" name="people" id="people"
-                                placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                                placeholder="Số người" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
                             <div class="validate"></div>
                         </div>
                     </div>
                     <div class="form-group mt-3">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+                        <textarea class="form-control" name="message" rows="5" placeholder="Lời nhắn"></textarea>
                         <div class="validate"></div>
                     </div>
                     <div class="mb-3">
@@ -206,7 +198,7 @@
                         <div class="sent-message">Your booking request was sent. We will call back or send an Email to
                             confirm your reservation. Thank you!</div>
                     </div>
-                    <div class="text-center"><button type="submit">Book a Table</button></div>
+                    <div class="text-center"><button type="submit">Đặt bàn</button></div>
                 </form>
 
             </div>
@@ -301,8 +293,8 @@
 
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
-                    <h2>Gallery</h2>
-                    <p>Some photos from Our Restaurant</p>
+                    <h2>Thư viện ảnh</h2>
+                    <p>Một vài ảnh về không gian quán</p>
                 </div>
             </div>
 
@@ -401,15 +393,14 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>Contact</h2>
-                    <p>Contact Us</p>
+                    <h2>Liên hệ</h2>
+                    <p>Liên hệ chúng tôi</p>
                 </div>
             </div>
 
             <div data-aos="fade-up">
-                <iframe style="border:0; width: 100%; height: 350px;"
-                    src="https://www.google.com/maps/embed/v1/place?q=178+Tầm+Vu,+Hưng+Lợi,+Ninh+Kiều,+Cần+Thơ,+Việt+Nam&key=AIzaSyAXBzYeMoJ5WXaY63xqBI0DOtXGTgGgWzk"
-                    frameborder="0" allowfullscreen></iframe>
+                <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+
             </div>
 
             <div class="container" data-aos="fade-up">
@@ -419,8 +410,8 @@
 
                             <div class="email">
                                 <i class="bi bi-geo-alt"></i>
-                                <h4>Email:</h4>
-                                <p>info@example.com</p>
+                                <h4>Địa chỉ:</h4>
+                                <p>178 Tầm Vu, Hưng Lợi, Ninh Kiều, Cần Thơ</p>
                             </div>
 
 
@@ -437,7 +428,7 @@
                             <div class="email">
                                 <i class="bi bi-envelope"></i>
                                 <h4>Email:</h4>
-                                <p>info@example.com</p>
+                                <p>phamb1805905@student.ctu.edu.vn</p>
                             </div>
 
 
@@ -452,7 +443,7 @@
                             <div class="phone">
                                 <i class="bi bi-phone"></i>
                                 <h4>Call:</h4>
-                                <p>+1 5589 55488 55s</p>
+                                <p>+84 369 006 523</p>
                             </div>
 
                         </div>

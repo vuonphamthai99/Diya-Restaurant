@@ -2,6 +2,8 @@
 const originLocation = [10.0111,105.7688]
 const originCity = "Cần Thơ"
 const feeShipPerKm = 10000
+const csrf = $('meta[name="csrf-field"').attr('content')
+
 // const originLocation = [41.0772, 73.4687]
 // const testLocation = [41.1792, 73.1894]
 $( function() {
@@ -22,7 +24,6 @@ $( function() {
     });
 
 
-    var csrf = $('meta[name="csrf-field"').attr('content')
     var cartItem =[]
     $.ajax({
         url: "fetchCartData",
@@ -70,6 +71,7 @@ $( function() {
                      })
                      setCartTotal(total)
                      total = 0
+                     storeCartData(cartItem)
                      return false;
                 })
                 $(".delete-item").click(function(){
@@ -91,7 +93,10 @@ $( function() {
                                  return false;
                              }
                          })
+
                          $('.cart-item-quantity p').html(cartItem.length)
+                     storeCartData(cartItem)
+
 
                     },
                     function(){
@@ -162,13 +167,14 @@ $( function() {
                 if(val.id == id){
                      cartItem[i].quant =newQuant
 
-                     toastSuccess('Cập nhật thành công')
+                    //  toastSuccess('Cập nhật thành công')
                  }
                  total += cartItem[i].price * cartItem[i].quant
 
              })
              setCartTotal(total)
              total = 0
+             storeCartData(cartItem)
              return false;
         })
         $(".delete-item").click(function(){
@@ -190,6 +196,8 @@ $( function() {
                          return false;
                      }
                  })
+                 storeCartData(cartItem)
+
                  $('.cart-item-quantity p').html(cartItem.length)
 
             },
@@ -217,7 +225,7 @@ $( function() {
             },
             data: {cartItem},
             success:function(data){
-                console.log('success')
+                // console.log('success')
                 window.location.href = '/guest-page/guestCheckout';
             },
             error:function(e){
@@ -225,6 +233,26 @@ $( function() {
             }
         })
     })
+
+
+    function storeCartData(cartItem){
+
+        $.ajax({
+            url: "storeCartData",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': csrf
+            },
+            data: {cartItem},
+            success:function(){
+                console.log('success')
+                // window.location.href = '/guest-page/guestCheckout';
+            },
+            error:function(e){
+                toastError('Đăng nhập để đặt món!');
+            }
+        })
+      }
   });
 
 

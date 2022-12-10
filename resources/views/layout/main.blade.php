@@ -24,7 +24,11 @@
     <link rel="stylesheet" href="{{asset('dashboard-template/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('dashboard-template/assets/css/custom_style.css')}}">
     <!-- End layout styles -->
-
+<style>
+    a{
+        text-decoration: none;
+    }
+</style>
   </head>
   <body>
     <input type="hidden" id="success-msg" value="{{Session::has('success') ? Session::get('success') : ""}}">

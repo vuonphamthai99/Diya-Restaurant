@@ -20,9 +20,11 @@ class isBackendUser
     {
         if(Session()->has('loginID')){
             $user =  User::find(Session()->get('loginID'));
-            if($user->id_user_role == 5){
+            if($user->id_user_role == 4){
+
                 Session::flush();
                 return redirect('login')->with('fail','Tài khoản không hợp lệ! Vui lòng đăng nhập lại');
+
             }
 
         }

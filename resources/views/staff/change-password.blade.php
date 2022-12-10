@@ -5,7 +5,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Quản lý tài khoản</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Thay </li>
+            <li class="breadcrumb-item active" aria-current="page">Thay đổi mật khẩu</li>
         </ol>
     </nav>
 </div>

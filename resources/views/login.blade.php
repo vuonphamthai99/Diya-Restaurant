@@ -49,7 +49,7 @@
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
-                  <img src="{{asset('dashboard-template/assets/images/logo.svg')}}">
+                  <img src="{{asset('/images/logo/logo.jpg')}}">
                 </div>
                 <h4>{{$greetings}}! </h4>
                 <h6 class="font-weight-light">Đăng nhập để tiếp tục.</h6>
@@ -76,7 +76,6 @@
                       <label class="form-check-label text-muted">
                         {{-- <input type="checkbox" name="KeepSigned" class="form-check-input"> Nhớ mật khẩu </label> --}}
                     </div>
-                    <a href="#" class="auth-link text-black">Quên mật khẩu?</a>
                   </div>
                   </div>
                 </form>

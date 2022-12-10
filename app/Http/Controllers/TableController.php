@@ -20,18 +20,39 @@ class TableController extends Controller
     }
 
     public function storeTable(Request $request){
+
         if($request->idTable){
             Table::where('id',$request->idTable)->update([
-                'section' => $request->section,
                 'capacity' => $request->capacity,
                 'status' => $request->status
             ]);
         return redirect()->route('showListTable')->with('success','Sửa thông tin bàn thành công!');
+        }
+
+
+        switch($request->section){
+            case 'A':
+                {
+                    $TableCode ='A'. (string)((int)(Table::where('code','like','%A%')->count())+1);
+                    break;
+                };
+            case 'B':
+                {
+                    $TableCode ='B'. (string)((int)(Table::where('code','like','%A%')->count())+1);
+                    break;
+                }
+            case 'C':
+                {
+                    $TableCode ='C'. (string)((int)(Table::where('code','like','%A%')->count())+1);
+                    break;
+                }
+            default:
+                return redirect()->back()->with('error','Khu của bàn không hợp lệ!');
 
         }
 
         Table::create([
-            'section' => $request->section,
+            'code' => $TableCode,
             'capacity' => $request->capacity,
             'status' => $request->status
         ]);

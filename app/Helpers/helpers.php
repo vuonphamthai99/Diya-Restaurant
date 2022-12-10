@@ -38,4 +38,45 @@ if (!function_exists('MyCheckReservationStatus')) {
           }
     }
 }
+if (!function_exists('MyCheckOnlineOderStatus')) {
+    function MyCheckOnlineOderStatus($status){
+        switch ($status) {
+            case 0:
+              return 'Đã tiếp nhận';
+              break;
+            case 1:
+                return 'Đang giao';
+                break;
+            case 2:
+              return 'Đã giao';
+              break;
+            case 3:
+              return 'Bị hủy';
+              break;
+            default:
+              return 'Trạng thái không đúng định dạng';
+          }
+    }
+}
+
+if (!function_exists('CheckStockStatus')) {
+  function CheckStockStatus($status){
+      switch ($status) {
+          case 0:
+            return 'Còn';
+            break;
+          case 1:
+              return 'Hết';
+              break;
+          default:
+            return 'Trạng thái không đúng định dạng';
+        }
+  }
+}
+
+if (!function_exists('format_vnd')) {
+  function format_vnd($money){
+    return number_format($money, 0, ',', ',') . "VNĐ";
+  }
+}
 ?>
