@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 class MyLoginController extends Controller
 {
@@ -12,7 +15,19 @@ class MyLoginController extends Controller
 
         if(Session()->has('loginID')){
             $user = User::find(Session()->get('loginID'));
-            return view('staff.dashboard',compact('user'));
+            $order = Order::where('Status',1)->where('finish_date','>',Carbon::now()->subDays(7))->get();
+            $sale = 0;
+           foreach($order as $od){
+            $od->sale = 0;
+            foreach($od->hasDetail as $dt){
+                $sale+= $dt->ofMenu->price* $dt->quantity;
+                $od->sale += $dt->ofMenu->price* $dt->quantity;
+            }
+           }
+           $customer = User::where('id_user_role',4)->get()->count();
+           $order_quantity = $order->count();
+
+            return view('staff.dashboard',compact('user','sale','order_quantity','customer','order'));
         }else{
             return redirect()->route('showLogin')->with('fail','Bạn chưa đăng nhập! Hãy đăng nhập để bắt đầu làm việc.');
         }

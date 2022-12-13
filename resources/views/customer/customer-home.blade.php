@@ -11,6 +11,7 @@
                     <div class="btns">
                         <a href="#menu" class="btn-menu animated fadeInUp scrollto">Xem menu</a>
                         <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Đặt bàn</a>
+                        <a href="#forms" class="btn-book animated fadeInUp scrollto">Đăng nhập</a>
                     </div>
                 </div>
                 <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in"
@@ -466,7 +467,7 @@
 
                 <div class="row">
                     <form action="{{ route('registerGuest') }}" id="register-form" method="post" role="form"
-                        class="php-email-form @if (Session::has('loginID')) d-none @endif">
+                        class="php-email-form d-none @if (Session::has('loginID')) d-none @endif">
                         @csrf
                         <div class="row">
                             <div class="text-center mb-3">
@@ -509,7 +510,7 @@
                     </form>
 
                     <form action="{{ route('loginGuest') }}" id="login-form" method="post" role="form"
-                        class="php-email-form d-none @if (Session::has('loginID')) d-none @endif">
+                        class="php-email-form  @if (Session::has('loginID')) d-none @endif">
                         @csrf
                         <div class="text-center mb-3">
                             <h3>Đăng nhập</h3>

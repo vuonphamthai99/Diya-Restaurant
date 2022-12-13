@@ -472,6 +472,23 @@ $(document).ready(function () {
             }
         })
     }
+    //----------------------------------------------------------------
+    // Online Order Management
+    $(".delete-order").on("click", function(event){
+        event.preventDefault();
+        let link = $(this).attr('href');
+        alertify.confirm("This is an alert dialog?", function(e){
+            if (e) {
+                $("#category-form").submit();
+                alertify.success("Category was saved.")
+                window.location = link;
+                // console.log(link)
+            } else {
+                alertify.error("Category not saved.");
+                return false;
+            }
+        });
+    });
 
 });
 

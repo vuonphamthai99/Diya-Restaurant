@@ -18,15 +18,26 @@
     <section class="inner-page">
       <div class="container">
         <div class="row">
-
-            <table  class="table table-dark">
+          <div class="col-lg-3 mb-3">
+          <select class="page-btn w-75" id="filter-select" aria-label=".form-select-lg example">
+            <option >Tất cả</option>
+            <option >Đã tiếp nhận</option>
+            <option >Đang giao</option>
+            <option >Đang yêu cầu hủy</option>
+            <option >Đã giao</option>
+            <option >Bị hủy</option>
+          </select>
+        </div>
+            <table id="table-filter" class="table table-dark">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Người nhận</th>
                     <th scope="col">Số điện thoại</th>
                     <th scope="col">Địa chỉ</th>
+                    <th scope="col">Ngày đặt</th>
                     <th scope="col">Tổng</th>
+                    <th scope="col">Phí giao hàng</th>
                     <th scope="col">Trạng thái</th>
                     <th scope="col">Thao tác</th>
                   </tr>
@@ -45,11 +56,22 @@
                         <th scope="row">{{$od->id}}</th>
                         <td>{{$od->ofAddress->name}}</td>
                         <td>{{$od->ofAddress->phone}}</td>
-                        <td>{{$od->ofAddress->address}}</td>
-                        <td>{{$total}} VNĐ</td>
+                        <td style="width:15%;">{{$od->ofAddress->address}}</td>
+                        <td >{{$od->order_date->format('d-m-Y')}}</td>
+                        <td>{{format_vnd($total)}}</td>
+                        <td>{{format_vnd($od->ofAddress->feeShip)}}</td>
+
                         <td>{{MyCheckOnlineOderStatus($od->status)}}</td>
                         {{-- <td>{{$od->distance}} Km</td> --}}
-                        <td><a  href="{{route('showOrderDetails',['idOrder' => $od->id])}}"><button class=" page-btn"> Chi tiết </button></a></td>
+                        <td>
+                          <a  href="{{route('showOrderDetails',['idOrder' => $od->id])}}"><button class=" page-btn"> Chi tiết </button></a>
+                          @if ($od->status == 0)
+                          <a  href="{{route('cancelOrder',['idOrder' => $od->id])}}"><button style="background:#99542b;" class=" page-btn">Yêu cầu hủy</button></a>
+                          @elseif($od->status == 1)
+                          <a  href="{{route('confirmReceiveOrder',['idOrder' => $od->id])}}"><button style="background:#99542b;" class=" page-btn">Đã nhận hàng</button></a>
+                          @endif
+
+                        </td>
                       </tr>
                     @endif
                     @endforeach

@@ -48,9 +48,11 @@ if (!function_exists('MyCheckOnlineOderStatus')) {
                 return 'Đang giao';
                 break;
             case 2:
-              return 'Đã giao';
+              return 'Đang yêu cầu hủy';
               break;
             case 3:
+              return 'Đã giao';
+            case 4:
               return 'Bị hủy';
               break;
             default:
@@ -74,6 +76,23 @@ if (!function_exists('CheckStockStatus')) {
   }
 }
 
+if (!function_exists('checkReservation')) {
+  function checkReservation($status){
+      switch ($status) {
+          case 0:
+            return 'Đã tiếp nhận';
+            break;
+          case 1:
+              return 'Đã xác nhận';
+              break;
+          case 2:
+              return 'Đã hủy';
+              break;
+          default:
+            return 'Trạng thái không đúng định dạng';
+        }
+  }
+}
 if (!function_exists('format_vnd')) {
   function format_vnd($money){
     return number_format($money, 0, ',', ',') . "VNĐ";

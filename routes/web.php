@@ -61,6 +61,8 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn','isBackendUser','chec
         Route::get('/showDetailMenu',[MenuController::class,'showDetailMenu'])->name('showDetailMenu');
         Route::get('/showEditMenu/{idMenu}',[MenuController::class,'showEditMenu'])->name('showEditMenu');
         Route::post('/storeMenu',[MenuController::class,'storeMenu'])->name('storeMenu');
+        Route::get('deleteMenu/{idMenu}',[MenuController::class,'deleteMenu'])->name('deleteMenu');
+        Route::get('deleteType/{idType}',[MenuController::class,'deleteType'])->name('deleteType');
     });
 
     // Quản lý bàn
@@ -84,6 +86,8 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn','isBackendUser','chec
         Route::get('getOrderDetailsById/{idOrder}',[OrderController::class,'getOrderDetailsById'])->name('getOrderDetailsById');
         // online
         Route::get('showOrderOnlineList',[OrderController::class,'showOrderOnlineList'])->name('showOrderOnlineList');
+        Route::get('confirmOrder/{idOrder}',[OrderController::class,'confirmOrder'])->name('confirmOrder');
+        Route::get('deleteOrder/{idOrder}',[OrderController::class,'deleteOrder'])->name('deleteOrder');
 
 
     });
@@ -91,6 +95,9 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn','isBackendUser','chec
     //Đặt bàn
     Route::group(['prefix' => 'reservation-manage'],function(){
         Route::get('showReservationList',[ReservationController::class,'showReservationList'])->name('showReservationList');
+        Route::get('confirmReservation/{idRes}',[ReservationController::class,'confirmReservation'])->name('confirmReservation');
+        Route::get('cancelReservation/{idRes}',[ReservationController::class,'cancelReservation'])->name('cancelReservation');
+
     });
 
 });
@@ -100,9 +107,10 @@ Route::group(['prefix' => 'guest-page','middleware' =>['isGuest','checkLockedGue
     Route::get('logout-guest',[GuestController::class,'logoutGuest'])->name('logoutGuest');
     Route::get('main-page',[GuestController::class,'index'])->name('guest-page');
     Route::post('login-guest',[GuestController::class,'loginGuest'])->name('loginGuest');
-    Route::post('/bookTable',[GuestController::class,'bookTable'])->name('bookTable');
-    Route::get('guestCheckout',[OrderController::class,'guestCheckout'])->name('guestCheckout')->middleware('isGuestLoggedIn');
+    Route::post('/bookTable',[ReservationController::class,'bookTable'])->name('bookTable');
     Route::get('address',[AddressController::class,'showAddress'])->name('showAddress')->middleware('isGuestLoggedIn');
+    // Order Online
+    Route::get('guestCheckout',[OrderController::class,'guestCheckout'])->name('guestCheckout')->middleware('isGuestLoggedIn');
     Route::post('fetchCartData',[OrderController::class,'fetchCartData']);
     Route::post('storeCartData',[OrderController::class,'storeCartData']);
     Route::post('storeAddress',[AddressController::class,'storeAddress'])->name('storeAddress');
@@ -112,6 +120,18 @@ Route::group(['prefix' => 'guest-page','middleware' =>['isGuest','checkLockedGue
     Route::get('error',[PaymentController::class, 'error'])->name('error');
     Route::get('order-list',[OrderController::class,'showOrderList'])->name('showOrderList');
     Route::get('orderDetails/{idOrder}',[OrderController::class,'showOrderDetails'])->name('showOrderDetails');
+    Route::get('cancelOrder/{idOrder}',[OrderController::class,'cancelOrder'])->name('cancelOrder');
+    Route::get('confirmCancelOrder/{idOrder}',[OrderController::class,'confirmCancelOrder'])->name('confirmCancelOrder');
+    Route::get('confirmReceiveOrder/{idOrder}',[OrderController::class,'confirmReceiveOrder'])->name('confirmReceiveOrder');
+
+    // Account Information
+    Route::get('account',[GuestController::class,'showAccountInfo'] )->name('showAccountInfo');
+    Route::post('editAccount',[GuestController::class,'editAccount'] )->name('editAccount');
+    Route::get('changePassword',[GuestController::class,'changePassword'] )->name('changePassword');
+    Route::post('saveChangePassword',[GuestController::class,'saveChangePassword'] )->name('saveChangePassword');
+
+    // reservation management
+    Route::get('reservation',[ReservationController::class,'GuestReservation'])->name('GuestReservation');
 });
 
 

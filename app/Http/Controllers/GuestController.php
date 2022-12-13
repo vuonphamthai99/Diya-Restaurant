@@ -17,33 +17,7 @@ class GuestController extends Controller
         return view("customer.customer-home",compact('types'));
     }
 
-    public function bookTable(Request $request){
-        if(!Session::has('loginID')){
-            return redirect()->back()->with('error','Vui lòng đăng nhập để đặt bàn!');
-        }
-        $dateTime = Carbon::parse($request->date);
-        $request->validate([
-            'reservation_time' => 'required',
-            'reservation_hour' => 'required',
-            'people' => 'required|numeric',
 
-        ],[
-            'reservation_time.required' => 'Vui lòng chọn ngày đặt bàn!',
-            'reservation_hour.required' => 'Vui lòng chọn giờ đặt bàn!',
-            'people.required' => 'Vui lòng chọn số người!',
-            'people.numeric' => 'Số người không hợp lệ'
-        ]);
-        Reservation::create([
-            'created_at' =>now(),
-            'reservation_time' =>$dateTime,
-            'reservation_hour' =>$request->time,
-            'people' =>$request->people,
-            'customer_id' =>Session::get('loginID'),
-            'message' => $request->message,
-            'status' => 0,
-        ]);
-        return redirect()->back()->with('success','Đặt bàn thành công');
-    }
 
     public function registerGuest(Request $request){
         $request->validate([
@@ -114,8 +88,55 @@ class GuestController extends Controller
     }
 
 
+    // Account Management
+    public function showAccountInfo(){
+        $customer = User::find(Session::get('loginID'));
+        // dd($customer);
+        return view('customer.account.account-info',compact('customer'));
+    }
+    public function editAccount(Request $request){
+        $request->validate([
+            'phone' => ['regex:/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/','unique:users,phone,'.Session::get('loginID')],
+            'email' => 'email',
+        ],[
+            'phone.regex' => 'Số điện thoại không đúng định dạng',
+            'phone.unique' => 'Số điện thoại đã được dùng',
+            'email.email' => 'Email không đúng định dạng'
+        ]);
+        User::find(Session::get('loginID'))->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email
+        ]);
+        return redirect()->back()->with('success','Cập nhật tài khoản thành công!');
+    }
 
+    public function changePassword(){
 
+        return view('customer.account.change-password',);
+    }
+    public function saveChangePassword(Request $request){
+        $request->validate([
+            'current_password' => ['required','min:8',function($attribute, $value, $fail){
+                 $user = User::find(Session::get('loginID'));
+                if (!Hash::check($value, $user->password)) {
+                    $fail('Mật khẩu cũ không đúng');
+                }
+            }],
+            'new_password' => 'required|string|min:8|confirmed|different:current_password',
 
+        ],[
+            'current_password.min' =>'Mật khẩu có ít nhất 8 ký tự',
+            'new_password.min' =>'Mật khẩu có ít nhất 8 ký tự',
+            'new_password.confirmed' =>'Xác nhận mật khẩu không đúng',
+            'new_password.different' =>'Mật khẩu mới không được trùng với mật khẩu cũ'
+        ]
+
+    );
+        User::find(Session::get('loginID'))->update(['password' => Hash::make($request->new_password)]);
+
+        return redirect()->back()->with("success","Đổi mật khẩu thành công!");
+
+    }
 
 }

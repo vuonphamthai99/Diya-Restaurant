@@ -14,11 +14,11 @@
   <link href="{{asset('customer-template/img/favicon.png')}}" rel="icon">
   <link href="{{asset('customer-template/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 <style>
-    .card{
-        background:#625b4b !important;
-    }
-    .without_ampm::-webkit-datetime-edit-ampm-field {
-   display: none;
+  .card{
+      background:#625b4b !important;
+  }
+  .without_ampm::-webkit-datetime-edit-ampm-field {
+  display: none;
  }
  input[type=time]::-webkit-clear-button {
    -webkit-appearance: none;
@@ -39,6 +39,7 @@
     border-color: #625b4b;
     color: white;
  }
+ /* .page */
  .form-control{
 
  }
@@ -70,6 +71,7 @@
     color: #0c0b09 !important;
     border: none !important;
 }
+
 </style>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -144,16 +146,16 @@
           @if (Session::has('loginID'))
           <li class="dropdown"><a href="#"><span>Tùy chọn</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li class="dropdown"><a href="#"><span>Thông tin tài khoản</span> <i class="bi bi-chevron-right"></i></a>
+              <li class="dropdown"><a href=""><span>Thông tin tài khoản</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="#">Thay đổi thông tin cá nhân</a></li>
-                  <li><a href="#">Thay đổi mật khẩu</a></li>
+                  <li><a href="{{route('showAccountInfo')}}">Thay đổi thông tin cá nhân</a></li>
+                  <li><a href="{{route('changePassword')}}">Thay đổi mật khẩu</a></li>
                   <li><a href="{{route('showAddress')}}">Danh sách địa chỉ</a></li>
                   <li><a href="{{route('logoutGuest')}}">Đăng xuất</a></li>
                 </ul>
               </li>
               <li><a href="{{route('showOrderList')}}">Đơn đặt món</a></li>
-              <li><a href="#">Yêu cầu đặt bàn</a></li>
+              <li><a href="{{route('GuestReservation')}}">Yêu cầu đặt bàn</a></li>
             </ul>
           </li>
           @else
@@ -167,7 +169,7 @@
       @if(Session::has('loginID'))
       <a href="{{route('logoutGuest')}}" class="book-a-table-btn scrollto d-none d-lg-flex"> Đăng xuất </a>
       @else
-      <a href="{{route('guest-page')}}#forms"  class="book-a-table-btn scrollto  d-none d-lg-flex ">Đăng ký</a>
+      <a href="{{route('guest-page')}}#forms"  class="book-a-table-btn scrollto  d-none d-lg-flex ">Đăng nhập</a>
         @endif
     </div>
   </header><!-- End Header -->
@@ -219,18 +221,7 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Restaurantly</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
+
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>

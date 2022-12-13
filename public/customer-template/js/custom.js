@@ -6,7 +6,26 @@ const csrf = $('meta[name="csrf-field"').attr('content')
 
 // const originLocation = [41.0772, 73.4687]
 // const testLocation = [41.1792, 73.1894]
-$( function() {
+$(function() {
+    //----------------------------------------------------------------
+    //filter table
+    $("#filter-select").on("change", function() {
+        var value = $(this).val().toLowerCase();
+        // console.log($(this).val() == 'Tất cả');
+        if($(this).val() == 'Tất cả'){
+            // console.log("ok")
+            $("#table-filter tbody tr").show();
+            return false;
+        }
+        $("#table-filter tbody tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    //----------------------------------------------------------------
+
+
+
+
     $('.back-to-top').slideUp();
     $('.show-cart').slideUp();
 

@@ -60,7 +60,7 @@
                             </button>
                         </a>
                         <a
-                            href="">
+                            href="{{route('deleteMenu',['idMenu'  => $menu->id])}}">
                             <button type="button" title="Xóa món" id="delete-user"
                                 data-toggle="tooltip" data-placement="top"
                                 class="btn btn-outline-danger btn-rounded btn-icon">

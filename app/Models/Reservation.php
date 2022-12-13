@@ -15,11 +15,22 @@ class Reservation extends Model
         'id',
         'created_at',
         'reservation_time',
-        'reservation_hour',
         'people',
         'customer_id',
-        'message',
+        'table_preserve_id',
+        'user_confirmed_id',
         'status',
+        'message',
+        'response',
     ];
 
+    public function ofCustomer(){
+        return $this->hasOne(User::class,'id','customer_id');
+    }
+    public function ProcessedBy(){
+        return $this->hasOne(User::class,'id','user_confirmed_id');
+    }
+    public function ofTable(){
+        return $this->hasOne(Table::class,'id','table_preserve_id');
+    }
 }

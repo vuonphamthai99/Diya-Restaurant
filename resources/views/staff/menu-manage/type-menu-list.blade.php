@@ -48,7 +48,7 @@
                             </button>
                         </a>
                         <a
-                            href="">
+                            href="{{route('deleteType',['idType' => $type->id])}}">
                             <button type="button" title="Xóa loại món" id="delete-user"
                                 data-toggle="tooltip" data-placement="top"
                                 class="btn btn-outline-danger btn-rounded btn-icon">

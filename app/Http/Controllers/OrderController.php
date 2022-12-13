@@ -122,6 +122,8 @@ class OrderController extends Controller
         return view('staff.order-manage.order-details',compact('order'));
     }
     //----------------------------------------------------------------
+    // online order management
+
     public function showOrderOnlineList(){
         $orders = Order::where('type_order', 'Online')->get();
         foreach($orders as $od){
@@ -131,7 +133,25 @@ class OrderController extends Controller
         }
         return view('staff.order-manage.online-order-manage',compact('orders'));
     }
-
+    public function confirmOrder($idOrder){
+        Order::find($idOrder)->update([
+            'status' => 1,
+            'processed_by'  => Session::get('loginID')
+        ]);
+        return redirect()->back()->with('success','Xác nhận đơn hàng thành công!');
+    }
+    public function confirmCancelOrder($idOrder){
+        Order::find($idOrder)->update([
+            'status' => 4,
+            'processed_by'  => Session::get('loginID')
+        ]);
+        return redirect()->back()->with('success','Xác nhận hủy đơn hàng thành công!');
+    }
+    public function deleteOrder($idOrder){
+        Order::find($idOrder)->delete();
+        return redirect()->back()->with('success','Xóa đơn hàng thành công!');
+    }
+    //----------------------------------------------------------------
     // Guest Order Management
     public function storeCartData(Request $request){
         if(!Session::has('loginID')){
@@ -153,7 +173,7 @@ class OrderController extends Controller
         return ;
     }
     public function guestCheckout(){
-        $addresses = Address::all();
+        $addresses = Address::where('user_id',Session::get('loginID'))->get();
 
         return view('customer.checkout',compact('addresses'));
     }
@@ -194,10 +214,23 @@ class OrderController extends Controller
         Session::put('idAddress',$request->address);
         return redirect()->route('paypalPayment');
     }
+    public function cancelOrder($idOrder){
+        Order::find($idOrder)->update([
+            'status' => '2'
+        ]);
+        return redirect()->back()->with('success','Đã gửi yêu cầu hủy đơn!');
+    }
+    public function confirmReceiveOrder($idOrder){
+        Order::find($idOrder)->update([
+            'status' => '3'
+        ]);
+        return redirect()->back()->with('success','Đã xác nhận, Cảm ơn quý khách đã đặt hàng!');
+    }
+
 
 
     public function showOrderList(){
-        $orders = Order::all();
+        $orders = Order::orderByDesc('order_date')->get();
         return view('customer.order-list',compact('orders'));
     }
 

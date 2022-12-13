@@ -22,7 +22,7 @@ class checkLockedGuest
             $user =  User::find(Session()->get('loginID'));
             if($user->status == 1){
                 Session::flush();
-                return redirect('guest-page')->with('error','Tài khoản đã bị khóa! Vui lòng liên hệ nhân viên');
+                return redirect()->back()->with('error','Tài khoản đã bị khóa! Vui lòng liên hệ nhân viên');
             }
 
         }

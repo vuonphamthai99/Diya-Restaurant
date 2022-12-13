@@ -60,7 +60,7 @@
                                 class="btn btn-outline-danger btn-rounded btn-icon">
                                 <i class="mdi mdi-eye"></i>
                             </button>
-                        </a>
+                         </a>
                         </td>
                     </tr>
                     @endforeach

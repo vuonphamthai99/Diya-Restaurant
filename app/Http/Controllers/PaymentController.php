@@ -106,7 +106,7 @@ class PaymentController extends Controller
         }
     }
     public function error(){
-        return redirect()->route('');
+        return redirect()->route('showMain');
     }
 
 }

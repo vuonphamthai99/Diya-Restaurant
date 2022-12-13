@@ -53,7 +53,10 @@ class MenuController extends Controller
         ]);
         return redirect()->route('showListType')->with('success','Thêm loại món ăn thành công!');
     }
-
+    public function deleteType($idType){
+        Type::find($idType)->delete();
+        return redirect()->back()->with('success','Xóa loại món ăn thành công');
+    }
 
     // ----------------------------------------------------------------
 
@@ -72,6 +75,11 @@ class MenuController extends Controller
         $menu = MenuItem::find($idMenu);
         $types = Type::all();
         return view('staff.menu-manage.detail-menu',compact('menu','types'));
+    }
+
+    public function deleteMenu($idMenu){
+        MenuItem::find($idMenu)->delete();
+        return redirect()->back()->with('success','Xóa món ăn thành công');
     }
     public function storeMenu(Request $request){
         if($request->idMenu){

@@ -25,14 +25,20 @@
                             ID
                         </th>
                         <th>
-                            Số bàn
+                            Tên khách hàng
                         </th>
 
                         <th>
                             Tổng tiền
                         </th>
                         <th>
-                            Nhân viên Order
+                            Hình thức thanh toán
+                        </th>
+                        <th>
+                            Trạng thái
+                        </th>
+                        <th>
+                            Nhân viên xử lý
                         </th>
                         <th>
                             Thời gian
@@ -49,18 +55,58 @@
                     @endphp
                     <tr>
                         <td>{{$od->id}}</td>
-                        <td>{{$od->ofTable->code}}</td>
+                        <td>{{$od->ofCustomer->name}}</td>
                         <td>{{format_vnd($od->total)}}</td>
-                        <td>{{$od->hasProcessor ? $od->hasProcessor->name : 'Khách hàng'}}</td>
-                        <td>{{$od->finish_date}}</td>
+                        <td>{{$od->payment_id ? 'Thanh toán Paypal' : 'Thanh toán khi nhận hàng'}}</td>
+
+                        <td>{{MyCheckOnlineOderStatus($od->status)}}</td>
+                        <td>{{$od->hasProcessor ? $od->hasProcessor->name : 'Đang chờ'}}</td>
+                        <td>
+
+                        @if ($od->status == 1 )
+                        {{$od->finish_date->format('d-M-Y') ." Lúc " .$od->finish_date->format('H:m')}}
+
+                        @else
+                        {{$od->order_date->format('d-M-Y') ." Lúc " .$od->order_date->format('H:m')}}
+                        @endif
+                    </td>
+
                         <td>
                             <a href="{{route('getOrderDetailsById',['idOrder' => $od->id])}}">
                             <button type="button"  title="Xem chi tiết"
                                 data-toggle="tooltip" data-placement="top"
-                                class="btn btn-outline-danger btn-rounded btn-icon">
+                                class="btn btn-outline-success btn-rounded btn-icon">
                                 <i class="mdi mdi-eye"></i>
                             </button>
                         </a>
+                        @if($od->status == 0 || $od->status == 2)
+                        <a href="{{route('confirmOrder',['idOrder' => $od->id])}}">
+                            <button type="button"  title="Xác nhận đơn"
+                                data-toggle="tooltip" data-placement="top"
+                                class="btn btn-outline-warning btn-rounded btn-icon">
+                                <i class="mdi mdi-check"></i>
+                            </button>
+                        </a>
+                        @if ($od->status == 2)
+                        <a href="{{route('confirmCancelOrder',['idOrder' => $od->id])}}">
+                            <button type="button"  title="Xác nhận yêu cầu hủy"
+                                data-toggle="tooltip" data-placement="top"
+                                class="btn btn-outline-danger btn-rounded btn-icon">
+                                <i class="mdi mdi-close"></i>
+                            </button>
+                        </a>
+                        @endif
+                        @endif
+
+                        @if($od->status == 4)
+                        <a class="delete-order" href="{{route('deleteOrder',['idOrder' => $od->id])}}">
+                            <button type="button"  title="Xóa đơn hàng"
+                                data-toggle="tooltip" data-placement="top"
+                                class="btn btn-outline-danger btn-rounded btn-icon">
+                                <i class="mdi mdi-trash-can"></i>
+                            </button>
+                        </a>
+                        @endif
                         </td>
                     </tr>
                     @endforeach

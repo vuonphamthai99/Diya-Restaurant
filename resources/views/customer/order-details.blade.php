@@ -29,10 +29,12 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @php
+                      $total = 0;
+                  @endphp
                     @foreach ($order->hasDetail as $detail)
                     @php
-                        $total = 0;
-                            $total += $detail->ofMenu->price;
+                            $total += $detail->ofMenu->price * $detail->quantity;
                             // $total += $od->ofAddress->feeShip;
                     @endphp
                     <tr >
