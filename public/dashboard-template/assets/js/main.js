@@ -172,6 +172,7 @@ $(document).ready(function () {
         }
         if(Status == 2){
         getOrderDetails(idTable)
+
         }
 
 
@@ -451,7 +452,6 @@ $(document).ready(function () {
                 'idTable': idTable
             },
             success:function(data){
-                console.log(data)
                 $('#table-view-order').DataTable().rows().remove().draw();
                 $.each(data, function(i,val){
                     total +=  (val.menuPrice)*val.quantity
@@ -465,6 +465,10 @@ $(document).ready(function () {
                             $('#table-view-order').DataTable().row.add($(html).get(0)).draw()
                                 // $('#table-view-order tbody').append(html)
                 })
+                $('.delete-detail').click(function(){
+                    let idDetail = $(this).attr('idDetail');
+                    deleteDetail(idDetail);
+                })
                 $('#total-money').text(formatCurrency(total.toString()))
             },
             error:function(e){
@@ -472,6 +476,22 @@ $(document).ready(function () {
             }
         })
     }
+
+    function deleteDetail(idDetail){
+        $.ajax({
+            url: "deleteDetail/"+idDetail,
+            type: "GET",
+            data:{},
+            success:function(){
+                getOrderDetails(idTable);
+            },
+            error:function(e){
+                console.log('ajax fails')
+            }
+        })
+    }
+
+
     //----------------------------------------------------------------
     // Online Order Management
     $(".delete-order").on("click", function(event){
@@ -482,7 +502,6 @@ $(document).ready(function () {
                 $("#category-form").submit();
                 alertify.success("Category was saved.")
                 window.location = link;
-                // console.log(link)
             } else {
                 alertify.error("Category not saved.");
                 return false;

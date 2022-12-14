@@ -79,6 +79,7 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn','isBackendUser','chec
         Route::post('fetchMenuData',[OrderController::class,'fetchMenuData']);
         Route::post('addOrder',[OrderController::class,'addOrder']);
         Route::post('getOrderDetails',[OrderController::class,'getOrderDetailsByTable']);
+        Route::get('deleteDetail/{idDetail}',[OrderController::class,'deleteDetail']);
         Route::post('checkout',[OrderController::class,'checkout']);
 
 

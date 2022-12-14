@@ -121,6 +121,11 @@ class OrderController extends Controller
         $order = Order::find($idOrder);
         return view('staff.order-manage.order-details',compact('order'));
     }
+
+
+    public function deleteDetail($idDetail){
+        OrderDetail::find($idDetail)->delete();
+    }
     //----------------------------------------------------------------
     // online order management
 
