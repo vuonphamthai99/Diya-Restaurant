@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Table;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -62,7 +63,7 @@ class ReservationController extends Controller
             'table_preserve_id' => $table->id,
             'status' => 1,
         ]);
-        return redirect()->back()->with('success','Xác nhận đơn đặt bàn thành công');
+        return redirect()->back()->with('success','Xác nhận yêu cầu đặt bàn thành công');
     }
     public function cancelReservation($idReservation){
         $rsv = Reservation::find($idReservation);
@@ -73,6 +74,19 @@ class ReservationController extends Controller
 
             'status' => 2,
         ]);
-        return redirect()->back()->with('success','Xác nhận đơn đặt bàn thành công');
+        return redirect()->back()->with('success','Xác nhận yêu cầu đặt bàn thành công');
+    }
+    public function deleteReservation($idReservation){
+        try{
+            $rsv = Reservation::find($idReservation)->delete();
+            return redirect()->back()->with('success','Xóa yêu cầu đặt bàn thành công');
+
+        }catch(QueryException $e)
+        {
+            return redirect()->back()->with('error','Xóa yêu cầu đặt bàn không thành công');
+
+        }
+
+
     }
 }

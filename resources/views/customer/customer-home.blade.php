@@ -140,8 +140,6 @@
                                         <a href="#" idItem="{{$m->id}}" nameItem="{{$m->name}}" priceItem="{{$m->price}}" class="book-a-table-btn place-order d-none d-lg-flex">+</a>
                                     </div>
                                     @endif
-
-
                             </div>
                             @endif
                         @endforeach

@@ -78,16 +78,21 @@ class OrderController extends Controller
     }
 
     public function getOrderDetailsByTable(Request $request){
+
         $Order = Order::where([
             ['table_id','=',$request->idTable],
             ['status', '=' , 0]
         ])->first();
+        if($Order){
+
         $Details = $Order->hasDetail;
         foreach($Details as $key=>$dt){
             $dt->menuName = $dt->ofMenu->name;
             $dt->menuPrice = $dt->ofMenu->price;
         }
         return $Details;
+    }
+    return false;
     }
     public function checkout(Request $request){
         Table::where('id','=',$request->idTable)
@@ -124,7 +129,22 @@ class OrderController extends Controller
 
 
     public function deleteDetail($idDetail){
+        $detail = OrderDetail::find($idDetail);
+        $idTable = $detail->ofOrder->table_id;
+
+        $idOrder = $detail->order_id;
+        $order = OrderDetail::where('order_id',$idOrder)->get();
+        if($order->count() == 1){
+            Table::find($idTable)->update([
+                'status' => '0',
+            ]);
+            Order::find($idOrder)->delete();
+
+            return ;
+        }
         OrderDetail::find($idDetail)->delete();
+        return ;
+
     }
     //----------------------------------------------------------------
     // online order management

@@ -52,7 +52,7 @@
                         }
                         $total += $od->ofAddress->feeShip;
                     @endphp
-                    <tr >
+                    <tr>
                         <th scope="row">{{$od->id}}</th>
                         <td>{{$od->ofAddress->name}}</td>
                         <td>{{$od->ofAddress->phone}}</td>

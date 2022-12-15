@@ -288,7 +288,7 @@
   <Script>
 $.toast({
     text: "{{Session::get('success')}}", // Text that is to be shown in the toast
-    heading: 'Note', // Optional heading to be shown on the toast
+    heading: 'Thông báo!', // Optional heading to be shown on the toast
     icon: 'success', // Type of toast icon
     showHideTransition: 'fade', // fade, slide or plain
     allowToastClose: true, // Boolean value true or false

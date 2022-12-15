@@ -92,7 +92,7 @@
           <div class="card-body">
             <h4 class="card-title text-white">Việc phải làm</h4>
             <div class="add-items d-flex">
-              <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
+              <input type="text" class="form-control todo-list-input" placeholder="Việc phải làm?">
               <button class="add btn btn-gradient-primary font-weight-bold todo-list-add-btn" id="add-task">Thêm</button>
             </div>
             <div class="list-wrapper">

@@ -20,4 +20,7 @@ class Table extends Model
     public function hasOrder(){
         return $this->hasOne(Order::class,'table_id','id');
     }
+    public function hasReservation(){
+        return $this->hasMany(Reservation::class,'table_preserve_id','id');
+    }
 }

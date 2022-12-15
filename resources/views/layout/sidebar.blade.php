@@ -1,5 +1,5 @@
 @php
-                    $user =  Session::get('user');
+                                    $user =  App\Models\User::find(session()->get('loginID'));
 @endphp
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">

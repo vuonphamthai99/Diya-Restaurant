@@ -96,14 +96,15 @@
                 <label>Phí (VND)</label>
                 <input type="text" name="feeShip" id="feeShip-input" placeholder="Phí vận chuyển (VND)" readonly class="form-control">
             </div>
-
+            <a onclick="alertifyAlert('Bạn chưa chọn địa chỉ')" id="show-on-map" target="" href="#">
+                <button type="button" class="btn book-a-table-btn  d-lg-flex">Xem trên bản đồ</button>
+            </a>
 
         </div>
         <div class="modal-footer">
           <button type="submit" id="confirm-address" class="btn book-a-table-btn  d-lg-flex">Thêm địa chỉ</button>
         </div>
     </form>
-
       </div>
     </div>
   </div>

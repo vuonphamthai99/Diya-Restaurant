@@ -6,6 +6,7 @@ use App\Models\Image;
 use App\Models\MenuItem;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class MenuController extends Controller
 {
@@ -54,8 +55,13 @@ class MenuController extends Controller
         return redirect()->route('showListType')->with('success','Thêm loại món ăn thành công!');
     }
     public function deleteType($idType){
-        Type::find($idType)->delete();
-        return redirect()->back()->with('success','Xóa loại món ăn thành công');
+        try{
+            Type::find($idType)->delete();
+            return redirect()->back()->with('success','Xóa loại món ăn thành công');
+        }catch(QueryException $e){
+            return redirect()->back()->with('error','Xóa loại món ăn không thành công, vui lòng chọn ẩn loại món ăn hoặc xóa tất cả đơn hàng có loại món ăn');
+        }
+
     }
 
     // ----------------------------------------------------------------
@@ -78,8 +84,14 @@ class MenuController extends Controller
     }
 
     public function deleteMenu($idMenu){
-        MenuItem::find($idMenu)->delete();
-        return redirect()->back()->with('success','Xóa món ăn thành công');
+        try{
+            MenuItem::find($idMenu)->delete();
+            return redirect()->back()->with('success','Xóa món ăn thành công');
+        }catch(QueryException $e){
+            return redirect()->back()->with('error','Món đã có lượt gọi, Hãy cập nhật hết món hoặc hủy đơn đặt món đó!');
+
+        }
+
     }
     public function storeMenu(Request $request){
         if($request->idMenu){

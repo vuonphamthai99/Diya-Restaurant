@@ -60,6 +60,14 @@
                                 class="btn btn-outline-danger btn-rounded btn-icon">
                                 <i class="mdi mdi-eye"></i>
                             </button>
+                            @if (!$od->hasDetail)
+                            <a href="{{route('getOrderDetailsById',['idOrder' => $od->id])}}">
+                                <button type="button"  title="Xem chi tiết"
+                                    data-toggle="tooltip" data-placement="top"
+                                    class="btn btn-outline-danger btn-rounded btn-icon">
+                                    <i class="mdi mdi-trash"></i>
+                                </button>
+                            @endif
                          </a>
                         </td>
                     </tr>

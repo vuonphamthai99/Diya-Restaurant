@@ -29,14 +29,17 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                    $stt = 1;
+                @endphp
                 @foreach ($types as $type)
                 <tr>
                     <td >
-                        {{$type->id}}
+                        {{$stt++}}
                     </td>
                     <td> {{$type->name}} </td>
                     <td >
-                        {{substr($type->description,0,10)}}...
+                        {{$type->description}}
                     </td>
                     <td>
                         <a

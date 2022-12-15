@@ -57,7 +57,7 @@
                         <td>{{$od->id}}</td>
                         <td>{{$od->ofCustomer->name}}</td>
                         <td>{{format_vnd($od->total)}}</td>
-                        <td>{{$od->payment_id ? 'Thanh toán Paypal' : 'Thanh toán khi nhận hàng'}}</td>
+                        <td>{{$od->payment_id ? 'Thanh toán Paypal - '.$od->hasPayment->payment_id_code : 'Thanh toán khi nhận hàng'}}</td>
 
                         <td>{{MyCheckOnlineOderStatus($od->status)}}</td>
                         <td>{{$od->hasProcessor ? $od->hasProcessor->name : 'Đang chờ'}}</td>

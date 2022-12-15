@@ -15,9 +15,7 @@
         <form class="d-flex align-items-center h-100" action="#">
           <div class="input-group">
             <div class="input-group-prepend bg-transparent">
-              <i class="input-group-text border-0 mdi mdi-magnify"></i>
             </div>
-            <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
           </div>
         </form>
       </div>
@@ -33,9 +31,7 @@
             </div>
           </a>
           <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-            <a class="dropdown-item" href="#">
-              <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
-            <div class="dropdown-divider"></div>
+
             <a class="dropdown-item" href="{{route('logout')}}">
               <i class="mdi mdi-logout me-2 text-primary"></i> Đăng xuất </a>
           </div>
@@ -45,7 +41,7 @@
             <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
           </a>
         </li>
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
           <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="mdi mdi-email-outline"></i>
             <span class="count-symbol bg-warning"></span>
@@ -85,14 +81,17 @@
             <div class="dropdown-divider"></div>
             <h6 class="p-3 mb-0 text-center">4 new messages</h6>
           </div>
-        </li>
+        </li> --}}
         <li class="nav-item dropdown">
           <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
             <i class="mdi mdi-bell-outline"></i>
+            @if(Session::has('notification'))
             <span class="count-symbol bg-danger"></span>
+            @endif
           </a>
-          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" style="left:-120px !important;" aria-labelledby="notificationDropdown">
             <h6 class="p-3 mb-0">Notifications</h6>
+            @if(Session::has('notification'))
             <div class="dropdown-divider"></div>
             <a class="dropdown-item preview-item">
               <div class="preview-thumbnail">
@@ -101,36 +100,14 @@
                 </div>
               </div>
               <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
-                <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
+                <h6 class="preview-subject font-weight-normal mb-1">Đặt bàn</h6>
+                <p class="text-gray ellipsis mb-0"> {{Session::get('notification')}} </p>
               </div>
             </a>
+            @endif
+
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-warning">
-                  <i class="mdi mdi-settings"></i>
-                </div>
-              </div>
-              <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
-                <p class="text-gray ellipsis mb-0"> Update dashboard </p>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-info">
-                  <i class="mdi mdi-link-variant"></i>
-                </div>
-              </div>
-              <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
-                <p class="text-gray ellipsis mb-0"> New admin wow! </p>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <h6 class="p-3 mb-0 text-center">See all notifications</h6>
+            {{-- <h6 class="p-3 mb-0 text-center">See all notifications</h6> --}}
           </div>
         </li>
         <li class="nav-item nav-logout d-none d-lg-block">

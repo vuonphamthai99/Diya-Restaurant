@@ -42,7 +42,7 @@
                         <td>{{$ad->phone}}</td>
                         <td>{{$ad->feeShip}}</td>
                         <td>{{$ad->distance}} Km</td>
-                        <td><a class="delete-address" href=""><button class="delete-item page-btn"> Xóa </button></a></td>
+                        <td><a class="delete-address" href="{{route('deleteAddress',['id' => $ad->id])}}"><button class="delete-item page-btn"> Xóa </button></a></td>
                       </tr>
                     @endif
                     @endforeach

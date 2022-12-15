@@ -98,7 +98,7 @@ Route::group(['prefix'=>'user','middleware'=>['isLoggedIn','isBackendUser','chec
         Route::get('showReservationList',[ReservationController::class,'showReservationList'])->name('showReservationList');
         Route::get('confirmReservation/{idRes}',[ReservationController::class,'confirmReservation'])->name('confirmReservation');
         Route::get('cancelReservation/{idRes}',[ReservationController::class,'cancelReservation'])->name('cancelReservation');
-
+        Route::get('deleteReservation/{idRes}',[ReservationController::class,'deleteReservation'])->name('deleteReservation');
     });
 
 });
@@ -115,6 +115,7 @@ Route::group(['prefix' => 'guest-page','middleware' =>['isGuest','checkLockedGue
     Route::post('fetchCartData',[OrderController::class,'fetchCartData']);
     Route::post('storeCartData',[OrderController::class,'storeCartData']);
     Route::post('storeAddress',[AddressController::class,'storeAddress'])->name('storeAddress');
+    Route::get('deleteAddress/{id}',[AddressController::class,'deleteAddress'])->name('deleteAddress');
     Route::post('GuestCheckoutPayment',[OrderController::class,'GuestCheckoutPayment'])->name('GuestCheckoutPayment');
     Route::get('paypalPayment',[PaymentController::class,'PayPalPayment'])->name('paypalPayment');
     Route::get('success',[PaymentController::class, 'success'])->name('success');

@@ -150,6 +150,9 @@ $(document).ready(function () {
         $(this).css('background','linear-gradient(89deg, #5e7188, #3e4b5b)');
         $('.my-table').not(this).attr('style','')
         if(Status == 1){
+            $('#order-btn').addClass('btn-gradient-secondary').removeClass('btn-gradient-primary')
+            $('#checkout-btn').addClass('btn-gradient-secondary').removeClass('btn-gradient-primary')
+            idTable = 0;
             $.toast({
                 text: "Bàn đã bị khóa!", // Text that is to be shown in the toast
                 heading: 'Lỗi!', // Optional heading to be shown on the toast
@@ -170,7 +173,7 @@ $(document).ready(function () {
 
             return false;
         }
-        if(Status == 2){
+        if(Status == 2 || Status == 3){
         getOrderDetails(idTable)
 
         }
@@ -452,6 +455,12 @@ $(document).ready(function () {
                 'idTable': idTable
             },
             success:function(data){
+                if(data == false){
+                $('.my-table[idtable="'+idTable+'"]').attr('status',0)
+                $('.my-table[idtable="'+idTable+'"]').removeClass('btn-warning').addClass('btn-primary')
+                $('.my-table[idtable="'+idTable+'"] p').html('Trống')
+
+                }
                 $('#table-view-order').DataTable().rows().remove().draw();
                 $.each(data, function(i,val){
                     total +=  (val.menuPrice)*val.quantity

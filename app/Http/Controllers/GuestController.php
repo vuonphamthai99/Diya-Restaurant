@@ -36,7 +36,7 @@ class GuestController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'phone' => $request->phone,
-        'password' => $request->password,
+        'password' => Hash::make( $request->password),
         'id_user_role' => 4,
     ])){
         return redirect()->route('guest-page')->with([

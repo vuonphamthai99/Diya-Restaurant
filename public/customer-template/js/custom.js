@@ -281,11 +281,17 @@ $(function() {
     $('.cart-total').html('Thành tiền:  '+total+' VND')
   }
 
+  
   // Add address function
-
+  $('#show-on-map').on('click', function(e){
+    e.preventDefault();
+    alert('Please enter')
+    alertifyAlert('Bạn chưa nhập địa chỉ!')
+})
   $("#add-address-btn").click(function(){
     $('#address-modal').modal('toggle')
     $("#check-address").click(function(){
+        let house_number = $('#house-number-input').val()
         let address = $('#address-input').val();
         if(address == ''){
             alertifyAlert("Bạn chưa nhập địa chỉ!")
@@ -297,12 +303,21 @@ $(function() {
             type: "GET",
             data: {
                 addressdetails: 1,
+                house_number: house_number,
                 street : street,
                 city :  originCity,
                 format: 'json',
                 limit : 1
             },
             success:function(data){
+                console.log(data)
+                $('#show-on-map').attr('onclick','');
+                $('#show-on-map').attr('target','_blank');
+
+                $('#show-on-map').on('click', function(e){
+
+                    $(this).attr('href','https://nominatim.openstreetmap.org/ui/search.html?street='+house_number+'+'+street+'&city='+originCity+'&limit=1')
+                })
                 if(data.length == 0){
                     alertifyAlert("Địa chỉ không đúng. Địa chỉ hợp lệ gồm\"Số nhà + Tên đường (Bằng chữ)\" ")
                     return false;
@@ -324,7 +339,6 @@ $(function() {
                     return false;
                 }
                 feeShip < 20000 ? feeShip = 20000 : feeShip
-                console.log(data)
                 let confirmedAddress = data[0].address.road
                 console.log(confirmedAddress.toString())
                 $('#address-input').val(confirmedAddress)
@@ -381,9 +395,6 @@ $(function() {
         hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
         stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
         position: 'top-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
-
-
-
         textAlign: 'left',  // Text alignment i.e. left, right or center
         loader: true,  // Whether to show loader or not. True by default
         loaderBg: '#9EC600',  // Background color of the toast loader

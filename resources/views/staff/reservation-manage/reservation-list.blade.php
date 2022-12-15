@@ -70,6 +70,16 @@
                             <i class="mdi mdi-cancel"></i>
                         </button>
                     </a>
+                    @if ($rl->status == 2)
+                    <a
+                    href="{{route('deleteReservation',['idRes' => $rl->id])}}">
+                    <button type="button" title="Xóa"
+                        data-toggle="tooltip" data-placement="top"
+                        class="btn btn-outline-danger btn-rounded btn-icon">
+                        <i class="mdi mdi-trash-can"></i>
+                    </button>
+                </a>
+                    @endif
                   </td>
                 </tr>
                 @endforeach

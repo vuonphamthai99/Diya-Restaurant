@@ -38,4 +38,7 @@ class Order extends Model
     public function ofAddress(){
         return $this->hasOne(Address::class,'id','address_id');
     }
+    public function hasPayment(){
+        return $this->hasOne(Payment::class,'id','payment_id');
+    }
 }

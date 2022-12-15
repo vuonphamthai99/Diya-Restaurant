@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Order;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -17,10 +19,9 @@ class AddressController extends Controller
     public function storeAddress(Request $request){
         // dd($request);
         $addresses = Address::where('user_id',Session::get('loginID'))->get();
-        if($addresses->count()>=3){
-            return redirect()->back()->with('error','Tối đa 3 địa chỉ!');
+        if($addresses->count()>=5){
+            return redirect()->back()->with('error','Tối đa 5 địa chỉ!');
         };
-
         $request->validate([
                 'name' => "required",
                 'phone' => ['required','regex:/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/'],
@@ -39,7 +40,20 @@ class AddressController extends Controller
             'phone' => $request->phone,
             'user_id' => Session::get('loginID'),
         ]);
-        return redirect()->back()->with('sucess','Tạo địa chỉ thành công');
+        return redirect()->back()->with('success','Tạo địa chỉ thành công');
+
+    }
+
+    public function deleteAddress($idAddress){
+
+       try{
+        Address::find($idAddress)->delete();
+        return redirect()->back()->with('success','Xóa địa chỉ thành công');
+
+       }catch(QueryException $e){
+        return redirect()->back()->with('error','Địa chỉ đang có đơn hàng xử lý,Vui lòng hoàn tất để xóa!');
+
+       }
 
     }
 }
