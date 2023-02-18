@@ -27,6 +27,8 @@ function formatNumber(nStr, decSeperate, groupSeperate) {
 }
 
 $('.price').text(formatNumber(700000, '.', ','))
+
+
 $(document).ready(function () {
 
     var csrf = $('meta[name="csrf-field"]').attr('content')
@@ -34,13 +36,6 @@ $(document).ready(function () {
     $("button[data-dismiss='modal']").on('click', function () {
         $('.modal').modal('hide')
     })
-
-
-    //    $('.nav-item').each(function(){
-    //     $(this).addClass('active');
-    //    })
-
-
     var $mySelect = $('select').selectize({
         sortField: 'text'
     });
@@ -130,10 +125,10 @@ $(document).ready(function () {
         $('#table-view-order').DataTable().rows().remove().draw();
         $('#total-money').html('0,000VNĐ')
 
-        if($(this).attr('idTable') == idTable){
+        if ($(this).attr('idTable') == idTable) {
             $('#order-btn').addClass('btn-gradient-secondary').removeClass('btn-gradient-primary')
             $('#checkout-btn').addClass('btn-gradient-secondary').removeClass('btn-gradient-primary')
-            $(this).attr('style','')
+            $(this).attr('style', '')
             $('#table-picked').html('Chọn bàn để xem')
             $('#total-money').html('0,000VNĐ')
             resetOrder();
@@ -145,11 +140,11 @@ $(document).ready(function () {
         Table_picked = $(this).attr('tablecode');
         idTable = $(this).attr('idTable');
         Status = $(this).attr('Status');
-        $('#table-picked').html('Các món của bàn '+ Table_picked)
+        $('#table-picked').html('Các món của bàn ' + Table_picked)
 
-        $(this).css('background','linear-gradient(89deg, #5e7188, #3e4b5b)');
-        $('.my-table').not(this).attr('style','')
-        if(Status == 1){
+        $(this).css('background', 'linear-gradient(89deg, #5e7188, #3e4b5b)');
+        $('.my-table').not(this).attr('style', '')
+        if (Status == 1) {
             $('#order-btn').addClass('btn-gradient-secondary').removeClass('btn-gradient-primary')
             $('#checkout-btn').addClass('btn-gradient-secondary').removeClass('btn-gradient-primary')
             idTable = 0;
@@ -173,8 +168,8 @@ $(document).ready(function () {
 
             return false;
         }
-        if(Status == 2 || Status == 3){
-        getOrderDetails(idTable)
+        if (Status == 2 || Status == 3) {
+            getOrderDetails(idTable)
 
         }
 
@@ -183,7 +178,7 @@ $(document).ready(function () {
 
 
     $('#order-btn').on('click', function () {
-        if (!idTable){
+        if (!idTable) {
             $.toast({
                 text: "Chọn bàn để thao tác!", // Text that is to be shown in the toast
                 heading: 'Lỗi!', // Optional heading to be shown on the toast
@@ -206,8 +201,8 @@ $(document).ready(function () {
         $('#OrderModal').modal('toggle')
     });
 
-    $('#checkout-btn').click(function(){
-        if(!idTable){
+    $('#checkout-btn').click(function () {
+        if (!idTable) {
             $.toast({
                 text: "Chọn bàn để thao tác!", // Text that is to be shown in the toast
                 heading: 'Lỗi!', // Optional heading to be shown on the toast
@@ -226,7 +221,7 @@ $(document).ready(function () {
             });
             return false
         }
-        if(Status != 2){
+        if (Status != 2) {
             $.toast({
                 text: "Bàn chưa gọi món!", // Text that is to be shown in the toast
                 heading: 'Lỗi!', // Optional heading to be shown on the toast
@@ -254,11 +249,11 @@ $(document).ready(function () {
             data: {
                 'idTable': idTable
             },
-            success: function(){
-                $('.my-table[idtable="'+idTable+'"]').attr('status',0)
-                $('.my-table[idtable="'+idTable+'"]').attr('style','')
-                $('.my-table[idtable="'+idTable+'"]').removeClass('btn-warning').addClass('btn-primary')
-                $('.my-table[idtable="'+idTable+'"] p').html('Trống')
+            success: function () {
+                $('.my-table[idtable="' + idTable + '"]').attr('status', 0)
+                $('.my-table[idtable="' + idTable + '"]').attr('style', '')
+                $('.my-table[idtable="' + idTable + '"]').removeClass('btn-warning').addClass('btn-primary')
+                $('.my-table[idtable="' + idTable + '"] p').html('Trống')
                 $('#total-money').html('0,000VNĐ')
                 Status = 0;
                 idTable = 0;
@@ -266,7 +261,7 @@ $(document).ready(function () {
                 resetOrder();
                 toastSuccess('Thanh toán thành công')
             },
-            error: function(){
+            error: function () {
                 toastError('Hệ thống bị lỗi, thử lại sau!')
             }
         })
@@ -309,7 +304,7 @@ $(document).ready(function () {
 
                     $.each(data, function (i, val) {
                         if (val.id == idMenu) {
-                            $('#previewOrder').attr('src',defaultLink + val.img)
+                            $('#previewOrder').attr('src', defaultLink + val.img)
                             return false
                         }
                     })
@@ -318,10 +313,10 @@ $(document).ready(function () {
                         if (quant < 1) {
                             return false
                         }
-                        $('#confirmOrder').off('click').on('click', function(e) {
+                        $('#confirmOrder').off('click').on('click', function (e) {
                             e.preventDefault();
-                            if(idMenu == 0){
-                              notEnoughData()
+                            if (idMenu == 0) {
+                                notEnoughData()
 
                             }
                             $.ajax({
@@ -332,16 +327,16 @@ $(document).ready(function () {
                                 },
                                 data: {
                                     'idMenu': idMenu,
-                                    'idTable' : idTable,
+                                    'idTable': idTable,
                                     'quant': quant,
-                                    'Status' : Status
+                                    'Status': Status
                                 },
-                                success: function (data){
+                                success: function (data) {
 
-                                    $('.my-table[idtable="'+idTable+'"]').attr('status',2)
+                                    $('.my-table[idtable="' + idTable + '"]').attr('status', 2)
                                     Status = 2;
-                                    $('.my-table[idtable="'+idTable+'"]').addClass('btn-warning').removeClass('btn-primary')
-                                    $('.my-table[idtable="'+idTable+'"] p').html('Có khách')
+                                    $('.my-table[idtable="' + idTable + '"]').addClass('btn-warning').removeClass('btn-primary')
+                                    $('.my-table[idtable="' + idTable + '"] p').html('Có khách')
 
                                     getOrderDetails(idTable)
                                     resetOrder()
@@ -365,7 +360,7 @@ $(document).ready(function () {
 
     });
 
-    function resetOrder(){
+    function resetOrder() {
         $('#selectOrder')[0].selectize.clearOptions();
         $('#selectTypeMenu')[0].selectize.clear();
         $('#previewOrder').attr('src', defaultImage)
@@ -377,7 +372,7 @@ $(document).ready(function () {
     }
 
 
-    function notEnoughData  () {
+    function notEnoughData() {
         $.toast({
             text: "Chọn đủ thông tin!", // Text that is to be shown in the toast
             heading: 'Lỗi!', // Optional heading to be shown on the toast
@@ -404,11 +399,11 @@ $(document).ready(function () {
 
     //------------------------------------------------------------------------------------------------------------------------
 
-    function getPrice(str){
+    function getPrice(str) {
         return parseInt(str.replace(/[^0-9.]/g, ""))
     }
 
-    function toastError(message){
+    function toastError(message) {
         $.toast({
             text: message, // Text that is to be shown in the toast
             heading: 'Lỗi!', // Optional heading to be shown on the toast
@@ -426,7 +421,7 @@ $(document).ready(function () {
             loaderBg: '#9EC600',  // Background color of the toast loader
         });
     }
-    function toastSuccess(message){
+    function toastSuccess(message) {
         $.toast({
             text: message, // Text that is to be shown in the toast
             heading: 'Thành công!', // Optional heading to be shown on the toast
@@ -444,7 +439,7 @@ $(document).ready(function () {
             loaderBg: '#9EC600',  // Background color of the toast loader
         });
     }
-    function getOrderDetails(idTable){
+    function getOrderDetails(idTable) {
         $.ajax({
             url: "getOrderDetails",
             type: "POST",
@@ -454,47 +449,47 @@ $(document).ready(function () {
             data: {
                 'idTable': idTable
             },
-            success:function(data){
-                if(data == false){
-                $('.my-table[idtable="'+idTable+'"]').attr('status',0)
-                $('.my-table[idtable="'+idTable+'"]').removeClass('btn-warning').addClass('btn-primary')
-                $('.my-table[idtable="'+idTable+'"] p').html('Trống')
+            success: function (data) {
+                if (data == false) {
+                    $('.my-table[idtable="' + idTable + '"]').attr('status', 0)
+                    $('.my-table[idtable="' + idTable + '"]').removeClass('btn-warning').addClass('btn-primary')
+                    $('.my-table[idtable="' + idTable + '"] p').html('Trống')
 
                 }
                 $('#table-view-order').DataTable().rows().remove().draw();
-                $.each(data, function(i,val){
-                    total +=  (val.menuPrice)*val.quantity
-                                let html = `<tr>
+                $.each(data, function (i, val) {
+                    total += (val.menuPrice) * val.quantity
+                    let html = `<tr>
                                 <td>${val.menuName}</td>
                                 <td > ${val.quantity}</td>
-                                <td>${ formatCurrency(val.menuPrice.toString())}</td>
+                                <td>${formatCurrency(val.menuPrice.toString())}</td>
                                 <td><button type="button" idDetail="${val.id}" class="delete-detail btn btn-fw btn-danger">Xóa món</button></td>
                             </tr>`
-                            // $('#table-view-order').append(html)
-                            $('#table-view-order').DataTable().row.add($(html).get(0)).draw()
-                                // $('#table-view-order tbody').append(html)
+                    // $('#table-view-order').append(html)
+                    $('#table-view-order').DataTable().row.add($(html).get(0)).draw()
+                    // $('#table-view-order tbody').append(html)
                 })
-                $('.delete-detail').click(function(){
+                $('.delete-detail').click(function () {
                     let idDetail = $(this).attr('idDetail');
                     deleteDetail(idDetail);
                 })
                 $('#total-money').text(formatCurrency(total.toString()))
             },
-            error:function(e){
+            error: function (e) {
                 console.log('ajax fails')
             }
         })
     }
 
-    function deleteDetail(idDetail){
+    function deleteDetail(idDetail) {
         $.ajax({
-            url: "deleteDetail/"+idDetail,
+            url: "deleteDetail/" + idDetail,
             type: "GET",
-            data:{},
-            success:function(){
+            data: {},
+            success: function () {
                 getOrderDetails(idTable);
             },
-            error:function(e){
+            error: function (e) {
                 console.log('ajax fails')
             }
         })
@@ -503,10 +498,10 @@ $(document).ready(function () {
 
     //----------------------------------------------------------------
     // Online Order Management
-    $(".delete-order").on("click", function(event){
+    $(".delete-order").on("click", function (event) {
         event.preventDefault();
         let link = $(this).attr('href');
-        alertify.confirm("This is an alert dialog?", function(e){
+        alertify.confirm("This is an alert dialog?", function (e) {
             if (e) {
                 $("#category-form").submit();
                 alertify.success("Category was saved.")

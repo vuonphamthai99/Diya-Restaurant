@@ -13,11 +13,9 @@ class AddressController extends Controller
     public function showAddress(){
         $addresses = Address::all();
 
-        // dd(Session::get('loginID'));
         return view('customer.address',compact('addresses'));
     }
     public function storeAddress(Request $request){
-        // dd($request);
         $addresses = Address::where('user_id',Session::get('loginID'))->get();
         if($addresses->count()>=5){
             return redirect()->back()->with('error','Tối đa 5 địa chỉ!');

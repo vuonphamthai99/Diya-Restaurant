@@ -34,7 +34,6 @@ class PaymentController extends Controller
         $total += $address->feeShip;
         $total = $total * env('VND_TO_USD');
         $total = $this->round_up($total, 2);
-        // dd($total);
         try{
             $response = $this->gateway->purchase(array(
 

@@ -57,7 +57,6 @@ class ReservationController extends Controller
     public function confirmReservation($idReservation){
         $rsv = Reservation::find($idReservation);
         $table = Table::where('capacity','>',$rsv->peole-1)->first();
-        // dd($table);
         $rsv->update([
             'user)confirmed_id' => Session::get('loginID'),
             'table_preserve_id' => $table->id,
@@ -67,8 +66,6 @@ class ReservationController extends Controller
     }
     public function cancelReservation($idReservation){
         $rsv = Reservation::find($idReservation);
-
-        // dd($table);
         $rsv->update([
             'user)confirmed_id' => Session::get('loginID'),
 

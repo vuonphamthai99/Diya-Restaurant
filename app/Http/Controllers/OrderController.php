@@ -17,7 +17,6 @@ class OrderController extends Controller
 {
     public function showOrderPage(){
         $tables = Table::all();
-        // dd($tables);
         $orders = Order::all();
         $types = Type::all();
         return view('staff.order-manage.order-page',compact('tables', 'orders','types'));

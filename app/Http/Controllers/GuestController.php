@@ -91,7 +91,6 @@ class GuestController extends Controller
     // Account Management
     public function showAccountInfo(){
         $customer = User::find(Session::get('loginID'));
-        // dd($customer);
         return view('customer.account.account-info',compact('customer'));
     }
     public function editAccount(Request $request){
