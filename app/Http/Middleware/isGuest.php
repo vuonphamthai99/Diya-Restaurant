@@ -20,6 +20,7 @@ class isGuest
     {
         if(Session()->has('loginID')){
             $user = User::find(Session()->get('loginID'));
+
             if($user->id_user_role != 4){
                 Session::flush();
                 redirect('guest-page')->with('error','Tài khoản không hợp lệ! Vui lòng đăng nhập lại');

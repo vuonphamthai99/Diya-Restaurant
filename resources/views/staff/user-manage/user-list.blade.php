@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body table-responsive">
 
                     <div class="row mb-4">
                         <div class="col-lg-6">
@@ -36,59 +36,58 @@
                         </thead>
                         <tbody id="UserListTable">
                             @foreach ($user_list as $user)
-                            @if ($user->id != Session::get('loginID'))
-
-                                <tr>
-                                    <td class="py-1">
-                                        <img src="{{asset('images/avatars')}}/{{$user->hasAvatar->name}}"
-                                            alt="image" />
-                                    </td>
-                                    <td> {{ $user->name }} </td>
-                                    <td>
-                                        {{ $user->hasRole->user_role }}
-                                    </td>
-                                    <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td> {{ $user->created_at->format('d/m/Y') }} </td>
-                                    <td> {{ $user->hasCreator ? $user->hasCreator->name : '' }} </td>
-                                    <td class="action user-manage" id-user="{{ $user->id }}">
-                                        <a href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'reset-pwd']) }}"><button
-                                                type="button" title="Reset mật khẩu" id="reset-pwd"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                class="btn btn-outline-primary btn-rounded  btn-icon">
-                                                <i class="mdi mdi-file-restore"></i>
-                                            </button></a>
-                                        @if ($user->status == 0)
+                                @if ($user->id != Session::get('loginID'))
+                                    <tr>
+                                        <td class="py-1">
+                                            <img src="{{ asset('images/avatars') }}/{{ $user->hasAvatar->name }}"
+                                                alt="image" />
+                                        </td>
+                                        <td> {{ $user->name }} </td>
+                                        <td>
+                                            {{ $user->hasRole->user_role }}
+                                        </td>
+                                        <td>{{ $user->phone }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td> {{ $user->created_at->format('d/m/Y') }} </td>
+                                        <td> {{ $user->hasCreator ? $user->hasCreator->name : '' }} </td>
+                                        <td class="action user-manage" id-user="{{ $user->id }}">
                                             <a
-                                                href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'lock-user']) }}"><button
-                                                    type="button" title="Khóa người dùng" data-toggle="tooltip"
-                                                    data-placement="top"
-                                                    class="btn  btn-outline-success btn-rounded btn-icon">
-                                                    <i class="mdi mdi-lock-open"></i>
-                                                </button>
-                                            </a>
-                                        @else
+                                                href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'reset-pwd']) }}"><button
+                                                    type="button" title="Reset mật khẩu" id="reset-pwd"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    class="btn btn-outline-primary btn-rounded  btn-icon">
+                                                    <i class="mdi mdi-file-restore"></i>
+                                                </button></a>
+                                            @if ($user->status == 0)
+                                                <a
+                                                    href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'lock-user']) }}"><button
+                                                        type="button" title="Khóa người dùng" data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        class="btn  btn-outline-success btn-rounded btn-icon">
+                                                        <i class="mdi mdi-lock-open"></i>
+                                                    </button>
+                                                </a>
+                                            @else
+                                                <a
+                                                    href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'unlock-user']) }}">
+                                                    <button type="button" title="Mở khóa người dùng" id="unlock-user"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        class="btn  btn-outline-danger btn-rounded btn-icon">
+                                                        <i class="mdi mdi-lock"></i>
+                                                    </button>
+                                                </a>
+                                            @endif
                                             <a
-                                                href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'unlock-user']) }}">
-                                                <button type="button" title="Mở khóa người dùng" id="unlock-user"
+                                                href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'delete-user']) }}">
+                                                <button type="button" title="Xóa người dùng" id="delete-user"
                                                     data-toggle="tooltip" data-placement="top"
-                                                    class="btn  btn-outline-danger btn-rounded btn-icon">
-                                                    <i class="mdi mdi-lock"></i>
+                                                    class="btn btn-outline-danger btn-rounded btn-icon">
+                                                    <i class="mdi mdi-trash-can"></i>
                                                 </button>
                                             </a>
-                                        @endif
-                                        <a
-                                            href="{{ route('actionOnUser', ['id' => $user->id, 'action' => 'delete-user']) }}">
-                                            <button type="button" title="Xóa người dùng" id="delete-user"
-                                                data-toggle="tooltip" data-placement="top"
-                                                class="btn btn-outline-danger btn-rounded btn-icon">
-                                                <i class="mdi mdi-trash-can"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endif
-
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
 

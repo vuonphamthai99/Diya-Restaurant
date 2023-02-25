@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body ">
                 <h4 class="card-title">Thêm - Cập nhật món ăn</h4>
                 <p class="card-description"> Nhập thông tin món ăn </p>
                 <form action="{{route('storeMenu')}}" method="POST" enctype="multipart/form-data" class="forms-sample">

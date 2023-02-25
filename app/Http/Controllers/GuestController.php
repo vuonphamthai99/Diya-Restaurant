@@ -51,6 +51,7 @@ class GuestController extends Controller
     }
 
     public function loginGuest(Request $request){
+
         $request->validate([
             'phone'=>['required','regex:/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/'],
             'password'=>'required|min:8'
@@ -70,9 +71,9 @@ class GuestController extends Controller
                 $request->session()->put('role',$user->id_user_role);
                 $request->session()->put('UserName',$user->name);
                 $request->session()->put('UserRole',$user->hasRole->user_role);
+
                 return redirect()->route('guest-page')->with('success','Đăng nhập thành công!');
             }else{
-
                 return back()->with('error','Mật khẩu không đúng! Hãy thử lại');
             }
         }

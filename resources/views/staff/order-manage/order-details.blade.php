@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body table-responsive">
             <h4 class="card-title">Danh sách các đơn Order</h4>
             {{-- <div class="col-lg-6 d-flex mt-2 mb-4 ">
                 <button type="button" id="order-btn" class="btn btn-gradient-primary btn-fw">Thêm món+</button>
