@@ -2,7 +2,7 @@
 
 Building a restaurant management Website to facilitate online ordering and table reservations with Chatbot, address validation and online payment.
 
-## Intructions
+## Instructions
 
 To access the Management Interface go to:
 http://127.0.0.1:8000/login
