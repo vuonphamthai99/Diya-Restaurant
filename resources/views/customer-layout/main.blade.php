@@ -9,7 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
   <meta content="{{ csrf_token() }}" name="csrf-field">
-
+<meta content="{{asset('/')}}" name="assets-link">
   <!-- Favicons -->
   <link href="{{asset('customer-template/img/favicon.png')}}" rel="icon">
   <link href="{{asset('customer-template/img/apple-touch-icon.png')}}" rel="apple-touch-icon">

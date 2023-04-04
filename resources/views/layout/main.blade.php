@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-field" content="{{csrf_token()}}">
+    <meta content="{{asset('/')}}" name="assets-link">
+
     <title>Diya Restaurant</title>
     <!-- plugins:css -->
 
